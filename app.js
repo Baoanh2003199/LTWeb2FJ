@@ -14,9 +14,9 @@ require('./middlewares/locals.mdw')(app);
 // Set Public path for asset
 app.use(express.static(path.join(__dirname, '/public')));
 
-
 // Route
 app.use('/admin', require('./routes/admin/home.route'));
+
 
 app.get('/',function (req, res) {
     res.render('home/home');
