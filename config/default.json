@@ -2,7 +2,7 @@
     "mysql":{
         "connectionLimit" : "50",
         "host"     : "localhost",
-        "port": "process.env.PORT",
+        "port": "3306",
         "user"     : "root",
         "password" : "",
         "database" : "news_db"
