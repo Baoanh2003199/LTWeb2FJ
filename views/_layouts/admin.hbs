@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  {{{_sections.title}}}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  {{{_sections.css}}}
+</head>
+<body>
+{{!-- END HEAD --}}
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Quản trị</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-5">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Thoát</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="row content my-2 mx-1 d-flex justify-content-center " > 
+        <div class="col-md-2 bg-info leftMenu w-100">
+             <nav class="navbar nav-left-sidebar sidebar-dark navbar-light bg-info navbar-expand-lg w-100">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#leftMenu" aria-controls="leftMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse  " id="leftMenu">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>   
+                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Phân loại
+                            </a>
+                            <div class="dropdown-menu w-auto " aria-labelledby="categoryDropdown">
+                                <a class="dropdown-item" href="#">Danh sách phân loại</a>
+                                <a class="dropdown-item" href="#">Thêm phân loại </a>
+                            </div>
+                        </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Bài viết
+                            </a>
+                            <div class="dropdown-menu w-auto " aria-labelledby="newsDropdown">
+                                <a class="dropdown-item" href="#">Danh sách bài viết</a>
+                                <a class="dropdown-item" href="#">Viết bài</a>
+                                <a class="dropdown-item" href="#">Duyệt bài</a>
+                            </div>
+                        </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tag
+                            </a>
+                            <div class="dropdown-menu w-auto " aria-labelledby="tagDropdown">
+                                <a class="dropdown-item" href="#">Danh sách tag</a>
+                                <a class="dropdown-item" href="#">Thêm tag</a>
+                            </div>
+                        </li>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tài khoản
+                            </a>
+                            <div class="dropdown-menu w-auto  " aria-labelledby="accountDropdown">
+                                <a class="dropdown-item" href="#">Thành viên</a>
+                                <a class="dropdown-item" href="#">Thêm thành viên</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Độc giả</a>
+                            </div>
+                        </li>  
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    <div class="col-md-10 mx-auto rightContent">
+         {{!-- START Main --}}
+            {{{body}}}
+        {{!-- END MAIN --}}
+    </div>
+</div>    
+
+
+
+
+
+{{!--START FOOTER --}}
+<!-- Footer -->
+<footer class="page-footer font-small bg-light text-secondary">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a class="text-secondary"  href="/admin"> Trang Tin Tức</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+{{!-- END FOOTER --}}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{{{_sections.js}}}
+</body>
+</html>

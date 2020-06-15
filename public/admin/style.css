@@ -1,0 +1,47 @@
+body{
+    background-color: #efeff6;
+}
+.content{
+    border:0px;
+    max-width:100%; 
+}
+.rightContent{
+    min-height: 100vh;
+}
+
+
+/* Reponsive */
+@media only screen and (max-width: 768px){
+    body{
+        font-size: 11px;
+    }
+    .leftMenu{
+        height: 5%;
+    }
+}
+@media only screen and (max-width: 425px){
+    .leftMenu{
+        height: 5%;
+    }
+    .card_title{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 375){
+    .leftMenu{
+        height: 5%;
+    }
+    .card_title{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 320){
+    .leftMenu{
+        height: 5%;
+    }
+    .card_title{
+        display: none;
+    }
+}

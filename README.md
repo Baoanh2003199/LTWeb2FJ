@@ -1,7 +1,7 @@
 # news
 1. Config
  - Database
- 2. Middleware
+2. Middleware
   - view
   - Session
   - Locals
