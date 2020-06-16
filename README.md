@@ -1,11 +1,7 @@
 # news
 1. Config
  - Database
-<<<<<<< HEAD
-2. Middleware
-=======
  2. Middleware
->>>>>>> e90602030ad00101404c5aede8f6dcf0b3445987
   - view
   - Session
   - Locals
