@@ -11,8 +11,11 @@ require('./middlewares/session.mdw')(app);
 // - Locals: Set local Variable 
 require('./middlewares/locals.mdw')(app);
 
+// Set Public path for asset
+app.use(express.static(path.join(__dirname, '/public')));
+
 // Set Layout prefix url is "/admin" is admin.hbs
-app.all('/admin', function(req, res, next){
+app.all('/admin*', function(req, res, next){
   req.app.locals.layout = 'admin';
   next();
 })
@@ -23,8 +26,7 @@ app.all('/', function(req, res, next){
 })
 
 
-// Set Public path for asset
-app.use(express.static(path.join(__dirname, '/public')));
+
 
 // Route
 app.use('/admin', require('./routes/admin/home.route'));

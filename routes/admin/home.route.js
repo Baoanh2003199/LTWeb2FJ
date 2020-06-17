@@ -7,6 +7,11 @@ routes.get('/', function(req, res){
     return res.render('admin/home/home');
 })
 
+// Route category
 routes.use('/category', require('./category.route'));
+// Route Tag
+routes.use('/tag', require('./tag.route'));
+// Route News
+routes.use('/news', require('./news.route'));
 
 module.exports = routes;

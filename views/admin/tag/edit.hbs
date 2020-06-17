@@ -1,0 +1,32 @@
+{{#section 'title'}}Thêm Tag{{/section}}
+ <nav class="breadcrumb">
+              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+              <a class="breadcrumb-item" href="/admin/tag">Tag</a>
+              <a class="breadcrumb-item active" href="#">Sửa</a>
+</nav>
+<div class="contentHeader">
+    <div class="card text-dark bg-light">     
+      <div class="card-body text-center ">
+        <h4 class="card-title">Sửa tag</h4>
+      </div>
+    </div>
+</div>
+
+<div class="contentHeader my-4">
+    <div class="card text-dark bg-light">     
+      <div class="card-body ">
+          <form action="" method="POST">
+              <div class="form-group">
+                  {{!-- Kiểm tra trùng tên --}}
+                <label for="">Tên tag</label>
+                <input type="text"
+                    class="form-control form-control-sm" name=""  required  placeholder="Tên tag">
+              </div>
+               <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success py-3">Sửa</button>
+               </div>
+               
+          </form>
+      </div>
+    </div>
+</div>
