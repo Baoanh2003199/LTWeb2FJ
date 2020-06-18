@@ -13,5 +13,7 @@ routes.use('/category', require('./category.route'));
 routes.use('/tag', require('./tag.route'));
 // Route News
 routes.use('/news', require('./news.route'));
+// Route member
+routes.use('/member', require('./member.route'));
 
 module.exports = routes;

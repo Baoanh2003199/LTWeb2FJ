@@ -8,15 +8,16 @@ body{
 .rightContent{
     min-height: 100vh;
 }
-
-
+.qtagselect__container{
+    width: 100% !important;
+}
+.select_img{
+    cursor: pointer;
+}
 /* Reponsive */
 @media only screen and (max-width: 768px){
     body{
         font-size: 11px;
-    }
-    .leftMenu{
-        height: 5%;
     }
 }
 @media only screen and (max-width: 425px){

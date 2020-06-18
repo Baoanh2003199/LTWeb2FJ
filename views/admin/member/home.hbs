@@ -1,12 +1,12 @@
-{{#section 'title'}}Bài viết{{/section}}
+{{#section 'title'}}Thành viên{{/section}}
  <nav class="breadcrumb">
               <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item active" href="#">Bài viết</a>
+              <a class="breadcrumb-item active" href="#">Thành viên</a>
 </nav>
 <div class="contentHeader">
     <div class="card text-dark bg-light">     
       <div class="card-body text-center ">
-        <h4 class="card-title">Danh sách bài viết</h4>
+        <h4 class="card-title">Danh sách thành viên</h4>
       </div>
     </div>
 </div>
@@ -14,16 +14,17 @@
 <div class="contentHeader my-4">
     <div class="card text-dark bg-light">     
       <div class="card-body text-center ">
-          <a class="btn btn-primary m-3 float-right" href="/admin/news/add" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm bài viết</a>
+          <a class="btn btn-primary m-3 float-right" href="/admin/member/add" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm thành viên</a>
        <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col" width="25%">Tên</th>
-                        <th scope="col" width="20%">Mô tả</th>
-                        <th scope="col" width="15%">Thể loại</th>
-                        <th scope="col" width="10%">Loại</th>
+                        <th scope="col" width="20%">Tên</th>
+                        <th scope="col" width="17%">Email</th>
+                        <th scope="col" width="17%">Số điện thoại</th>
+                        <th scope="col" width="15%">Ngày sinh</th>
+                        <th scope="col" width="10%">Vai trò</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -34,11 +35,12 @@
                         <td>@mdo</td>
                         <td>Mark</td>
                         <td>@mdo</td>
+                        <td>@mdo</td>
                         <td class="d-flex justify-content-center">
                             <a class="btn btn-primary float-left mx-1" href="" ><i class="fa fa-pencil" aria-hidden="true" title="Sửa"></i></a>
                             <a  class="btn btn-success  float-left mx-1" href=""><i class="fa fa-eye" aria-hidden="true" title="Xem"></i> </a>
                             {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi request --}}
-                            <form class="float-left" action="/admin/news/delete" method="POST" >
+                            <form class="float-left" action="/admin/member/delete" method="POST" >
                                 
                                 <button type="submit" class="btn btn-danger mx-1"><i class="fa fa-trash" aria-hidden="true" title="Xóa"></i></button> 
                             </form>                           

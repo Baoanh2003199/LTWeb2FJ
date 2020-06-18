@@ -1,0 +1,65 @@
+{{#section 'title'}}Thêm Bài viết{{/section}}
+ <nav class="breadcrumb">
+              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+              <a class="breadcrumb-item" href="/admin/news">Thành viên</a>
+              <a class="breadcrumb-item active" href="#">Thêm</a>
+</nav>
+<div class="contentHeader">
+    <div class="card text-dark bg-light">     
+      <div class="card-body text-center ">
+        <h4 class="card-title">Thêm thành viên</h4>
+      </div>
+    </div>
+</div>
+
+<div class="contentHeader my-4">
+    <div class="card text-dark bg-light">     
+      <div class="card-body ">
+          <form action="" method="POST">
+              <div class="form-group">
+                <label for="">Tên</label>
+                <input type="text"
+                    class="form-control form-control-sm" name=""  required  placeholder="Tên">
+              </div>
+              <div class="form-group">
+                <label for="">Email</label>
+                <input type="email"
+                    class="form-control form-control-sm" name=""  required  placeholder="email">
+              </div>
+              <div class="form-group">
+                <label for="">Số điện thoại</label>
+                <input type="text"
+                    class="form-control form-control-sm" name=""  required  placeholder="Số điện thoại">
+              </div>
+              <div class="form-group">
+                <label for="">Ngày sinh</label>
+                <input type="text"
+                    class="form-control form-control-sm" name="" id="datepicker"  required  placeholder="dd/mm/yyyy">
+              </div>
+              <div class="form-group">
+                <label for="">Vai trò</label>
+                <select class="form-control" name="" id="">
+                  <option>Phóng viên ( writer)</option>
+                  <option>Biên tập (subscriber)</option>
+                </select>
+              </div>
+               <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success px-5">Thêm</button>
+               </div>
+               
+          </form>
+      </div>
+    </div>
+</div>
+{{#section 'css'}}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{{/section}}
+{{#section 'js'}}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+ <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+{{/section}}

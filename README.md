@@ -11,6 +11,7 @@
   - img
 4. Util
   - Process database
+  - Upload file 
 5. Run project
   - "npm install"
   - run localhost

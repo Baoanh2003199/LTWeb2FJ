@@ -15,9 +15,8 @@
 <div class="contentHeader my-4">
     <div class="card text-dark bg-light">     
       <div class="card-body ">
-          <form action="" method="POST">
+          <form action="" method="POST" enctype="multipart/form-data">
               <div class="form-group">
-                  {{!-- Kiểm tra trùng tên thể loại --}}
                 <label for="">Tên bài viết</label>
                 <input type="text"
                     class="form-control form-control-sm" name=""  required  placeholder="Tên bài viết">
@@ -59,12 +58,19 @@
                     </select>
                 </div>
                 <br>
+                <div class="form-group">
+                  <label for="">Ảnh đại diện</label>
+                  <input type="file" class="form-control-file" name="" id="fileInput"  onchange="showMyImage(this)"  placeholder="" aria-describedby="fileHelpId">
+                </div>
+                <div class="form-group">
+                  <img src="/admin/img/click.svg"  class="select_img w-25 h-25"  id="thumbnail"  alt="ảnh đại diện"  id="thumbnail">
+                </div>
             <div class="form-group">
                 <label for="">Nội dung</label>
                 <textarea name="" id="content" cols="30" rows="10"></textarea>
               </div>
                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success py-3">Thêm</button>
+                    <button type="submit" class="btn btn-success px-5">Thêm</button>
                </div>
                
           </form>
@@ -77,6 +83,7 @@
 
 {{#section 'js'}}
 <script src="/tagSelector/jquery.tagselect.js"></script>
+<script src="/admin/myJs.js"></script>
  <script>
 
     CKEDITOR.replace( 'content' );
@@ -85,6 +92,8 @@
             'maxTag':10
         });
     });
+
+    
 </script>
 
 
