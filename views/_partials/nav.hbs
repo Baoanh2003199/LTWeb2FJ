@@ -15,15 +15,9 @@
           Danh mục
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Category a </a>
-          <a class="dropdown-item" href="#">Category b</a>
-      </li>
-          <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+        {{#each this.Category}}
+          <a class="dropdown-item" href="?id={{}}">Category a </a>
+          {{/each}}
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
