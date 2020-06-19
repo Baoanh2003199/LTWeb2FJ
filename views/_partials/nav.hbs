@@ -18,13 +18,23 @@
         {{!-- {{#each this.Category}} --}}
           <a class="dropdown-item" href="?id=1">Category a </a>
           {{!-- {{/each}} --}}
+          </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Nhập gì đó để tìm kiếm" aria-label="Search">
+      <input class="form-control mr-sm-2" type="search" placeholder="Nhập từ khóa để tìm kiếm" aria-label="Search">
       <button class="btn btn-success my-2 my-sm-0" type="submit">Tìm kiếm
         <i class="fa fa-search" aria-hidden="true"></i>
       </button>
-     
     </form>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+          <i class="fa fa-bars"></i>
+          Danh mục
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {{!-- {{#each this.Category}} --}}
+          <a class="dropdown-item" href="?id=1">Category a </a>
+          {{!-- {{/each}} --}}
+          </li>
   </div>
 </nav>
