@@ -15,5 +15,7 @@ routes.use('/tag', require('./tag.route'));
 routes.use('/news', require('./news.route'));
 // Route member
 routes.use('/member', require('./member.route'));
+// Route subscriber
+routes.use('/subscriber', require('./subscriber.route'));
 
 module.exports = routes;
