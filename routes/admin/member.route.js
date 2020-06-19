@@ -10,5 +10,11 @@ route.get('/', function(req, res){
 route.get('/add', function(req, res){
     return res.render('admin/member/add');
 })
+// Xem chi tiết
+route.get('/view/:id', function(req, res){
+    const id = req.params['id'];
+
+    return res.render('admin/member/view');
+})
 
 module.exports = route;

@@ -1,0 +1,37 @@
+{{#section 'title'}}Phân loại{{/section}}
+ <nav class="breadcrumb">
+              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+              <a class="breadcrumb-item" href="/admin/category">Thể loại</a>
+              <a class="breadcrumb-item active" href="#">Chi tiết</a>
+</nav>
+<div class="contentHeader">
+    <div class="card text-dark bg-light">     
+      <div class="card-body text-center ">
+        <h4 class="card-title">Chi tiết thể loại</h4>
+      </div>
+    </div>
+</div>
+
+<div class="contentHeader my-4">
+    <div class="card text-dark bg-light">     
+      <div class="card-body text-center ">
+        {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi request --}}
+        <form action="/admin/category/delete" class="float-right pt-3" method="POST" >
+            <button type="submit" class="btn btn-danger mx-3"><i class="fa fa-trash" aria-hidden="true" title="Xóa"></i> Xóa</button> 
+        </form>
+        <a class="btn btn-primary  m-3 float-right" href="/admin/category/add" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm phân loại</a>
+        <div class="table-responsive">
+              <table class="table">
+                    <tr>
+                        <th>Tên</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Mục chính</th>
+                        <td></td>
+                    </tr>
+            </table>
+        </div>    
+    </div>
+    </div>
+</div>

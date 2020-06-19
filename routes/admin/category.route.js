@@ -17,4 +17,10 @@ route.get('/edit/:id', function(req, res){
 
     res.render('admin/category/edit');
 })
+// Xem chi tiết 
+route.get('/view/:id', function(req, res){
+    const id = req.params['id'];
+
+    res.render('admin/category/view');
+})
 module.exports = route;

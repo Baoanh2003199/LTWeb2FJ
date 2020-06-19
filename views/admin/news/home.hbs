@@ -20,10 +20,10 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col" width="25%">Tên</th>
-                        <th scope="col" width="20%">Mô tả</th>
-                        <th scope="col" width="15%">Thể loại</th>
-                        <th scope="col" width="10%">Loại</th>
+                        <th scope="col" width="20%">Tên</th>
+                        <th scope="col" width="30%">Mô tả</th>
+                        <th scope="col" width="20%">Thể loại</th>
+                        <th scope="col" width="20%">Trạng thái</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -35,12 +35,12 @@
                         <td>Mark</td>
                         <td>@mdo</td>
                         <td class="d-flex justify-content-center">
-                            <a class="btn btn-primary float-left mx-1" href="" ><i class="fa fa-pencil" aria-hidden="true" title="Sửa"></i></a>
-                            <a  class="btn btn-success  float-left mx-1" href=""><i class="fa fa-eye" aria-hidden="true" title="Xem"></i> </a>
-                            {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi request --}}
+                        <a class="btn btn-success float-left mx-3" href="" ><i class="fa fa-pencil" aria-hidden="true" title="Sửa"></i></a>
+                        <a  class="btn btn-primary  float-left mx-3" href=""><i class="fa fa-eye" aria-hidden="true" title="Xem"></i> </a>                           
+                         {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi request --}}
                             <form class="float-left" action="/admin/news/delete" method="POST" >
                                 
-                                <button type="submit" class="btn btn-danger mx-1"><i class="fa fa-trash" aria-hidden="true" title="Xóa"></i></button> 
+                                <button type="submit" class="btn btn-danger mx-3"><i class="fa fa-trash" aria-hidden="true" title="Xóa"></i></button> 
                             </form>                           
                         </td>                            
                     </tr>                    

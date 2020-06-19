@@ -17,4 +17,9 @@ route.get('/edit/:id', function(req, res){
     
     return res.render('admin/tag/edit');
 });
+route.get('/view/:id', function(req, res){
+    const id = req.params['id'];
+    
+    return res.render('admin/tag/view');
+});
 module.exports = route;

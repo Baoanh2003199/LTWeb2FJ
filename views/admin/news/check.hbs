@@ -1,0 +1,53 @@
+{{#section 'title'}}Duyệt bài{{/section}}
+ <nav class="breadcrumb">
+              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+              <a class="breadcrumb-item active" href="#">Duyệt bài</a>
+</nav>
+<div class="contentHeader">
+    <div class="card text-dark bg-light">     
+      <div class="card-body text-center ">
+        <h4 class="card-title">Danh sách bài chờ duyệt</h4>
+      </div>
+    </div>
+</div>
+
+<div class="contentHeader my-4">
+    <div class="card text-dark bg-light">     
+      <div class="card-body text-center ">
+       <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" width="25%">Tên</th>
+                        <th scope="col" width="20%">Mô tả</th>
+                        <th scope="col" width="15%">Thể loại</th>
+                        <th scope="col" width="10%">Loại</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>@mdo</td>
+                        <td class="d-flex justify-content-center">
+                            <a  class="btn btn-primary  float-left mx-3" href=""><i class="fa fa-eye" aria-hidden="true" title="Xem"></i> </a>
+                            {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi request --}}
+                             <form class="float-left" action="/admin/news/check" method="POST" >                               
+                                <button type="submit" class="btn btn-success mx-3"><i class="fa fa-check" aria-hidden="true" title="Duyệt"></i></button> 
+                            </form>     
+                            <form class="float-left" action="/admin/news/check" method="POST" >                               
+                                <button type="submit" class="btn btn-danger mx-3"><i class="fa fa-times" aria-hidden="true" title="Từ chối" ></i></button> 
+                            </form>                             
+                        </td>                               
+                    </tr>                    
+                </tbody>
+            </table>
+       </div>
+      
+      </div>
+    </div>
+</div>
