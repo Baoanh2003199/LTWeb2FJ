@@ -18,17 +18,17 @@
     + "npm start" or "npx nodemon" ( Auto update sources when ctrl + s )
 ## 6. View
   + Web
-  - [] home
-  - [] category
-  - [] tag
-  - [] news
-  - [] Login
+  - [ ] Homepage
+  - [ ] Category
+  - [ ] Tag
+  - [ ] News
+  - [ ] Login
+     - [x] View
+     - [ ] Function
+  - [ ] register
      - [x]View
-     - []Function
-  - [] register
-     - [x]View
-     - []Function
-  - [] payment
+     - [ ]Function
+  - [ ] Subscribe
   + Admin
     + home
     + category
