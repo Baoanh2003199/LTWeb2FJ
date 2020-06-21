@@ -26,12 +26,12 @@
      - [x] View
      - [ ] Function
   - [ ] register
-     - [x]View
-     - [ ]Function
+     - [x] View
+     - [ ] Function
   - [ ] Subscribe
   + Admin
-    + home
-    + category
-    + tag
-    + news
-    + account
+    [ ] Admin Panel
+    [ ] Category Manager
+    [ ] Tag Manager
+    [ ] News Manager
+    [ ] Account Manager
