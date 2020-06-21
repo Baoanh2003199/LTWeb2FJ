@@ -1,35 +1,35 @@
-### news
-##1. Config
+# news
+## 1. Config
  - Database
 ## 2. Middleware
   - view
   - Session
   - Locals
-##3. Public
+## 3. Public
   - Css
   - js
   - img
-##4. Util
+## 4. Util
   - Process database
   - Upload file 
-5. Run project
+## 5. Run project
   - "npm install"
   - run localhost
     + "npm start" or "npx nodemon" ( Auto update sources when ctrl + s )
-6. View
-  - Web
-    [] home
-    [] category
-    [] tag
-    [] news
-    [] Login
-       [x]View
-       []Function
-    [] register
-       [x]View
-       []Function
-    [] payment
-  - Admin
+## 6. View
+  + Web
+  - [] home
+  - [] category
+  - [] tag
+  - [] news
+  - [] Login
+     - [x]View
+     - []Function
+  - [] register
+     - [x]View
+     - []Function
+  - [] payment
+  + Admin
     + home
     + category
     + tag
