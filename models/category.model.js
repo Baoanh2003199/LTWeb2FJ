@@ -24,4 +24,7 @@ module.exports = {
         delete entity.id;
         return db.patch(TBL_CATEGORY, entity, condition);
     },
+    view: function(id) {
+        return db.load(`select * from ${TBL_CATEGORY} where id=${id}`);
+    },
 };
