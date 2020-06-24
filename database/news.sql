@@ -32,7 +32,7 @@ CREATE TABLE `news` (
   `content` varchar(255) NOT NULL,
   `isPremium` int(11) DEFAULT NULL,
   `openTime` timestamp default null,
-  `filePdf` varchar(255),
+  `filePdf` varchar(255) default null,
   `catID` int(11) DEFAULT NULL,
    `createdBy` int(11) DEFAULT NULL,
    `note` nvarchar(255) default NULL,
@@ -58,7 +58,7 @@ DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  `code` int(11) DEFAULT NULL,
+  `code` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -113,13 +113,61 @@ CREATE TABLE `user_role` (
 );
 
 
-ALTER TABLE news ADD  FOREIGN KEY (catID) REFERENCES  category(id);
-ALTER TABLE news ADD  FOREIGN KEY (createdBy) REFERENCES  `user`(id);
-ALTER TABLE news_tag ADD  FOREIGN KEY (newID) REFERENCES  news(id);
-ALTER TABLE news_tag ADD  FOREIGN KEY (tagID) REFERENCES  tag(id);
+-- ALTER TABLE news ADD  FOREIGN KEY (catID) REFERENCES  category(id);
+-- ALTER TABLE news ADD  FOREIGN KEY (createdBy) REFERENCES  `user`(id);
+-- ALTER TABLE news_tag ADD  FOREIGN KEY (newID) REFERENCES  news(id);
+-- ALTER TABLE news_tag ADD  FOREIGN KEY (tagID) REFERENCES  tag(id);
 
-ALTER TABLE user_role ADD  FOREIGN KEY (userID) REFERENCES  user(id);
-ALTER TABLE user_role ADD  FOREIGN KEY (roleID) REFERENCES  role(id);
+-- ALTER TABLE user_role ADD  FOREIGN KEY (userID) REFERENCES  user(id);
+-- ALTER TABLE user_role ADD  FOREIGN KEY (roleID) REFERENCES  role(id);
 
 
 -- Dump completed on 2020-06-16 10:55:29
+
+insert into category value(null, 'Thể thao', 0);
+insert into category value(null, 'Thời sự', 0);
+insert into category value(null, 'Giải trí', 0);
+insert into category value(null, 'Bóng đá', 1);
+insert into category value(null, 'Tennis', 1);
+insert into category value(null, 'Giao thông', 2);
+insert into category value(null, 'Chống dịch', 2);
+insert into category value(null, 'Phim', 3);
+insert into category value(null, 'Truyện', 3);
+
+insert into tag values(null, 'covid 19');
+insert into tag values(null, 'sức khỏe');
+insert into tag values(null, 'AFF-Cup');
+insert into tag values(null, 'Tuyển Việt Nam');
+insert into tag values(null, 'Hành động');
+insert into tag values(null, 'Kich tính');
+insert into tag values(null, 'Kinh dị');
+
+
+insert into news values(null, 'Tiêu đề 1', 'Mô tả 1', 'Nội dung 1', 0, now(), null, 3, null, 'Ghi chú', 0);
+insert into news values(null, 'Tiêu đề 2', 'Mô tả 2', 'Nội dung 2', 1, now(), null, 4, null, 'Ghi chú', 0);
+insert into news values(null, 'Tiêu đề 3', 'Mô tả 3', 'Nội dung 3', 0, now(), null, 5, null, 'Ghi chú', 0);
+insert into news values(null, 'Tiêu đề 4', 'Mô tả 4', 'Nội dung 4', 1, now(), null, 3, null, 'Ghi chú', 0);
+insert into news values(null, 'Tiêu đề 5', 'Mô tả 5', 'Nội dung 5', 1, now(), null, 6, null, 'Ghi chú', 0);
+insert into news values(null, 'Tiêu đề 6', 'Mô tả 6', 'Nội dung 6', 0, now(), null, 6, null, 'Ghi chú', 0);
+insert into news values(null, 'Tiêu đề 7', 'Mô tả 7', 'Nội dung 7', 0, now(), null, 7, null, 'Ghi chú', 0);
+
+insert into news_tag values(1, 1);
+insert into news_tag values(1, 2);
+insert into news_tag values(2, 1);
+insert into news_tag values(2, 3);
+insert into news_tag values(3, 1);
+insert into news_tag values(4, 1);
+insert into news_tag values(4, 2);
+insert into news_tag values(4, 6);
+insert into news_tag values(5, 2);
+insert into news_tag values(5, 3);
+insert into news_tag values(5, 7);
+insert into news_tag values(6, 1);
+insert into news_tag values(7, 7);
+
+insert into role values(null, 'Quản trị','ADMINSTRATOR');
+insert into role values(null, 'Biên tập','EDITOR');
+insert into role values(null, 'Phóng viên','WRITER');
+insert into role values(null, 'Đọc giả','SUBSCRIBER');
+
+
