@@ -51,7 +51,7 @@ route.get('/', redirectHome, function(req,res){
 })
 
 route.post('/', redirectHome, async function(req, res) {
-    res.send(req.body)
+    res.send(req.body.username)
     /*const {username, password} = req.body
     if(username && password)
     {
