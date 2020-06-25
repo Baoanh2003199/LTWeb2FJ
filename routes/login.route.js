@@ -2,11 +2,6 @@ const express = require('express');
 const route = express.Router();
 const bcrypt = require('bcrypt');
 
-
-route.get('/', redirectHome, function(req,res){
-    res.render('login');
-})
-
 const redirectLogin = (req, res, next)=>{
     if(!req.session.userId)
     {
@@ -17,7 +12,6 @@ const redirectLogin = (req, res, next)=>{
         next();
     }
 }
-
 
 const PermissionCheck = (req, res, next)=>{
     if(!req.session.userId )
@@ -51,5 +45,8 @@ const redirectHome = (req, res, next)=>{
     }
 }
 
+route.get('/', redirectHome, function(req,res){
+    res.render('login');
+})
 
 module.exports = route;
