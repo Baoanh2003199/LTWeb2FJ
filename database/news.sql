@@ -32,7 +32,7 @@ CREATE TABLE `news` (
   `content` varchar(255) NOT NULL,
   `isPremium` int(11) DEFAULT NULL,
   `openTime` timestamp default null,
-  --nếu bị lỗi thì bỏ comment dòng bên dưới và comment dòng bên trên
+  -- nếu bị lỗi thì bỏ comment dòng bên dưới và comment dòng bên trên
   -- `openTime` timestamp default current_timestamp,
   `filePdf` varchar(255) default null,
   `catID` int(11) DEFAULT NULL,
