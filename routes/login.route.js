@@ -59,13 +59,13 @@ route.post('/', redirectHome, async function(req, res) {
         var validUser = bcrypt.compareSync(password, hashed)
         if(validUser)
         {
-            var {userId, name, role} = req.session
+            /*var {userId, name, role} = req.session
             req.session.userId = result[0].ID
             req.session.name = result[0].username
             req.session.role = result[0].role
             res.local.userId = result[0].ID
             res.local.name = result[0].username
-            res.local.role = result[0].role
+            res.local.role = result[0].role*/
             res.redirect('/home')
         }
         else
