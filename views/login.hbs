@@ -4,7 +4,7 @@
     <h5 style="font-weight: bold;">Đăng nhập</h5>
   </div>
   <div class="card-body">
-    <form method="POST" action="">
+    <form method="POST">
     <div class="form-group" style="margin: 10px;">
       <label for="username"><i class="fa fa-user" aria-hidden="true"></i> Tên người dùng:</label>
       <input name="username" type="username" class="form-control" id="username">
@@ -19,6 +19,10 @@
       {{#if this.isLoginFalse}}
       <!--Hiển thị modal thông báo login fail -->
       <label>Tên người dùng không tồn tài hoặc sai mật khẩu</label>
+       {{/if}}
+      {{#if this.isLoginSuccess}}
+      <!--Hiển thị modal thông báo login fail -->
+      <label>Login thành công</label>
        {{/if}}
     </div>
     <div style="text-align: center;">
