@@ -50,7 +50,7 @@ route.get('/', redirectHome, function(req,res){
     res.render('login');
 })
 
-app.post('/', redirectHome, async function(req, res) {
+route.post('/', redirectHome, async function(req, res) {
     const {username, password} = req.body
     if(username && password)
     {
