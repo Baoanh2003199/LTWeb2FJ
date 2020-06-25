@@ -10,6 +10,8 @@ require('./middlewares/views.mdw')(app);
 require('./middlewares/session.mdw')(app);
 // - Locals: Set local Variable 
 require('./middlewares/locals.mdw')(app);
+// - Body parse: Catch data from POST and GET method
+require('./middlewares/bodyparse.mdw')(app);
 
 // Set Public path for asset
 app.use(express.static(path.join(__dirname, '/public')));
