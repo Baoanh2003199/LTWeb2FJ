@@ -30,4 +30,9 @@ module.exports = {
     view: function(id) {
         return db.load(`select * from ${TBL_LOGIN} where id=${id}`);
     },
+
+    byName: function(username)
+    {
+        return db.load(`select * from ${TBL_LOGIN} where username=${username}`);
+    }
 };
