@@ -21,7 +21,7 @@ route.get('/', redirectHome, function (req, res) {
 
 route.post('/', async function (req, res) {
     const result = await regModel.byName(req.body.username);
-    if(result[0].username)
+    if(result[0])
     {
         res.render('register', {isExists: true})
     }
