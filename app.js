@@ -31,20 +31,32 @@ app.all('/', function(req, res, next){
   next();
 })
 
-
+app.use( function(req,res, next){
+  req.session.userId === undefined?res.locals.isLoggedIn=false: res.locals.isLoggedIn=true;
+  res.locals.userId = req.session.userId;
+  res.locals.username = req.session.name;
+  next();
+})
 
 
 // Route
 app.use('/admin', require('./routes/admin/home.route'));
 app.use('/login', require('./routes/login.route'));
-
-app.get('/register',function (req, res) {
-  res.render('register');
-});
+app.use('/register', require('./routes/register.route'));
 
 
-
-
+app.get('/logout', function(req,res){
+  if (req.session) {
+      // delete session object
+      req.session.destroy(function(err) {
+        if(err) {
+          return next(err);
+        } else {
+          return res.redirect('/');
+        }
+      });
+    }
+})
 
 app.get('/',function (req, res) {
     res.render('home/home');

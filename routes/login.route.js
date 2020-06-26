@@ -1,12 +1,12 @@
 const express = require('express');
 const route = express.Router();
 const bcrypt = require('bcrypt');
-const loginModel = require('../models/login.model')
+const loginModel = require('../models/user.model');
 
 const redirectLogin = (req, res, next)=>{
-    if(!req.session.userId)
+    if(!res.locals.isLoggedIn)
     {
-        res.redirect('/')
+        res.redirect('/');
     }
     else
     {
@@ -15,12 +15,12 @@ const redirectLogin = (req, res, next)=>{
 }
 
 const PermissionCheck = (req, res, next)=>{
-    if(!req.session.userId )
+    if(!res.locals.isLoggedIn )
     {
   
-        res.redirect('/')
+        res.redirect('/');
     }
-    else
+    /*else
     {
       if(req.session.role != 1)
       {
@@ -32,13 +32,13 @@ const PermissionCheck = (req, res, next)=>{
         next();
       }
         
-    }
+    }*/
   }
 
 const redirectHome = (req, res, next)=>{
-    if(req.session.userId)
+    if(res.locals.isLoggedIn)
     {
-        res.redirect('/')
+        res.redirect('/');
     }
     else
     {
@@ -51,32 +51,25 @@ route.get('/', redirectHome, function(req,res){
 })
 
 route.post('/', redirectHome, async function(req, res) {
-    res.send(req.body.username)
-    /*const {username, password} = req.body
+    const {username, password} = req.body
     if(username && password)
     {
         
         const result = await loginModel.byName(username);
         var hashed = result[0].password
-        //var validUser = bcrypt.compareSync(password, hashed)
-        if(password == hashed)
+        var validUser = bcrypt.compareSync(password, hashed)
+        if(validUser)
         {
-            console.log(req.body)
-            /*var {userId, name, role} = req.session
-            req.session.userId = result[0].ID
-            req.session.username = result[0].username
-            req.session.role = result[0].role
-            res.local.userId = result[0].ID
-            res.local.username = result[0].username
-            res.local.role = result[0].role
-            res.redirect('/home')
-            res.render('login',{isLoginSuccess: true});
+            var {userId, name} = req.session;
+            req.session.userId = result[0].id;
+            req.session.name = result[0].username;
+            res.redirect('/');
         }
         else
         {
             res.render('login',{isLoginFalse: true});
         }
-    }*/
+    }
 });
 
 module.exports = route;

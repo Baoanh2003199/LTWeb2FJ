@@ -20,10 +20,6 @@
       <!--Hiển thị modal thông báo login fail -->
       <label>Tên người dùng không tồn tài hoặc sai mật khẩu</label>
        {{/if}}
-      {{#if this.isLoginSuccess}}
-      <!--Hiển thị modal thông báo login fail -->
-      <label>Login thành công</label>
-       {{/if}}
     </div>
     <div style="text-align: center;">
        <button id="submit" type="submit" class="btn btn-success">
@@ -33,7 +29,6 @@
   </form>
   </div>
 </div>
-
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">

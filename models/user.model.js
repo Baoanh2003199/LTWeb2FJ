@@ -1,5 +1,6 @@
 const db = require('../utils/db');
-
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const TBL_LOGIN = 'user';
 
 module.exports = {
@@ -11,9 +12,16 @@ module.exports = {
         return db.insert(TBL_LOGIN, entity);
     },
 
-    del: function(idMem) {
+    regAdd: function(entity) {
+        const salt = bcrypt.genSaltSync(saltRounds);
+        const hash = bcrypt.hashSync(entity.password, salt);
+        entity.password = hash;
+        return db.insert(TBL_LOGIN, entity);
+    },
+
+    del: function(id) {
         const condition = {
-            id: idMem,
+            id: id,
         };
         return db.delete(TBL_LOGIN, condition);
     },
@@ -33,6 +41,6 @@ module.exports = {
 
     byName: function(username)
     {
-        return db.load(`select * from ${TBL_LOGIN} where username=${username}`);
+        return db.load(`select * from ${TBL_LOGIN} where username='${username}'`);
     }
 };
