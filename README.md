@@ -37,7 +37,7 @@
     - [ ] Account Manager
  ## 7.Web address
  + Admin Account:
-      username: admin
-      password: admin-123
+     - username: admin
+     - password: admin-123
 + https://tintuc14.herokuapp.com
     
