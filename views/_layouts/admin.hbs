@@ -12,28 +12,23 @@
 </head>
 <body>
 {{!-- END HEAD --}}
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Quản trị</a>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="">Bảng Quản Trị</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-    <ul class="navbar-nav mr-5">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Thoát</a>
       </li>
     </ul>
   </div>
 </nav>
-<div class="row content my-2 mx-1 d-flex justify-content-center " > 
-        <div class="col-md-2 bg-info leftMenu w-100">
-             <nav class="navbar nav-left-sidebar sidebar-dark navbar-light bg-info navbar-expand-lg w-100">
+<div class="row content my-2 mx-1 d-flex justify-content-center" > 
+        <div class="col-md-2 bg-light leftMenu w-100 rounded" style="-webkit-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+-moz-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
+             <nav class="navbar nav-left-sidebar sidebar-dark navbar-light bg-light navbar-expand-lg w-100 shadow-lg rounded">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#leftMenu" aria-controls="leftMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -41,10 +36,11 @@
                 <div class="collapse navbar-collapse  " id="leftMenu">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i>Trang chủ <span class="sr-only">(current)</span></a>
                         </li>   
                          <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                 Thể loại
                             </a>
                             <div class="dropdown-menu w-auto " aria-labelledby="categoryDropdown">
@@ -54,6 +50,7 @@
                         </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
                                 Bài viết
                             </a>
                             <div class="dropdown-menu w-auto " aria-labelledby="newsDropdown">
@@ -64,6 +61,7 @@
                         </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-tags" aria-hidden="true"></i>
                                 Tag
                             </a>
                             <div class="dropdown-menu w-auto " aria-labelledby="tagDropdown">
@@ -74,6 +72,7 @@
                           </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-users" aria-hidden="true"></i>
                                 Thành viên
                             </a>
                             <div class="dropdown-menu w-auto  " aria-labelledby="accountDropdown">
@@ -83,6 +82,7 @@
                         </li>  
                          <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
                                 Đọc giả
                             </a>
                             <div class="dropdown-menu w-auto  " aria-labelledby="accountDropdown">
@@ -90,13 +90,25 @@
                                 <a class="dropdown-item" href="/admin/subscriber/check">Gia hạn đọc giả</a>
                             </div>
                         </li>  
+                          <li class="nav-item dropdown">
+                            <a class="nav-link" href="/logout" id="categoryDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                Đăng xuất
+                            </a>
+                        </li>  
                     </ul>
                 </div>
             </nav>
         </div>
     <div class="col-md-10 mx-auto rightContent">
          {{!-- START Main --}}
-            {{{body}}}
+         <div class="card" style="-webkit-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+-moz-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
+            <div class="card-body">
+                {{{body}}}
+            </div>
+          </div>
         {{!-- END MAIN --}}
     </div>
 </div>    
