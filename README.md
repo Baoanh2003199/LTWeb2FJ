@@ -36,8 +36,9 @@
     - [ ] News Manager
     - [ ] Account Manager
  ## 7.Web address
+ + https://tintuc14.herokuapp.com
  + Admin Account:
      - username: admin
      - password: admin-123
-+ https://tintuc14.herokuapp.com
+
     
