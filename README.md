@@ -35,8 +35,8 @@
     - [ ] Tag Manager
     - [ ] News Manager
     - [ ] Account Manager
- ## 7.Web address:
-    - https://tintuc14.herokuapp.com/
-    - Admin Account:
-    - username: admin
-    - password: admin
+ ## 7.Web address
+    + https://tintuc14.herokuapp.com/
+    + Admin Account:
+      username: admin
+      password: admin-123
