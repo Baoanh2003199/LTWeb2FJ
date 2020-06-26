@@ -33,6 +33,11 @@
     <div class="checkbox" style="margin: 10px">
       <label><input type="checkbox"> Tôi đã đồng ý với các điều khoản trên</label>
     </div>
+      <br>
+      {{#if this.isExists}}
+      <!--Hiển thị modal thông báo login fail -->
+      <label style="color: red;">Tên người dùng đã tồn tại</label>
+       {{/if}}
     <button id="submit" type="submit" class="btn btn-success" style="margin-right: 2%; margin-left:2%">
       <i class="fa fa-user-plus" aria-hidden="true"></i>
       Đăng ký</button>

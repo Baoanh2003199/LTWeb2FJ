@@ -20,8 +20,16 @@ route.get('/', redirectHome, function (req, res) {
 })
 
 route.post('/', async function (req, res) {
-    await regModel.regAdd(req.body);
-    res.redirect('/')
+    const result = await regModel.byName(req.body.username);
+    if(result[0].username)
+    {
+        res.render('register', {isExists: true})
+    }
+    else
+    {
+        await regModel.regAdd(req.body);
+        res.redirect('/login')
+    }
   })
 
   module.exports = route;
