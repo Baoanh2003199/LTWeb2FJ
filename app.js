@@ -7,6 +7,7 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+const catModel = require('./models/category.model');
 // Include MiddleWare
 // - View: Config for view handlebars
 require('./middlewares/views.mdw')(app);
@@ -31,10 +32,11 @@ app.all('/', function(req, res, next){
   next();
 })
 
-app.use( function(req,res, next){
+app.use( async function(req,res, next){
   req.session.userId === undefined?res.locals.isLoggedIn=false: res.locals.isLoggedIn=true;
   res.locals.userId = req.session.userId;
   res.locals.username = req.session.name;
+  res.locals.cat = await catModel.all();
   next();
 })
 

@@ -1,12 +1,12 @@
 {{#section 'title'}}Phân loại{{/section}}
  <nav class="breadcrumb">
               <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item active" href="#">Thể loại</a>
+              <a class="breadcrumb-item active" href="#">Danh mục</a>
 </nav>
 <div class="contentHeader">
     <div class="card text-dark bg-light">     
       <div class="card-body text-center ">
-        <h4 class="card-title">Danh sách Thể loại</h4>
+        <h4 class="card-title">Danh sách các danh mục</h4>
       </div>
     </div>
 </div>
@@ -14,7 +14,7 @@
 <div class="contentHeader my-4">
     <div class="card text-dark bg-light">     
       <div class="card-body text-center ">
-          <a class="btn btn-primary m-3 float-right" href="/admin/category/add" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm phân loại</a>
+          <a class="btn btn-primary m-3 float-right" href="/admin/category/add" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm danh mục</a>
         <div class="table-responsive">
         <table class="table table-bordered ">
             <thead>
@@ -26,10 +26,13 @@
                 </tr>
             </thead>
             <tbody>
+            {{#if this.empty}}
+            {{else}}
+                {{#each this.cat}}
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{id}}</th>
+                    <td>{{name}}</td>
+                    <td>{{parentID}}</td>
                     <td class="d-flex justify-content-center">
                         <a class="btn btn-success float-left mx-3" href="" ><i class="fa fa-pencil" aria-hidden="true" title="Sửa"></i></a>
                         <a  class="btn btn-primary  float-left mx-3" href=""><i class="fa fa-eye" aria-hidden="true" title="Xem"></i> </a>
@@ -42,7 +45,8 @@
                     </td>
                     
                 </tr>
-               
+                {{/each}}
+            {{/if}}
             </tbody>
         </table>
         </div>    

@@ -1,10 +1,12 @@
 const express = require('express');
+const catModel = require('../../models/category.model')
 
 const route = express.Router();
 
 // Danh sách thể loại
-route.get('/', function(req, res){
-    res.render('admin/category/home');
+route.get('/',async function(req, res){
+    const list = await catModel.all();
+    res.render('admin/category/home',{cat: list, empty: list.length === 0});
 })
 // Thêm thể loại
 route.get('/add', function(req, res){
