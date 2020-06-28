@@ -27,9 +27,16 @@ route.get('/check/:id', async function(req, res) {
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
 // Xem chi tiết
-route.get('/view/:id', function(req, res) {
+route.get('/view/:id', async function(req, res) {
     const id = req.params['id'];
-
-    res.render('admin/news/view');
+    const list = await newModel.view(id);
+    res.render('admin/news/view', { news: list, empty: list.length === 0 });
 });
 module.exports = route;
+
+//xoa bai biet
+route.post('/delete/:id', async function(req, res) {
+    const id = req.params['id'];
+    await newModel.del(id);
+    res.redirect('/admin/news');
+});
