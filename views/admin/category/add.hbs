@@ -1,41 +1,42 @@
 {{#section 'title'}}Thêm thể loại{{/section}}
- <nav class="breadcrumb">
-              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item" href="/admin/category">Thể loại</a>
-              <a class="breadcrumb-item active" href="#">Thêm</a>
+<nav class="breadcrumb">
+  <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+  <a class="breadcrumb-item" href="/admin/category">Thể loại</a>
+  <a class="breadcrumb-item active" href="#">Thêm</a>
 </nav>
 <div class="contentHeader">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        <h4 class="card-title">Thêm thể loại</h4>
-      </div>
+  <div class="card text-dark bg-light">
+    <div class="card-body text-center">
+      <h4 class="card-title">Thêm thể loại</h4>
     </div>
+  </div>
 </div>
 
 <div class="contentHeader my-4">
-    <div class="card text-dark bg-light">     
-      <div class="card-body ">
-          <form action="" method="POST">
-              <div class="form-group">
-                  {{!-- Kiểm tra trùng tên thể loại --}}
-                <label for="">Tên thể loại</label>
-                <input type="text"
-                    class="form-control form-control-sm" name=""  required  placeholder="Tên thể loại">
-              </div>
-               <div class="form-group">
-                 <label for="">Mục chính</label>
-                 <select class="form-control" name="" id="">
-                   <option value="" >Không có</option>
-                   <option value="1" >Game</option>
-                   <option value="2" >Công nghệ</option>
-                   <option value="3" >Phim</option>
-                 </select>
-               </div>
-               <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success py-3">Thêm</button>
-               </div>
-               
-          </form>
-      </div>
+  <div class="card text-dark bg-light">
+    <div class="card-body">
+      <form action="/add" method="POST">
+        <div class="form-group">
+          {{!-- Kiểm tra trùng tên thể loại --}}
+          <label for="">Tên thể loại</label>
+          <input type="text"
+            class="form-control form-control-sm" name="name" required
+            placeholder="Tên thể loại">
+        </div>
+        <div class="form-group">
+          <label for="">Mục chính</label>
+          <select class="form-control" name="" id="">
+            <option value="">Không có</option>
+            <option value="1">Game</option>
+            <option value="2">Công nghệ</option>
+            <option value="3">Phim</option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-success py-3">Thêm</button>
+        </div>
+
+      </form>
     </div>
+  </div>
 </div>
