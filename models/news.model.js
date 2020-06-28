@@ -18,9 +18,9 @@ module.exports = {
             `select name,description,content,catID,isPremium,openTime,note,createdBy from ${TBL_NEWS} where id=${id}`
         );
     },
-    check: function() {
+    check: function(id) {
         return db.load(
-            `select id,name,description,catID,isPremium from ${TBL_NEWS}`
+            `select id,name,description,catID,isPremium from ${TBL_NEWS} where id=${id}`
         );
     },
     add: function(entity) {
