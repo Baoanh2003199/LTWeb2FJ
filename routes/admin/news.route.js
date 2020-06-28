@@ -11,6 +11,8 @@ route.get('/', async function(req, res) {
 route.get('/add', function(req, res) {
     return res.render('admin/news/add');
 });
+
+route.post('/add', async function(req, res) {});
 // Thêm bài viết
 // Lấy id tìm model rồi gán vào views
 route.get('/edit/:id', function(req, res) {
@@ -19,10 +21,10 @@ route.get('/edit/:id', function(req, res) {
     return res.render('admin/news/edit');
 });
 // Duyệt bài
-route.get('/check', function(req, res) {
+route.get('/check/:id', async function(req, res) {
     const id = req.params['id'];
-
-    return res.render('admin/news/check');
+    const list = await newModel.check(id);
+    res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
 // Xem chi tiết
 route.get('/view/:id', function(req, res) {
