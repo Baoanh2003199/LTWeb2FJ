@@ -1,61 +1,71 @@
 {{#section 'title'}}Phân loại{{/section}}
- <nav class="breadcrumb">
-              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item" href="/admin/news">Bài viết</a>
-              <a class="breadcrumb-item active" href="#">Chi tiết</a>
+<nav class="breadcrumb">
+    <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+    <a class="breadcrumb-item" href="/admin/news">Bài viết</a>
+    <a class="breadcrumb-item active" href="#">Chi tiết</a>
 </nav>
 <div class="contentHeader">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        <h4 class="card-title">Chi tiết bài viết</h4>
-      </div>
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <h4 class="card-title">Chi tiết bài viết</h4>
+        </div>
     </div>
 </div>
 
 <div class="contentHeader my-4">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi request --}}
-        <form action="/admin/news/delete" class="float-right pt-3" method="POST" >
-            <button type="submit" class="btn btn-danger mx-3"><i class="fa fa-trash" aria-hidden="true" title="Xóa"></i> Xóa</button> 
-        </form>
-        <a class="btn btn-primary  m-3 float-right" href="/admin/news/add" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm bài viết</a>
-        <div class="table-responsive">
-              <table class="table">
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            {{!-- Thầy bảo phải dung method post nên phải dùng form method post
+            để gửi request --}}
+            <form action="/admin/news/delete" class="float-right pt-3"
+                method="POST">
+                <button type="submit" class="btn btn-danger mx-3"><i class="fa
+                        fa-trash" aria-hidden="true" title="Xóa"></i> Xóa</button>
+            </form>
+            <a class="btn btn-primary m-3 float-right" href="/admin/news/add"
+                role="button"> <i class="fa fa-plus" aria-hidden="true"></i>
+                Thêm bài viết</a>
+            <div class="table-responsive">
+                <table class="table">
+                    {{#if this.empty}}
+                    {{else}}
+                    {{#each this.news}}
                     <tr>
                         <th width="15%">Tên</th>
-                        <td></td>
+                        <td>{{name}}</td>
                     </tr>
                     <tr>
                         <th>Mô tả</th>
-                        <td></td>
+                        <td>{{description}}</td>
                     </tr>
-                     <tr>
+                    <tr>
                         <th>Nội dung</th>
-                        <td></td>
+                        <td>{{content}}</td>
                     </tr>
-                     <tr>
+                    <tr>
                         <th>Thể loại</th>
-                        <td></td>
+                        <td>{{isPremium}}</td>
                     </tr>
-                     <tr>
+                    <tr>
                         <th>Loại</th>
-                        <td></td>
+                        <td>{{catID}}</td>
                     </tr>
-                     <tr>
+                    <tr>
                         <th>Thời gian xuất bản</th>
-                        <td></td>
+                        <td>{{openTime}}</td>
                     </tr>
-                     <tr>
+                    <tr>
                         <th>Ghi chú</th>
-                        <td></td>
+                        <td>{{note}}</td>
                     </tr>
-                      <tr>
+                    <tr>
                         <th>Người viết</th>
-                        <td></td>
+                        <td>{{createdBy}}</td>
                     </tr>
-            </table>
-        </div>    
-    </div>
+                    {{/each}}
+                    {{/if}}
+                </table>
+            </div>
+        </div>
     </div>
 </div>
