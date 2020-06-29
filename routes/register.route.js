@@ -33,7 +33,6 @@ route.post('/', async function (req, res) {
             subject: '[Tin tức 14] Xác minh địa chỉ email của bạn',
             html: 'Xin chào, đây là thư tự động vui lòng không gửi lại. Nhấp vào <a href="http://tintuc14.herokuapp.com"> đây </a> để xác minh email của bạn.'
         });
-        //transporter.sendMail({from: 'Tin Tức 14 <tintuc14web@gmail.com>', to:`${req.body.email}`, subject: 'Xác minh địa chỉ email của bạn',text: `Xin chào ${req.body.username}, đây là thư giả lập được gửi từ trang https://tintuc14.herokuapp.com`});
         delete req.body.email
         console.log(req.body);
         await regModel.regAdd(req.body);
