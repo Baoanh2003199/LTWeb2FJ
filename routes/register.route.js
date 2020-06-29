@@ -1,6 +1,7 @@
 const express = require('express');
 const route = express.Router();
 const regModel = require('../models/user.model');
+var nodemailer = require('nodemailer');
 
 
 const redirectHome = (req, res, next)=>{
@@ -13,6 +14,18 @@ const redirectHome = (req, res, next)=>{
         next();
     }
 }
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'tintuc14web@gmail.com',
+    pass: 'ruxeegdgsdfepvzn'
+  }
+});
+
+
+
+
 
 route.get('/', redirectHome, function (req, res) {
     res.render('register')
@@ -27,8 +40,13 @@ route.post('/', async function (req, res) {
     }
     else
     {
+        
+        transporter.sendMail({from: 'tintuc14web@gmail.com', to:`${req.body.email}`, subject: 'Xác minh địa chỉ email của bạn',text: `Xin chào ${req.body.username}, đây là thư giả lập`});
+        delete req.body.email
+        console.log(req.body);
         await regModel.regAdd(req.body);
-        res.redirect('/login')
+        res.redirect('/login');
+        
     }
   })
 
