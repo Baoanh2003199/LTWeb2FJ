@@ -40,5 +40,8 @@
  + Admin Account:
      - username: admin
      - password: admin-123
+ + Mail:
+     - username: tintuc14@gmail.com
+     - password: tintuc14web@mail
 
     

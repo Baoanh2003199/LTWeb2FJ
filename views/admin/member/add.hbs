@@ -1,63 +1,76 @@
 {{#section 'title'}}Thêm Bài viết{{/section}}
- <nav class="breadcrumb">
-              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item" href="/admin/news">Thành viên</a>
-              <a class="breadcrumb-item active" href="#">Thêm</a>
+<nav class="breadcrumb">
+    <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+    <a class="breadcrumb-item" href="/admin/news">Thành viên</a>
+    <a class="breadcrumb-item active" href="#">Thêm</a>
 </nav>
 <div class="contentHeader">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        <h4 class="card-title">Thêm thành viên</h4>
-      </div>
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <h4 class="card-title">Thêm thành viên</h4>
+        </div>
     </div>
 </div>
 
 <div class="contentHeader my-4">
-    <div class="card text-dark bg-light">     
-      <div class="card-body ">
-          <form action="" method="POST">
-              <div class="form-group">
-                <label for="">Tên</label>
-                <input type="text"
-                    class="form-control form-control-sm" name=""  required  placeholder="Tên">
-              </div>
-              <div class="form-group">
-                <label for="">Email</label>
-                <input type="email"
-                    class="form-control form-control-sm" name=""  required  placeholder="email">
-              </div>
-              <div class="form-group">
-                <label for="">Số điện thoại</label>
-                <input type="text"
-                    class="form-control form-control-sm" name=""  required  placeholder="Số điện thoại">
-              </div>
-              <div class="form-group">
-                <label for="">Ngày sinh</label>
-                <input type="datetime-local"
-                    class="form-control form-control-sm w-25" name="" id="datepicker"  required  placeholder="dd/mm/yyyy">
-              </div>
-              <div class="form-group">
-                <label for="">Vai trò</label>
-                <select class="form-control" name="" id="">
-                  <option>Phóng viên ( writer)</option>
-                  <option>Biên tập (editor)</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="">Tên đăng nhập</label>
-                <input type="text"
-                  class="form-control" name="" id="" aria-describedby="helpId" placeholder="Tên đăng nhập">
-              </div>
-              <div class="form-group">
-                <label for="">Mật khẩu</label>
-                <input type="password"
-                  class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nhập mật khẩu">
-              </div>
-               <div class="d-flex justify-content-center">
+    <div class="card text-dark bg-light">
+        <div class="card-body">
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="">Tên</label>
+                    <input type="text"
+                        class="form-control form-control-sm" name="name"
+                        required
+                        placeholder="Tên">
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="email"
+                        class="form-control form-control-sm" name="email"
+                        required
+                        placeholder="email">
+                </div>
+                <div class="form-group">
+                    <label for="">Số điện thoại</label>
+                    <input type="text"
+                        class="form-control form-control-sm" name="phone"
+                        required
+                        placeholder="Số điện thoại">
+                </div>
+                <div class="form-group">
+                    <label for="">Ngày sinh</label>
+                    <input type="datetime-local"
+                        class="form-control form-control-sm w-25" name="dob"
+                        id="datepicker"
+                        required placeholder="dd/mm/yyyy">
+                </div>
+                <div class="form-group">
+                    <label for="">Vai trò</label>
+                    <select class="form-control" name="userID" id="">
+                        {{#each this.user}}
+                        <option id="{{id}}">{{status}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Tên đăng nhập</label>
+                    <input type="text"
+                        class="form-control" name="username" id=""
+                        aria-describedby="helpId"
+                        placeholder="Tên đăng nhập">
+                </div>
+                <div class="form-group">
+                    <label for="">Mật khẩu</label>
+                    <input type="password"
+                        class="form-control" name="password" id=""
+                        aria-describedby="helpId"
+                        placeholder="Nhập mật khẩu">
+                </div>
+                <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-success px-5">Thêm</button>
-               </div>
-               
-          </form>
-      </div>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>

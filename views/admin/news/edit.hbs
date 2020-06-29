@@ -1,90 +1,95 @@
 {{#section 'title'}}Sửa Bài viết{{/section}}
- <nav class="breadcrumb">
-              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item" href="/admin/news">Bài viết</a>
-              <a class="breadcrumb-item active" href="#">Sửa</a>
+<nav class="breadcrumb">
+  <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+  <a class="breadcrumb-item" href="/admin/news">Bài viết</a>
+  <a class="breadcrumb-item active" href="#">Sửa</a>
 </nav>
 <div class="contentHeader">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        <h4 class="card-title">Sửa thể loại</h4>
-      </div>
+  <div class="card text-dark bg-light">
+    <div class="card-body text-center">
+      <h4 class="card-title">Sửa thể loại</h4>
     </div>
+  </div>
 </div>
 
 <div class="contentHeader my-4">
-    <div class="card text-dark bg-light">     
-      <div class="card-body ">
-          <form action="" method="POST">
-              <div class="form-group">
-                <label for="">Tên bài viết</label>
-                <input type="text"
-                    class="form-control form-control-sm" name=""  required  placeholder="Tên bài viết">
-              </div>
-              <div class="form-group">
-                <label for="">Thể loại</label>
-                <select class="form-control" name="" id="">
-                  <option value="">ABC</option>
-                  <option>XYZ</option>
-                  <option>KMN</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="">Loại</label>
-                <select class="form-control" name="" id="">
-                  <option>Thường</option>
-                  <option>Cao cấp</option>
-                </select>
-              </div>
-              <div class="qtagselect  from-group">
-                  <label for="">Tag</label><br>
-                    <select class="qtagselect__select from-control w-100" multiple>
-                        <option value="1" class="ispurple" selected>jQuery</option>
-                        <option value="2" class="isblue" selected>Script</option>
-                        <option value="3" class="isblue" disabled="true">.Net</option>
-                        <option value="4" class="isblue">CSS</option>
-                        <option value="5" class="isblue">HTML</option>
-                        <option value="6" class="isblue">JavaScript</option>
-                        <option value="7" class="isblue">Ruby</option>
-                        <option value="8" class="isblue">Python</option>
-                        <option value="9" class="isblue">Golang</option>
-                        <option value="10" class="isblue">Object C</option>
-                        <option value="11" class="ispurple">Angular</option>
-                        <option value="12" class="isblue">React</option>
-                        <option value="13" class="isblue">Vue</option>
-                        <option value="14" class="isblue">PHP</option>
-                        <option value="15" class="isblue">C++</option>
-                        <option value="16" class="isblue">C#</option>
-                    </select>
-                </div>
-                <br>
-              <div class="form-group">
-                  <label for="">Ảnh đại diện</label>
-                  <input type="file" class="form-control-file" name="" id="fileInput"  onchange="showMyImage(this)"  placeholder="" aria-describedby="fileHelpId">
-                </div>
-                <div class="form-group">
-                  <img src="/admin/img/click.svg"  class="select_img w-25 h-25"  id="thumbnail"  alt="ảnh đại diện"  id="thumbnail">
-                </div>
-            <div class="form-group">
-                <label for="">Nội dung</label>
-                <textarea name="" id="content" cols="30" rows="10"></textarea>
-              </div>
-               <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success px-5">Sửa</button>
-               </div>
-               
-          </form>
-      </div>
+  <div class="card text-dark bg-light">
+    <div class="card-body">
+      <form action="/edit" method="POST">
+        <div class="form-group">
+          <label for="">Tên bài viết</label>
+          <input type="text"
+            class="form-control form-control-sm" name="name" required
+            value="this.news.name">
+        </div>
+        <div class="form-group">
+          <label for="">Thể loại</label>
+          <select class="form-control" name="" id="">
+            {{#each this.tag}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Loại</label>
+          <select class="form-control" name="" id="">
+            <option value="0">Thường</option>
+            <option value="1">Cao cấp</option>
+          </select>
+        </div>
+        <div class="qtagselect from-group">
+          <label for="">Tag</label><br>
+          <select class="qtagselect__select from-control w-100"
+            multiple>
+            <option value="1" class="ispurple" selected>jQuery</option>
+            <option value="2" class="isblue" selected>Script</option>
+            <option value="3" class="isblue" disabled="true">.Net</option>
+            <option value="4" class="isblue">CSS</option>
+            <option value="5" class="isblue">HTML</option>
+            <option value="6" class="isblue">JavaScript</option>
+            <option value="7" class="isblue">Ruby</option>
+            <option value="8" class="isblue">Python</option>
+            <option value="9" class="isblue">Golang</option>
+            <option value="10" class="isblue">Object C</option>
+            <option value="11" class="ispurple">Angular</option>
+            <option value="12" class="isblue">React</option>
+            <option value="13" class="isblue">Vue</option>
+            <option value="14" class="isblue">PHP</option>
+            <option value="15" class="isblue">C++</option>
+            <option value="16" class="isblue">C#</option>
+          </select>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="">Ảnh đại diện</label>
+          <input type="file" class="form-control-file" name=""
+            id="fileInput" onchange="showMyImage(this)"
+            placeholder="" aria-describedby="fileHelpId">
+        </div>
+        <div class="form-group">
+          <img src="/admin/img/click.svg" class="select_img w-25 h-25"
+            id="thumbnail" alt="ảnh đại diện" id="thumbnail">
+        </div>
+        <div class="form-group">
+          <label for="">Nội dung</label>
+          <textarea name="" id="content" cols="30" rows="10"></textarea>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-success px-5">Sửa</button>
+        </div>
+
+      </form>
     </div>
+  </div>
 </div>
 {{#section 'css'}}
- <link rel="stylesheet" href="/tagSelector/jquery.tagselect.css" type="text/css">
+<link rel="stylesheet" href="/tagSelector/jquery.tagselect.css" type="text/css">
 {{/section}}
 
 {{#section 'js'}}
 <script src="/tagSelector/jquery.tagselect.js"></script>
 <script src="/admin/myJs.js"></script>
- <script>
+<script>
 
     CKEDITOR.replace( 'content' );
     $(function(){

@@ -25,9 +25,9 @@
                 <div class="form-group">
                     <label for="">Thể loại</label>
                     <select class="form-control" name="" id="">
-                        <option value="">ABC</option>
-                        <option>XYZ</option>
-                        <option>KMN</option>
+                        <{{#each this.tag}}
+                        <option value="{{id}}">{{name}}</option>
+                        {{/each}}
                     </select>
                 </div>
                 <div class="form-group">
