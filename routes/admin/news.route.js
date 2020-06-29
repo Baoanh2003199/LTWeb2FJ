@@ -21,7 +21,6 @@ route.post('/add', async function(req, res) {
         name: req.body.name,
         catID: req.body.catID,
         isPremium: req.body.isPremium,
-
         content: req.body.content,
         openTime: req.body.openTime,
     };
