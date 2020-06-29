@@ -24,14 +24,14 @@
   - [ ] News
   - [ ] Login
      - [x] View
-     - [ ] Function
+     - [x] Function
   - [ ] register
      - [x] View
-     - [ ] Function
+     - [x] Function
   - [ ] Subscribe
   + Admin
-    - [ ] Admin Panel
-    - [ ] Category Manager
+    - [x] Admin Panel
+    - [x] Category Manager
     - [ ] Tag Manager
     - [ ] News Manager
     - [ ] Account Manager
