@@ -9,8 +9,9 @@ route.get('/', async function(req, res) {
     res.render('admin/news/home', { news: list, empty: list.length === 0 });
 });
 // Thêm bài viết
-route.get('/add', function(req, res) {
-    return res.render('admin/news/add');
+route.get('/add', async function(req, res) {
+    const tagRow = await tagModel.all();
+    res.render('admin/news/add', { tag: tagRow });
 });
 
 route.post('/add', async function(req, res) {});
