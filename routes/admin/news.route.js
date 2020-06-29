@@ -1,6 +1,7 @@
 const express = require('express');
 const newModel = require('../../models/news.model');
 const tagModel = require('../../models/tag.model');
+const upload = require('../../utils/uploadFile');
 const route = express.Router();
 
 // Danh sách bài viết
@@ -14,7 +15,19 @@ route.get('/add', async function(req, res) {
     res.render('admin/news/add', { tag: tagRow });
 });
 
-route.post('/add', async function(req, res) {});
+route.post('/add', async function(req, res) {
+    const entity = {
+        filePdf: upload.uploadFile(req.body.filePdf),
+        name: req.body.name,
+        catID: req.body.catID,
+        isPremium: req.body.isPremium,
+
+        content: req.body.content,
+        openTime: req.body.openTime,
+    };
+    await newModel.add(entity);
+    res.redirect('/admin/news');
+});
 // Thêm bài viết
 // Lấy id tìm model rồi gán vào views
 route.get('/edit/:id', async function(req, res) {
