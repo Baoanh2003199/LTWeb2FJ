@@ -13,14 +13,22 @@ route.get('/add', function(req, res) {
     res.render('admin/category/add');
 });
 
-route.post('/add', async function(req, res) {});
+route.post('/add', async function(req, res) {
+    await catModel.add(req.body);
+    res.redirect('admin/category');
+});
 
 // Sửa thể loại theo id
-route.get('/edit/:id', function(req, res) {
+route.get('/edit/:id', async function(req, res) {
     //
     const id = req.params['id'];
 
-    res.render('admin/category/edit');
+    const rows = await catModel.view(id);
+    if (rows.length === 0) return res.send('Invalid parameter.');
+
+    const category = rows[0];
+
+    res.render('admin/category/edit', { category });
 });
 
 //delete
