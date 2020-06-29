@@ -27,4 +27,10 @@ route.get('/view/:id', function(req, res) {
 
     return res.render('admin/tag/view');
 });
+
+route.get('/delete/:id', async function(req, res) {
+    const id = req.params.id;
+    await tagModel.del(id);
+    res.redirect('/admin/tag');
+});
 module.exports = route;
