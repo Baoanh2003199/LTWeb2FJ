@@ -25,11 +25,14 @@ route.get('/edit/:id', async function(req, res) {
     const id = req.params['id'];
 
     const rows = await catModel.view(id);
+    const tagRows = await tagModel.all();
     if (rows.length === 0) return res.send('Invalid parameter.');
 
     const category = rows[0];
 
-    res.render('admin/category/edit', { category });
+
+
+    res.render('admin/category/edit', { category, tag:tagRows });
 });
 
 //delete
