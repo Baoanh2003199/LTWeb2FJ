@@ -1,5 +1,6 @@
 const express = require('express');
 const newModel = require('../../models/news.model');
+const tagModel = require('../../models/tag.model');
 const route = express.Router();
 
 // Danh sách bài viết
@@ -15,10 +16,13 @@ route.get('/add', function(req, res) {
 route.post('/add', async function(req, res) {});
 // Thêm bài viết
 // Lấy id tìm model rồi gán vào views
-route.get('/edit/:id', function(req, res) {
+route.get('/edit/:id', async function(req, res) {
     const id = req.params['id'];
-
-    return res.render('admin/news/edit');
+    const rows = await newModel.view(id);
+    const tagRow = await tagModel.all();
+    const news = rows[0];
+    if (rows.length === 0) return res.send('Invalid parameter.');
+    res.render('admin/news/edit', { news, tag: tagRow });
 });
 // Duyệt bài
 route.get('/check/:id', async function(req, res) {
