@@ -1,25 +1,26 @@
 const express = require('express');
-
+const tagModel = require('../../models/tag.model');
 const route = express.Router();
 
 // Danh sách tag
-route.get('/', function(req, res){
-    return res.render('admin/tag/home');
+route.get('/', async function(req, res) {
+    const list = await tagModel.all();
+    res.render('admin/tag/home', { tag: list, empty: list.length === 0 });
 });
 // Thêm tag
-route.get('/add', function(req, res){
+route.get('/add', function(req, res) {
     return res.render('admin/tag/add');
 });
 // Sửa tag
 // Get id để tìm model rồi lấy ra để gán vào view
-route.get('/edit/:id', function(req, res){
+route.get('/edit/:id', function(req, res) {
     const id = req.params['id'];
-    
+
     return res.render('admin/tag/edit');
 });
-route.get('/view/:id', function(req, res){
+route.get('/view/:id', function(req, res) {
     const id = req.params['id'];
-    
+
     return res.render('admin/tag/view');
 });
 module.exports = route;

@@ -1,44 +1,46 @@
 {{#section 'title'}}Thêm Bài viết{{/section}}
- <nav class="breadcrumb">
-              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item" href="/admin/news">Bài viết</a>
-              <a class="breadcrumb-item active" href="#">Thêm</a>
+<nav class="breadcrumb">
+    <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+    <a class="breadcrumb-item" href="/admin/news">Bài viết</a>
+    <a class="breadcrumb-item active" href="#">Thêm</a>
 </nav>
 <div class="contentHeader">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        <h4 class="card-title">Thêm thể loại</h4>
-      </div>
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <h4 class="card-title">Thêm thể loại</h4>
+        </div>
     </div>
 </div>
 
 <div class="contentHeader my-4">
-    <div class="card text-dark bg-light">     
-      <div class="card-body ">
-          <form action="" method="POST" enctype="multipart/form-data">
-              <div class="form-group">
-                <label for="">Tên bài viết</label>
-                <input type="text"
-                    class="form-control form-control-sm" name=""  required  placeholder="Tên bài viết">
-              </div>
-              <div class="form-group">
-                <label for="">Thể loại</label>
-                <select class="form-control" name="" id="">
-                  <option value="">ABC</option>
-                  <option>XYZ</option>
-                  <option>KMN</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="">Loại</label>
-                <select class="form-control" name="" id="">
-                  <option>Thường</option>
-                  <option>Cao cấp</option>
-                </select>
-              </div>
-              <div class="qtagselect  from-group">
-                  <label for="">Tag</label><br>
-                    <select class="qtagselect__select from-control w-100" multiple>
+    <div class="card text-dark bg-light">
+        <div class="card-body">
+            <form action="/add" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="">Tên bài viết</label>
+                    <input type="text"
+                        class="form-control form-control-sm" name="" required
+                        placeholder="Tên bài viết">
+                </div>
+                <div class="form-group">
+                    <label for="">Thể loại</label>
+                    <select class="form-control" name="" id="">
+                        <option value="">ABC</option>
+                        <option>XYZ</option>
+                        <option>KMN</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Loại</label>
+                    <select class="form-control" name="" id="">
+                        <option>Thường</option>
+                        <option>Cao cấp</option>
+                    </select>
+                </div>
+                <div class="qtagselect from-group">
+                    <label for="">Tag</label><br>
+                    <select class="qtagselect__select from-control w-100"
+                        multiple>
                         <option value="1" class="ispurple" selected>jQuery</option>
                         <option value="2" class="isblue" selected>Script</option>
                         <option value="3" class="isblue" disabled="true">.Net</option>
@@ -59,37 +61,41 @@
                 </div>
                 <br>
                 <div class="form-group">
-                  <label for="">Ảnh đại diện</label>
-                  <input type="file" class="form-control-file" name="" id="fileInput"  onchange="showMyImage(this)"  placeholder="" aria-describedby="fileHelpId">
+                    <label for="">Ảnh đại diện</label>
+                    <input type="file" class="form-control-file" name=""
+                        id="fileInput" onchange="showMyImage(this)"
+                        placeholder="" aria-describedby="fileHelpId">
                 </div>
                 <div class="form-group">
-                  <img src="/admin/img/click.svg"  class="select_img w-25 h-25"  id="thumbnail"  alt="ảnh đại diện"  id="thumbnail">
+                    <img src="/admin/img/click.svg" class="select_img w-25 h-25"
+                        id="thumbnail" alt="ảnh đại diện" id="thumbnail">
                 </div>
-              <div class="form-group">
-                <label for="">Nội dung</label>
-                <textarea name="" id="content" cols="30" rows="10"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="">Hẹn giờ</label>
-                <input type="datetime-local"
-                  class="form-control w-25" name="" id="" aria-describedby="helpId" placeholder="">
-              </div>
-               <div class="d-flex justify-content-center">
+                <div class="form-group">
+                    <label for="">Nội dung</label>
+                    <textarea name="" id="content" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="">Hẹn giờ</label>
+                    <input type="datetime-local"
+                        class="form-control w-25" name="" id=""
+                        aria-describedby="helpId" placeholder="">
+                </div>
+                <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-success px-5">Thêm</button>
-               </div>
-               
-          </form>
-      </div>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>
 {{#section 'css'}}
- <link rel="stylesheet" href="/tagSelector/jquery.tagselect.css" type="text/css">
+<link rel="stylesheet" href="/tagSelector/jquery.tagselect.css" type="text/css">
 {{/section}}
 
 {{#section 'js'}}
 <script src="/tagSelector/jquery.tagselect.js"></script>
 <script src="/admin/myJs.js"></script>
- <script>
+<script>
 
     CKEDITOR.replace( 'content' );
     $(function(){
@@ -98,8 +104,6 @@
         });
     });
 
-    
+
 </script>
-
-
 {{/section}}

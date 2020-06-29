@@ -1,48 +1,62 @@
 {{#section 'title'}}Tag{{/section}}
- <nav class="breadcrumb">
-              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item active" href="#">Tag</a>
+<nav class="breadcrumb">
+    <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+    <a class="breadcrumb-item active" href="#">Tag</a>
 </nav>
 <div class="contentHeader">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        <h4 class="card-title">Danh sách Tag</h4>
-      </div>
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <h4 class="card-title">Danh sách Tag</h4>
+        </div>
     </div>
 </div>
 
 <div class="contentHeader my-4">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-          <a class="btn btn-primary m-3 float-right" href="/admin/tag/add" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm tag</a>
-         <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col" width="40%">Tên tag</th>
-                <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td class="d-flex justify-content-center">
-                        <a class="btn btn-success float-left mx-3" href="" ><i class="fa fa-pencil" aria-hidden="true" title="Sửa"></i></a>
-                        <a  class="btn btn-primary  float-left mx-3" href=""><i class="fa fa-eye" aria-hidden="true" title="Xem"></i> </a>                        {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi request --}}
-                        <form class="float-left" action="/admin/tag/delete" method="POST" >
-                            
-                            <button type="submit" class="btn btn-danger mx-3"><i class="fa fa-trash" aria-hidden="true" title="Xóa"></i></button> 
-                        </form>
-                        
-                    </td>
-                    
-                </tr>
-               
-            </tbody>
-        </table>
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <a class="btn btn-primary m-3 float-right" href="/admin/tag/add"
+                role="button"> <i class="fa fa-plus" aria-hidden="true"></i>
+                Thêm tag</a>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" width="40%">Tên tag</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if this.empty}}
+                        {{else}}
+                        {{#each this.tag}}
+                        <tr>
+                            <th scope="row">{{id}}</th>
+                            <td>{{name}}</td>
+                            <td class="d-flex justify-content-center">
+                                <a class="btn btn-success float-left mx-3"
+                                    href=""><i class="fa fa-pencil"
+                                        aria-hidden="true" title="Sửa"></i></a>
+                                <a class="btn btn-primary float-left mx-3"
+                                    href=""><i class="fa fa-eye"
+                                        aria-hidden="true" title="Xem"></i> </a>
+                                {{!-- Thầy bảo phải dung method post nên phải
+                                dùng form method post để gửi request --}}
+                                <form class="float-left"
+                                    action="/admin/tag/delete" method="POST">
+                                    <button type="submit" class="btn btn-danger
+                                        mx-3"><i class="fa fa-trash"
+                                            aria-hidden="true" title="Xóa"></i></button>
+                                </form>
+
+                            </td>
+
+                        </tr>
+                        {{/each}}
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
 </div>

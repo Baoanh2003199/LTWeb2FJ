@@ -1,18 +1,18 @@
 {
-    "mysql":{
-        "connectionLimit" : "50",
-        "host"     : "us-cdbr-east-05.cleardb.net",
+    "mysql": {
+        "connectionLimit": "50",
+        "host": "us-cdbr-east-05.cleardb.net",
         "port": "3306",
-        "user"     : "beaaf53cb24cb4",
-        "password" : "b1834857",
-        "database" : "heroku_5e52d97f3932ec5"
+        "user": "beaaf53cb24cb4",
+        "password": "b1834857",
+        "database": "heroku_5e52d97f3932ec5"
     },
-    "mysql_local":{
-        "connectionLimit" : "50",
-        "host"     : "localhost",
+    "mysql_local": {
+        "connectionLimit": "50",
+        "host": "localhost",
         "port": "3306",
-        "user"     : "root",
-        "password" : "",
-        "database" : "news"
+        "user": "root",
+        "password": "manhquan",
+        "database": "News"
     }
 }
