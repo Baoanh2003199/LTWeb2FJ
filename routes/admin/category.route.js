@@ -10,8 +10,9 @@ route.get('/', async function(req, res) {
     res.render('admin/category/home', { cat: list, empty: list.length === 0 });
 });
 // Thêm thể loại
-route.get('/add', function(req, res) {
-    res.render('admin/category/add');
+route.get('/add', async function(req, res) {
+    const tag = await tagModel.all();
+    res.render('admin/category/add', { list: tag });
 });
 
 route.post('/add', async function(req, res) {
@@ -27,7 +28,7 @@ route.get('/edit/:id', async function(req, res) {
     const tagRows = await tagModel.all();
     if (rows.length === 0) return res.send('Invalid parameter.');
     const category = rows[0];
-    res.render('admin/category/edit', { category, tag:tagRows });
+    res.render('admin/category/edit', { category, tag: tagRows });
 });
 
 //delete
