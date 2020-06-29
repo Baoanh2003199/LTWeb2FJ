@@ -1,5 +1,6 @@
 const express = require('express');
 const catModel = require('../../models/category.model');
+const tagModel = require('../../models/tag.model');
 
 const route = express.Router();
 
@@ -43,3 +44,9 @@ route.get('/view/:id', async function(req, res) {
     res.render('admin/category/view', { cat: list, empty: list.length === 0 });
 });
 module.exports = route;
+
+//show name id tag view
+route.get('/edit', async function(req, res) {
+    const list = await tagModel.all();
+    res.render('admin/category/edit', { tag: list });
+});
