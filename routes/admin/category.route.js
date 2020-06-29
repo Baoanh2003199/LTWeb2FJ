@@ -24,7 +24,7 @@ route.get('/edit/:id', function(req, res) {
 });
 
 //delete
-route.post('/', async function(req, res) {
+route.post('/delete/:id', async function(req, res) {
     await catModel.del(req.body.id);
     res.redirect('/admin/category');
 });
