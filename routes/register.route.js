@@ -30,8 +30,8 @@ route.post('/', async function (req, res) {
         mailer.send({
             from: 'tintuc14web@gmail.com',
             to: `${req.body.email}`,
-            subject: '[Tin tức 14] Xác minh địa chỉ email của bạn',
-            html: 'Xin chào, đây là thư tự động vui lòng không gửi lại. Nhấp vào <a href="https://tintuc14.herokuapp.com/login"> đây </a> để xác minh email của bạn.'
+            subject: 'Xác minh địa chỉ email của bạn',
+            html: 'Xin chào, đây là thư tự động từ tintuc14 vui lòng không gửi lại. Nhấp vào <a href="https://tintuc14.herokuapp.com/login"> đây </a> để xác minh email của bạn.'
         });
         delete req.body.email
         console.log(req.body);
