@@ -11,6 +11,10 @@ route.get('/', async function(req, res) {
 route.get('/add', function(req, res) {
     return res.render('admin/tag/add');
 });
+route.post('/add', async function(req, res) {
+    await tagModel.add(req.body);
+    res.redirect('/admin/tag');
+});
 // Sửa tag
 // Get id để tìm model rồi lấy ra để gán vào view
 route.get('/edit/:id', function(req, res) {
