@@ -33,12 +33,12 @@ route.get('/edit/:id', async function(req, res) {
 
 //delete
 route.post('/delete/:id', async function(req, res) {
-    await catModel.del(req.body.id);
+    await catModel.del(req.params.id);
     res.redirect('/admin/category');
 });
 // Xem chi tiết
 route.get('/view/:id', async function(req, res) {
-    const id = req.params['id'];
+    const id = req.params.id;
     const list = await catModel.view(id);
     res.render('admin/category/view', { cat: list, empty: list.length === 0 });
 });
