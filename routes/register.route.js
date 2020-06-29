@@ -23,10 +23,6 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-
-
-
-
 route.get('/', redirectHome, function (req, res) {
     res.render('register')
 
@@ -41,7 +37,7 @@ route.post('/', async function (req, res) {
     else
     {
         
-        transporter.sendMail({from: 'tintuc14web@gmail.com', to:`${req.body.email}`, subject: 'Xác minh địa chỉ email của bạn',text: `Xin chào ${req.body.username}, đây là thư giả lập`});
+        transporter.sendMail({from: 'tintuc14web@gmail.com', to:`${req.body.email}`, subject: 'Xác minh địa chỉ email của bạn',text: `Xin chào ${req.body.username}, đây là thư giả lập được gửi từ trang https://tintuc14.herokuapp.com`});
         delete req.body.email
         console.log(req.body);
         await regModel.regAdd(req.body);
