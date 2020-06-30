@@ -4,6 +4,7 @@ const tagModel = require('../../models/tag.model');
 const upload = require('../../utils/uploadFile');
 const catModel = require('../../models/category.model');
 const news_tagModel = require('../../models/news_tag.model');
+const array = require('../../utils/array');
 const route = express.Router();
 
 // Danh sách bài viết
@@ -44,16 +45,23 @@ route.get('/edit/:id', async function(req, res) {
 
 route.post('/edit', async function(req, res) {
     await newModel.add(req.body);
+    const tagIDs = [req.body.tagID];
+    i = array.array(tagIDs);
     const entity = {
         newID: req.body.id,
-        tagID: req.body.tagID,
+        tagID: i,
     };
+    await news_tagModel.insert(entity);
     res.redirect('/admin/news');
 });
 // Duyệt bài
 route.get('/check/', async function(req, res) {
     const list = await newModel.check();
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
+});
+route.post('/check/:num', async function(req, res) {
+    check = req.params.num;
+    if (num == 1) {} else {}
 });
 // Xem chi tiết
 route.get('/view/:id', async function(req, res) {
