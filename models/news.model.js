@@ -26,4 +26,11 @@ module.exports = {
     add: function(entity) {
         return db.insert(TBL_NEWS, entity);
     },
+    update: function(entity) {
+        const condition = {
+            id: entity.id,
+        };
+        delete entity.id;
+        return db.update(TBL_NEWS, entity, condition);
+    },
 };
