@@ -25,11 +25,11 @@ route.get('/edit/:id', function(req, res) {
 });
 route.get('/view/:id', function(req, res) {
     const id = req.params['id'];
-
-    return res.render('admin/tag/view');
+    const list = await tagModel.view(id);
+    return res.render('admin/tag/view', { tag: list });
 });
 
-route.get('/delete/:id', async function(req, res) {
+route.post('/delete/:id', async function(req, res) {
     const id = req.params.id;
     await tagModel.del(id);
     res.redirect('/admin/tag');
