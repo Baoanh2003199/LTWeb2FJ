@@ -19,7 +19,8 @@ route.post('/add', async function(req, res) {
 // Get id để tìm model rồi lấy ra để gán vào view
 route.get('/edit/:id', function(req, res) {
     const id = req.params['id'];
-
+    const row = tagModel.view(id);
+    if (rows.length === 0) return res.send('Invalid parameter.');
     return res.render('admin/tag/edit');
 });
 route.get('/view/:id', function(req, res) {
