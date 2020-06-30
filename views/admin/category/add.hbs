@@ -20,12 +20,13 @@
           {{!-- Kiểm tra trùng tên thể loại --}}
           <label for="">Tên thể loại</label>
           <input type="text"
-            class="form-control form-control-sm" name="name" required
+            class="form-control form-control-sm" name="name"
+            required
             placeholder="Tên thể loại">
         </div>
         <div class="form-group">
           <label for="">Mục chính</label>
-          <select class="form-control" name="" id="">
+          <select class="form-control" name="parentID" id="">
             {{#each list}}
             <option id="{{id}}">{{name}}</option>
             {{/each}}
