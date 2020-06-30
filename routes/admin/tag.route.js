@@ -23,6 +23,12 @@ route.get('/edit/:id', function(req, res) {
     if (rows.length === 0) return res.send('Invalid parameter.');
     res.render('admin/tag/edit');
 });
+//update
+route.post('/update', async function(req, res) {
+    await tagModel.update(req.body);
+    res.redirect('/admin/tag');
+});
+
 route.get('/view/:id', async function(req, res) {
     const id = req.params['id'];
     const list = await tagModel.view(id);
