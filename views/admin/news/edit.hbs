@@ -20,7 +20,7 @@
           <label for="">Tên bài viết</label>
           <input type="text"
             class="form-control form-control-sm" name="name" required
-            value="this.news.name">
+            value="{{this.news.name}}">
         </div>
         <div class="form-group">
           <label for="">Thể loại</label>
@@ -50,6 +50,7 @@
         <div class="form-group">
           <label for="">Ảnh đại diện</label>
           <input type="file" class="form-control-file" name=""
+            value="{{this.news.filePdf}}"
             id="fileInput" onchange="showMyImage(this)"
             placeholder="" aria-describedby="fileHelpId">
         </div>
@@ -59,7 +60,8 @@
         </div>
         <div class="form-group">
           <label for="">Nội dung</label>
-          <textarea name="" id="content" cols="30" rows="10"></textarea>
+          <textarea name="" value="{{this.news.content}}" id="content" cols="30"
+            rows="10"></textarea>
         </div>
         <div class="d-flex justify-content-center">
           <button type="submit" class="btn btn-success px-5">Sửa</button>
