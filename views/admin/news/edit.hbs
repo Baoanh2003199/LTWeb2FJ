@@ -41,22 +41,9 @@
           <label for="">Tag</label><br>
           <select class="qtagselect__select from-control w-100"
             multiple>
-            <option value="1" class="ispurple" selected>jQuery</option>
-            <option value="2" class="isblue" selected>Script</option>
-            <option value="3" class="isblue" disabled="true">.Net</option>
-            <option value="4" class="isblue">CSS</option>
-            <option value="5" class="isblue">HTML</option>
-            <option value="6" class="isblue">JavaScript</option>
-            <option value="7" class="isblue">Ruby</option>
-            <option value="8" class="isblue">Python</option>
-            <option value="9" class="isblue">Golang</option>
-            <option value="10" class="isblue">Object C</option>
-            <option value="11" class="ispurple">Angular</option>
-            <option value="12" class="isblue">React</option>
-            <option value="13" class="isblue">Vue</option>
-            <option value="14" class="isblue">PHP</option>
-            <option value="15" class="isblue">C++</option>
-            <option value="16" class="isblue">C#</option>
+            {{#each this.tag}}
+            <option value="{{id}}" class="isblue">{{name}}</option>
+            {{/each}}
           </select>
         </div>
         <br>
