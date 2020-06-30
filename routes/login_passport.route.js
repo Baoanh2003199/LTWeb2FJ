@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 const router = express.Router();
 const app = express();
 const passport = require('passport');
@@ -57,4 +57,4 @@ passport.use('local', new  localStrategy({passReqToCallback : true}, (req, usern
     }
 ))
 
-module.exports = router;
+module.exports = router;*/
