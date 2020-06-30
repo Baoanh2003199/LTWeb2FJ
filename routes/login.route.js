@@ -3,6 +3,7 @@ const route = express.Router();
 const bcrypt = require('bcrypt');
 const loginModel = require('../models/user.model');
 
+
 const redirectLogin = (req, res, next)=>{
     if(!res.locals.isLoggedIn)
     {
@@ -17,7 +18,6 @@ const redirectLogin = (req, res, next)=>{
 const PermissionCheck = (req, res, next)=>{
     if(!res.locals.isLoggedIn )
     {
-  
         res.redirect('/');
     }
     /*else
@@ -82,5 +82,6 @@ route.post('/', redirectHome, async function(req, res) {
         res.render('login',{isLoginFalse: true});
     }
 });
+
 
 module.exports = route;
