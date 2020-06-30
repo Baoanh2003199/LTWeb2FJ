@@ -3,6 +3,7 @@ const newModel = require('../../models/news.model');
 const tagModel = require('../../models/tag.model');
 const upload = require('../../utils/uploadFile');
 const catModel = require('../../models/category.model');
+const news_tagModel = require('../../models/news_tag.model');
 const route = express.Router();
 
 // Danh sách bài viết
@@ -39,10 +40,18 @@ route.get('/edit/:id', async function(req, res) {
     if (rows.length === 0) return res.send('Invalid parameter.');
     res.render('admin/news/edit', { news, tag: tagRow, cat: catRow });
 });
+
+route.post('/edit', async function(req, res) {
+    await newModel.add(req.body);
+    const entity = {
+        newID: req.body.id,
+        tagID: req.body.tagID,
+    };
+    res.redirect('/admin/news');
+});
 // Duyệt bài
-route.get('/check/:id', async function(req, res) {
-    const id = req.params['id'];
-    const list = await newModel.check(id);
+route.get('/check/', async function(req, res) {
+    const list = await newModel.all();
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
 // Xem chi tiết
