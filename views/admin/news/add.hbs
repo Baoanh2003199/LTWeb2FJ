@@ -44,7 +44,7 @@
                     <label for="">Tag</label><br>
                     <select class="qtagselect__select from-control w-100"
                         multiple name="tagID">
-                        <{{#each this.tag}}
+                        {{#each this.tag}}
                         <option value="{{id}}" class="isblue">{{name}}</option>
                         {{/each}}
                     </select>
