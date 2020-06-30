@@ -20,11 +20,13 @@ route.get('/add', async function(req, res) {
 });
 //mo cai notepad
 route.post('/add', async function(req, res) {
+    const tagIDs = [req.body.tagID];
     const entity = {
-        filePdf: upload.uploadFile(req.body.filePdf),
         name: req.body.name,
         catID: req.body.catID,
         isPremium: req.body.isPremium,
+        tagID: list.array(tagIDs),
+        filePdf: upload.uploadFile(req.body.filePdf),
         content: req.body.content,
         openTime: req.body.openTime,
     };
