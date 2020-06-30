@@ -32,6 +32,7 @@ app.all('/', function(req, res, next){
   next();
 })
 
+
 app.use( async function(req,res, next){
   req.session.userId === undefined?res.locals.isLoggedIn=false: res.locals.isLoggedIn=true;
   res.locals.userId = req.session.userId;
