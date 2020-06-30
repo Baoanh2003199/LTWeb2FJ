@@ -31,6 +31,11 @@ route.get('/edit/:id', async function(req, res) {
     res.render('admin/category/edit', { category, tag: tagRows });
 });
 
+route.post('/update', async function(req, res) {
+    await catModel.update(req.body);
+    res.redirect('admin/category');
+});
+
 //delete
 route.post('/delete/:id', async function(req, res) {
     await catModel.del(req.params.id);
