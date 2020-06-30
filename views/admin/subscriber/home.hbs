@@ -1,53 +1,66 @@
 {{#section 'title'}}Đọc giả{{/section}}
- <nav class="breadcrumb">
-              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item active" href="#">Đọc giả</a>
+<nav class="breadcrumb">
+    <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+    <a class="breadcrumb-item active" href="#">Đọc giả</a>
 </nav>
 <div class="contentHeader">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        <h4 class="card-title">Danh sách đọc giả</h4>
-      </div>
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <h4 class="card-title">Danh sách đọc giả</h4>
+        </div>
     </div>
 </div>
 
 <div class="contentHeader my-4">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-       <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col" width="20%">Tên</th>
-                        <th scope="col" width="17%">Email</th>
-                        <th scope="col" width="17%">Số điện thoại</th>
-                        <th scope="col" width="15%">Ngày sinh</th>
-                        <th scope="col" width="10%">Thời hạn</th>
-                        <th scope="col">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td class="d-flex justify-content-center">
-                        <a class="btn btn-success float-left mx-1" href="" ><i class="fa fa-pencil" aria-hidden="true" title="Sửa"></i></a>
-                        <a  class="btn btn-primary  float-left mx-1" href=""><i class="fa fa-eye" aria-hidden="true" title="Xem"></i> </a>                            {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi request --}}
-                            <form class="float-left" action="/admin/member/delete" method="POST" >
-                                
-                                <button type="submit" class="btn btn-danger mx-1"><i class="fa fa-trash" aria-hidden="true" title="Xóa"></i></button> 
-                            </form>                           
-                        </td>                            
-                    </tr>                    
-                </tbody>
-            </table>
-       </div>
-      
-      </div>
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" width="20%">Tên</th>
+                            <th scope="col" width="17%">Email</th>
+                            <th scope="col" width="17%">Số điện thoại</th>
+                            <th scope="col" width="15%">Ngày sinh</th>
+                            <th scope="col" width="10%">Thời hạn</th>
+                            <th scope="col">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each this.sub}}
+                        <tr>
+                            <th scope="row">{{id}}</th>
+                            <td>{{name}}</td>
+                            <td>{{email}}</td>
+                            <td>{{phone}}</td>
+                            <td>{{dob}}</td>
+                            <td>{{expired}}</td>
+                            <td class="d-flex justify-content-center">
+                                <a class="btn btn-success float-left mx-1"
+                                    href="/admin/member/edit/{{id}}"><i
+                                        class="fa fa-pencil"
+                                        aria-hidden="true" title="Sửa"></i></a>
+                                <a class="btn btn-primary float-left mx-1"
+                                    href="/admin/member/view/{{id}}"><i
+                                        class="fa fa-eye"
+                                        aria-hidden="true" title="Xem"></i> </a>
+                                {{!-- Thầy bảo phải dung method post nên phải
+                                dùng form method post để gửi request --}}
+                                <form class="float-left"
+                                    action="/admin/member/delete/{{id}}"
+                                    method="POST">
+                                    <button type="submit" class="btn btn-danger
+                                        mx-1"><i class="fa fa-trash"
+                                            aria-hidden="true" title="Xóa"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
 </div>

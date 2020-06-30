@@ -32,9 +32,9 @@ route.get('/add', async function(req, res) {
 });
 
 // Xem chi tiết
-route.get('/view/:id', function(req, res) {
+route.get('/view/:id', async function(req, res) {
     const id = req.params['id'];
-    const list = memberModel.view(id);
+    const list = await memberModel.view(id);
     res.render('admin/member/view', { member: list });
 });
 

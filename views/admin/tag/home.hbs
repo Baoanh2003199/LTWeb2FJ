@@ -35,15 +35,18 @@
                             <td>{{name}}</td>
                             <td class="d-flex justify-content-center">
                                 <a class="btn btn-success float-left mx-3"
-                                    href=""><i class="fa fa-pencil"
+                                    href="/admin/tag/edit/{{id}}"><i class="fa
+                                        fa-pencil"
                                         aria-hidden="true" title="Sửa"></i></a>
                                 <a class="btn btn-primary float-left mx-3"
-                                    href=""><i class="fa fa-eye"
+                                    href="/admin/tag/view/{{id}}"><i class="fa
+                                        fa-eye"
                                         aria-hidden="true" title="Xem"></i> </a>
                                 {{!-- Thầy bảo phải dung method post nên phải
                                 dùng form method post để gửi request --}}
                                 <form class="float-left"
-                                    action="/admin/tag/delete" method="POST">
+                                    action="/admin/tag/delete/{{id}}"
+                                    method="POST">
                                     <button type="submit" class="btn btn-danger
                                         mx-3"><i class="fa fa-trash"
                                             aria-hidden="true" title="Xóa"></i></button>

@@ -26,10 +26,9 @@
         <div class="form-group">
           <label for="">Mục chính</label>
           <select class="form-control" name="" id="">
-            <option value="">Không có</option>
-            <option value="1">Game</option>
-            <option value="2">Công nghệ</option>
-            <option value="3">Phim</option>
+            {{#each list}}
+            <option id="{{id}}">{{name}}</option>
+            {{/each}}
           </select>
         </div>
         <div class="d-flex justify-content-center">

@@ -10,8 +10,9 @@ route.get('/', async function(req, res) {
     res.render('admin/category/home', { cat: list, empty: list.length === 0 });
 });
 // Thêm thể loại
-route.get('/add', function(req, res) {
-    res.render('admin/category/add');
+route.get('/add', async function(req, res) {
+    const tag = await tagModel.all();
+    res.render('admin/category/add', { list: tag });
 });
 
 route.post('/add', async function(req, res) {
@@ -27,7 +28,12 @@ route.get('/edit/:id', async function(req, res) {
     const tagRows = await tagModel.all();
     if (rows.length === 0) return res.send('Invalid parameter.');
     const category = rows[0];
-    res.render('admin/category/edit', { category, tag:tagRows });
+    res.render('admin/category/edit', { category, tag: tagRows });
+});
+
+route.post('/update', async function(req, res) {
+    await catModel.update(req.body);
+    res.redirect('admin/category');
 });
 
 //delete
@@ -41,10 +47,11 @@ route.get('/view/:id', async function(req, res) {
     const list = await catModel.view(id);
     res.render('admin/category/view', { cat: list, empty: list.length === 0 });
 });
-module.exports = route;
 
 //show name id tag view
 route.get('/edit', async function(req, res) {
     const list = await tagModel.all();
     res.render('admin/category/edit', { tag: list });
 });
+
+module.exports = route;

@@ -1,33 +1,39 @@
 {{#section 'title'}}Phân loại{{/section}}
- <nav class="breadcrumb">
-              <a class="breadcrumb-item" href="/admin">Trang chủ</a>
-              <a class="breadcrumb-item" href="/admin/tag">Tag</a>
-              <a class="breadcrumb-item active" href="#">Chi tiết</a>
+<nav class="breadcrumb">
+  <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+  <a class="breadcrumb-item" href="/admin/tag">Tag</a>
+  <a class="breadcrumb-item active" href="#">Chi tiết</a>
 </nav>
 <div class="contentHeader">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        <h4 class="card-title">Chi tiết tag</h4>
-      </div>
+  <div class="card text-dark bg-light">
+    <div class="card-body text-center">
+      <h4 class="card-title">Chi tiết tag</h4>
     </div>
+  </div>
 </div>
 
 <div class="contentHeader my-4">
-    <div class="card text-dark bg-light">     
-      <div class="card-body text-center ">
-        {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi request --}}
-        <form action="/admin/tag/delete" class="float-right pt-3" method="POST" >
-            <button type="submit" class="btn btn-danger mx-3"><i class="fa fa-trash" aria-hidden="true" title="Xóa"></i> Xóa</button> 
-        </form>
-        <a class="btn btn-primary  m-3 float-right" href="/admin/tag/add" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm tag</a>
-        <div class="table-responsive">
-              <table class="table">
-                    <tr>
-                        <th width="15%">Tên tag</th>
-                        <td></td>
-                    </tr>
-            </table>
-        </div>    
+  <div class="card text-dark bg-light">
+    <div class="card-body text-center">
+      {{!-- Thầy bảo phải dung method post nên phải dùng form method post để gửi
+      request --}}
+      <form action="/admin/tag/delete/{{id}}" class="float-right pt-3"
+        method="POST">
+        <button type="submit" class="btn btn-danger mx-3"><i class="fa fa-trash"
+            aria-hidden="true" title="Xóa"></i> Xóa</button>
+      </form>
+      <a class="btn btn-primary m-3 float-right" href="/admin/tag/add"
+        role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm tag</a>
+      <div class="table-responsive">
+        <table class="table">
+          {{#each tag}}
+          <tr>
+            <th width="15%">Tên tag</th>
+            <td>{{name}}</td>
+          </tr>
+          {{/each}}
+        </table>
+      </div>
     </div>
-    </div>
+  </div>
 </div>

@@ -15,21 +15,17 @@
 <div class="contentHeader my-4">
     <div class="card text-dark bg-light">
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="/update" method="POST">
                 <div class="form-group">
                     {{!-- Kiểm tra trùng tên thể loại --}}
                     <label for="">Tên thể loại</label>
                     <input type="text"
                         class="form-control form-control-sm"
-                        name="name" value="this.category.name" required>
+                        name="name" value="{{this.category.name}}" required>
                 </div>
                 <div class="form-group">
                     <label for="">Mục chính</label>
-                    <select class="form-control" name="" id="">
-                        <!--<option value="">Không có</option>
-                        <option value="1">Game</option>
-                        <option value="2">Công nghệ</option>
-                        <option value="3">Phim</option>-->
+                    <select class="form-control" name="parentID" id="parentID">
                         {{#each this.tag}}
                         <option value="{{id}}">{{id}}-{{name}}</option>
                         {{/each}}
