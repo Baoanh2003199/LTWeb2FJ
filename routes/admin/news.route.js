@@ -4,7 +4,7 @@ const tagModel = require('../../models/tag.model');
 const upload = require('../../utils/uploadFile');
 const catModel = require('../../models/category.model');
 const news_tagModel = require('../../models/news_tag.model');
-const array = require('../../utils/array');
+const list = require('../../utils/array');
 const route = express.Router();
 
 // Danh sách bài viết
@@ -46,10 +46,9 @@ route.get('/edit/:id', async function(req, res) {
 route.post('/edit', async function(req, res) {
     await newModel.add(req.body);
     const tagIDs = [req.body.tagID];
-    i = array.array(tagIDs);
     const entity = {
         newID: req.body.id,
-        tagID: i,
+        tagID: list.array(tagIDs),
     };
     await news_tagModel.insert(entity);
     res.redirect('/admin/news');
