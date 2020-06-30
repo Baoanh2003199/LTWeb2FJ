@@ -2,6 +2,7 @@ const express = require('express');
 const newModel = require('../../models/news.model');
 const tagModel = require('../../models/tag.model');
 const upload = require('../../utils/uploadFile');
+const catModel = require('../../models/category.model');
 const route = express.Router();
 
 // Danh sách bài viết
@@ -33,9 +34,10 @@ route.get('/edit/:id', async function(req, res) {
     const id = req.params['id'];
     const rows = await newModel.view(id);
     const tagRow = await tagModel.all();
+    const catRow = await catModel.all();
     const news = rows[0];
     if (rows.length === 0) return res.send('Invalid parameter.');
-    res.render('admin/news/edit', { news, tag: tagRow });
+    res.render('admin/news/edit', { news, tag: tagRow, cat: catRow });
 });
 // Duyệt bài
 route.get('/check/:id', async function(req, res) {
