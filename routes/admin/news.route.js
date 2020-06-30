@@ -18,7 +18,7 @@ route.get('/add', async function(req, res) {
     const catRow = await catModel.all();
     res.render('admin/news/add', { tag: tagRow, cat: catRow });
 });
-
+//mo cai notepad
 route.post('/add', async function(req, res) {
     const entity = {
         filePdf: upload.uploadFile(req.body.filePdf),
@@ -31,7 +31,7 @@ route.post('/add', async function(req, res) {
     await newModel.add(entity);
     res.redirect('/admin/news');
 });
-// Thêm bài viết
+
 // Lấy id tìm model rồi gán vào views
 route.get('/edit/:id', async function(req, res) {
     const id = req.params['id'];
