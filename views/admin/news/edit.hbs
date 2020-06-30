@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
           <label for="">Thể loại</label>
-          <select class="form-control" name="" id="">
+          <select class="form-control" name="catID" id="">
             {{#each this.cat}}
             <option value="{{id}}">{{name}}</option>
             {{/each}}
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
           <label for="">Loại</label>
-          <select class="form-control" name="" id="">
+          <select class="form-control" name="isPremium" id="">
             <option value="0">Thường</option>
             <option value="1">Cao cấp</option>
           </select>
@@ -40,7 +40,7 @@
         <div class="qtagselect from-group">
           <label for="">Tag</label><br>
           <select class="qtagselect__select from-control w-100"
-            multiple>
+            multiple name="tagID">
             {{#each this.tag}}
             <option value="{{id}}" class="isblue">{{name}}</option>
             {{/each}}
