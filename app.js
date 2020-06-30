@@ -17,6 +17,7 @@ require('./middlewares/session.mdw')(app);
 require('./middlewares/locals.mdw')(app);
 // // - Body parse: Catch data from POST and GET method
 // require('./middlewares/bodyparse.mdw')(app);
+require('./middlewares/passport.mdw')(app);
 
 // Set Public path for asset
 app.use(express.static(path.join(__dirname, '/public')));
