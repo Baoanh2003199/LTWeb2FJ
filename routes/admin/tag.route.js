@@ -21,12 +21,12 @@ route.get('/edit/:id', function(req, res) {
     const id = req.params['id'];
     const row = tagModel.view(id);
     if (rows.length === 0) return res.send('Invalid parameter.');
-    return res.render('admin/tag/edit');
+    res.render('admin/tag/edit');
 });
-route.get('/view/:id', function(req, res) {
+route.get('/view/:id', async function(req, res) {
     const id = req.params['id'];
     const list = await tagModel.view(id);
-    return res.render('admin/tag/view', { tag: list });
+    res.render('admin/tag/view', { tag: list });
 });
 
 route.post('/delete/:id', async function(req, res) {
