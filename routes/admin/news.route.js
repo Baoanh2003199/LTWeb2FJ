@@ -14,7 +14,8 @@ route.get('/', async function(req, res) {
 // Thêm bài viết
 route.get('/add', async function(req, res) {
     const tagRow = await tagModel.all();
-    res.render('admin/news/add', { tag: tagRow });
+    const catRow = await catModel.all();
+    res.render('admin/news/add', { tag: tagRow, cat: catRow });
 });
 
 route.post('/add', async function(req, res) {
@@ -51,7 +52,7 @@ route.post('/edit', async function(req, res) {
 });
 // Duyệt bài
 route.get('/check/', async function(req, res) {
-    const list = await newModel.all();
+    const list = await newModel.check();
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
 // Xem chi tiết
