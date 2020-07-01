@@ -19,7 +19,7 @@ route.get('/add', async function(req, res) {
 
 route.post('/add', async function(req, res) {
     await memberModel.add(req.body);
-    res.redirect('admin/member');
+    res.redirect('/admin/member');
 });
 
 // Xem chi tiết
