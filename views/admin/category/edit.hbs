@@ -27,7 +27,11 @@
                     <label for="">Mục chính</label>
                     <select class="form-control" name="parentID" id="parentID">
                         {{#each this.tag}}
+                        {{#if this.category.parentID ==id}}
+                        <option value="{{this.category.parentID}}">{{name}}</option>
+                        {{else}}
                         <option value="{{id}}">{{name}}</option>
+                        {{/if}}
                         {{/each}}
                     </select>
                 </div>

@@ -48,10 +48,4 @@ route.get('/view/:id', async function(req, res) {
     res.render('admin/category/view', { cat: list, empty: list.length === 0 });
 });
 
-//show name id tag view
-route.get('/edit', async function(req, res) {
-    const list = await tagModel.all();
-    res.render('admin/category/edit', { tag: list });
-});
-
 module.exports = route;
