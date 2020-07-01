@@ -12,7 +12,6 @@ route.get('/', async function(req, res) {
 // Thêm thể loại
 route.get('/add', async function(req, res) {
     const tag = await tagModel.all();
-    await catModel.add(req.body);
     res.render('admin/category/add', { list: tag });
 });
 
@@ -23,7 +22,6 @@ route.post('/add', async function(req, res) {
 
 // Sửa thể loại theo id
 route.get('/edit/:id', async function(req, res) {
-    //
     const id = req.params['id'];
     const rows = await catModel.view(id);
     const tagRows = await tagModel.all();
