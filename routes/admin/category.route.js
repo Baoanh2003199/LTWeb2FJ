@@ -9,6 +9,7 @@ route.get('/', async function(req, res) {
     const list = await catModel.all();
     res.render('admin/category/home', { cat: list, empty: list.length === 0 });
 });
+
 // Thêm thể loại
 route.get('/add', async function(req, res) {
     const tag = await tagModel.all();
@@ -32,7 +33,7 @@ route.get('/edit/:id', async function(req, res) {
 
 route.post('/update', async function(req, res) {
     await catModel.update(req.body);
-    res.redirect('admin/category');
+    res.redirect('/admin/category');
 });
 
 //delete
