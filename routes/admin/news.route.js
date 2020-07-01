@@ -36,7 +36,7 @@ route.post('/add', async function(req, res) {
 
 // Lấy id tìm model rồi gán vào views
 route.get('/edit/:id', async function(req, res) {
-    const id = +req.params['id'] || -1;
+    const id = req.params['id'];
     const rows = await newModel.view(id);
     const tagRow = await tagModel.all();
     const catRow = await catModel.all();

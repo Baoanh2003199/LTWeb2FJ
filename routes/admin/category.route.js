@@ -24,7 +24,7 @@ route.post('/add', async function(req, res) {
 // Sửa thể loại theo id
 route.get('/edit/:id', async function(req, res) {
     //
-    const id = +req.params['id'] || -1;
+    const id = req.params['id'];
     const rows = await catModel.view(id);
     const tagRows = await tagModel.all();
     if (rows.length === 0) return res.send('Invalid parameter.');
