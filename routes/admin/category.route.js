@@ -17,7 +17,7 @@ route.get('/add', async function(req, res) {
 
 route.post('/add', async function(req, res) {
     await catModel.add(req.body);
-    res.redirect('admin/category');
+    res.redirect('/admin/category');
 });
 
 // Sửa thể loại theo id
