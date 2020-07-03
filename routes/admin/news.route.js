@@ -46,7 +46,7 @@ route.get('/edit/:id', async function(req, res) {
 });
 
 route.post('/edit', async function(req, res) {
-    await newModel.update(entity);
+    await newModel.update(req.body);
     const tagIDs = [req.body.tagID];
     const entity = {
         newID: req.body.id,
