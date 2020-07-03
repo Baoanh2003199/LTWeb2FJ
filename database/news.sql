@@ -36,7 +36,6 @@ CREATE TABLE `news` (
   -- `openTime` timestamp default current_timestamp,
   `filePdf` varchar(255) default null,
   `catID` int(11) DEFAULT NULL,
-	`tagID` int(11) DEFAULT NULL,
    `createdBy` int(11) DEFAULT NULL,
    `note` nvarchar(255) default NULL,
    `status` nvarchar(255) default 0,
