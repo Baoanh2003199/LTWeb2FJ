@@ -64,16 +64,16 @@ route.post('/check/:id', async function(req, res) {
     const num = req.params.num;
     entity = {
         id: req.params.id,
-        status: 0,
+        status: req.params.status,
     };
-    if (num == 1) {
-        entity.status = 1;
+    if (num == '1') {
+        entity.status = '1';
         await newModel.update(entity);
     } else {
-        entity.status = 0;
+        entity.status = '0';
         await newModel.update(entity);
     }
-    es.redirect('/admin/news/check');
+    res.redirect('/admin/news/check');
 });
 // Xem chi tiết
 route.get('/view/:id', async function(req, res) {
