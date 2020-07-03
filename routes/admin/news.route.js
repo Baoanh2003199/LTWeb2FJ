@@ -32,7 +32,7 @@ route.post('/add', async function(req, res) {
     const entitys = {
         tagID: list.array(tagIDs),
     };
-    await news_tagModel.update(entitys);
+    await news_tagModel.insert(entitys);
     await newModel.add(entity);
     res.redirect('/admin/news');
 });
