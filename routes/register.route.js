@@ -34,7 +34,7 @@ route.post('/', [
 
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-        res.render('register', {Error: errors.array(), noError: errors.array().length == 0});
+        res.render('register', {Error: errors.array(), noError: errors.array().length === 0 });
         //return res.status(422).json({ errors: errors.array() })
     }
     else
