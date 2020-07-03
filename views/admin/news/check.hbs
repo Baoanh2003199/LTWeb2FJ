@@ -43,14 +43,14 @@
                                 {{!-- Thầy bảo phải dung method post nên phải
                                 dùng form method post để gửi request --}}
                                 <form class="float-left"
-                                    action="/admin/news/check/{{id}}/{{status}}=1"
+                                    action="/admin/news/check/{{id}}/{{status}}/num=1"
                                     method="POST">
                                     <button type="submit" class="btn btn-success
                                         mx-3"><i class="fa fa-check"
                                             aria-hidden="true" title="Duyệt"></i></button>
                                 </form>
                                 <form class="float-left"
-                                    action="/admin/news/check/{{id}}/{{status}}=0"
+                                    action="/admin/news/check/{{id}}/{{status}}/num=0"
                                     method="POST">
                                     <button type="submit" class="btn btn-danger
                                         mx-3"><i class="fa fa-times"
