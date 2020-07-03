@@ -56,16 +56,23 @@ route.post('/edit', async function(req, res) {
     res.redirect('/admin/news');
 });
 // Duyệt bài
-route.get('/check/', async function(req, res) {
+route.get('/check', async function(req, res) {
     const list = await newModel.check();
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
-route.post('/check/:id/:num', async function(req, res) {
+route.post('/check/:id/:status', async function(req, res) {
     entity = {
-        check: req.params.num,
+        check: req.params.status,
         id: req.params.id,
     };
-    if (num == 1) {} else {}
+    if (num == 1) {
+        entity.check = 1;
+        await newModel.update(entity);
+    } else {
+        entity.check = 0;
+        await newModel.update(entity);
+    }
+    es.redirect('/admin/news/check');
 });
 // Xem chi tiết
 route.get('/view/:id', async function(req, res) {
