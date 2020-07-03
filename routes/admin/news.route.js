@@ -25,11 +25,14 @@ route.post('/add', async function(req, res) {
         name: req.body.name,
         catID: req.body.catID,
         isPremium: req.body.isPremium,
-        tagID: list.array(tagIDs),
         filePdf: upload.uploadFile(req.body.filePdf),
         content: req.body.content,
         openTime: req.body.openTime,
     };
+    const entitys = {
+        tagID: list.array(tagIDs),
+    };
+    await news_tagModel.update(entitys);
     await newModel.add(entity);
     res.redirect('/admin/news');
 });
