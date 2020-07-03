@@ -17,4 +17,8 @@ module.exports = {
         };
         return db.delete(TBL_SUBSCRIBER, condition);
     },
+
+    add: function(entity) {
+        return db.insert(TBL_SUBSCRIBER, entity);
+    },
 };

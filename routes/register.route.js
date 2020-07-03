@@ -1,6 +1,7 @@
 const express = require('express');
 const route = express.Router();
 const regModel = require('../models/user.model');
+const subModel = require('../models/subscriber.model');
 var mailer = require('../utils/mailer');
 const { check, validationResult } = require('express-validator');
 
@@ -53,7 +54,6 @@ route.post('/', [
                 html: 'Xin chào, đây là thư tự động từ tintuc14 vui lòng không gửi lại. Nhấp vào <a href="https://tintuc14.herokuapp.com/login"> đây </a> để xác minh email của bạn.'
             });
             delete req.body.email
-            console.log(req.body);
             await regModel.regAdd(req.body);
             res.redirect('/login');
             
