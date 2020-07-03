@@ -60,17 +60,17 @@ route.get('/check', async function(req, res) {
     const list = await newModel.check();
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
-route.post('/check/:id/:status', async function(req, res) {
+route.post('/check/:id', async function(req, res) {
     const num = req.params.num;
     entity = {
-        check: req.params.status,
         id: req.params.id,
+        status: 0,
     };
     if (num == 1) {
-        entity.check = 1;
+        entity.status = 1;
         await newModel.update(entity);
     } else {
-        entity.check = 0;
+        entity.status = 0;
         await newModel.update(entity);
     }
     es.redirect('/admin/news/check');
@@ -81,7 +81,6 @@ route.get('/view/:id', async function(req, res) {
     const list = await newModel.view(id);
     res.render('admin/news/view', { news: list, empty: list.length === 0 });
 });
-module.exports = route;
 
 //xoa bai biet
 route.post('/delete/:id', async function(req, res) {
@@ -89,3 +88,4 @@ route.post('/delete/:id', async function(req, res) {
     await newModel.del(id);
     res.redirect('/admin/news');
 });
+module.exports = route;
