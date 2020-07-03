@@ -28,7 +28,7 @@
           <label for="">Mục chính</label>
           <select class="form-control" name="parentID" id="">
             {{#each list}}
-            <option id="{{id}}">{{name}}</option>
+            <option name="parentID" value="{{id}}" id="{{id}}">{{name}}</option>
             {{/each}}
           </select>
         </div>
