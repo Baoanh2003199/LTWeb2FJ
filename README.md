@@ -49,6 +49,7 @@
   - [x] Tag Manager
   - [ ] News Manager
   - [ ] Account Manager
+  - [x] Member Manager
 
 ## 7.Web address
 
