@@ -67,10 +67,8 @@ route.post('/check/:id', async function(req, res) {
         status: req.params.status,
     };
     if (num == '1') {
-        entity.status = '1';
         await newModel.update(entity);
     } else {
-        entity.status = '0';
         await newModel.update(entity);
     }
     res.redirect('/admin/news/check');
