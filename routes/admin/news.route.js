@@ -60,8 +60,9 @@ route.get('/check/', async function(req, res) {
     const list = await newModel.check();
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
-route.post('/check/:num', async function(req, res) {
+route.post('/check/:id/:num', async function(req, res) {
     check = req.params.num;
+    id = req.params.id;
     if (num == 1) {} else {}
 });
 // Xem chi tiết
