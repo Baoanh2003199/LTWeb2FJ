@@ -32,16 +32,23 @@
       <input name="phone" type="text" class="form-control" id="address" placeholder="Nhập số điện thoại">
     </div>-->
     <div class="checkbox" style="margin: 10px">
-      <label><input type="checkbox"> Tôi đã đồng ý với các điều khoản trên</label>
+      <label><input type="checkbox" name="terms" id="terms"> Tôi đã đồng ý với các điều khoản trên</label>
     </div>
-      <br>
       {{#if this.isExists}}
+        <br>
       <!--Hiển thị modal thông báo login fail -->
       <label style="color: red;">Tên người dùng đã tồn tại</label>
        {{/if}}
+       {{#if this.noError}}
+       {{else}}
+          {{#each this.Error}}
+          <label style="color:crimson;">● {{msg}}</label> <br>
+          {{/each}}
+       <br>
+       {{/if}}
     <button id="submit" type="submit" class="btn btn-success" style="margin-right: 2%; margin-left:2%">
       <i class="fa fa-user-plus" aria-hidden="true"></i>
-      Đăng ký</button>
+      Đăng Ký</button>
     <h7>Đã có tài khoản ? <a href="/login">Đăng nhập</a> </h7> 
   </form> 
   </div>
