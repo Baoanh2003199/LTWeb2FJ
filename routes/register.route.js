@@ -3,6 +3,7 @@ const route = express.Router();
 const regModel = require('../models/user.model');
 var mailer = require('../utils/mailer');
 
+
 const redirectHome = (req, res, next)=>{
     if(res.locals.isLoggedIn)
     {
@@ -20,6 +21,7 @@ route.get('/', redirectHome, function (req, res) {
 })
 
 route.post('/', async function (req, res) {
+  
     const result = await regModel.byName(req.body.username);
     if(result[0])
     {
