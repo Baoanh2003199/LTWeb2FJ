@@ -61,6 +61,7 @@ route.get('/check', async function(req, res) {
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
 route.post('/check/:id/:status', async function(req, res) {
+    const num = req.params.num;
     entity = {
         check: req.params.status,
         id: req.params.id,
