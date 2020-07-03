@@ -61,8 +61,10 @@ route.get('/check/', async function(req, res) {
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
 route.post('/check/:id/:num', async function(req, res) {
-    check = req.params.num;
-    id = req.params.id;
+    entity = {
+        check: req.params.num,
+        id: req.params.id,
+    };
     if (num == 1) {} else {}
 });
 // Xem chi tiết
