@@ -15,8 +15,8 @@
 <div class="contentHeader my-4">
     <div class="card text-dark bg-light">
         <div class="card-body">
-            <form action="" method="POST" novalidate
-                enctype="multipart/form-data">
+            <form  method="post" enctype="multipart/form-data" >
+
                 <div class="form-group">
                     <label for="">Tên bài viết</label>
                     <input type="text"
@@ -28,7 +28,7 @@
                     <label for="">Thể loại</label>
                     <select class="form-control" name="catID" id="catID">
                         {{#each this.cat}}
-                        <option name="catID" value="{{id}}">{{name}}</option>
+                        <option  value="{{id}}">{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -37,14 +37,13 @@
                     <select class="form-control" name="isPremium"
                         id="isPremium">
                         <option name="isPremium" value="1" id="0">Thường</option>
-                        <option name="isPremium" value="0" id="1">Cao
-                            cấp</option>
+                        <option name="isPremium" value="0" id="1">Cao cấp</option>
                     </select>
                 </div>
                 <div class="qtagselect from-group">
                     <label for="">Tag</label><br>
                     <select class="qtagselect__select from-control w-100"
-                        multiple name="tagID">
+                        multiple name="tagIDs[]">
                         {{#each this.tag}}
                         <option name="tagID" value="{{id}}" class="isblue">{{name}}</option>
                         {{/each}}

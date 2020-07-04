@@ -51,7 +51,7 @@ route.get('/', redirectHome, function(req,res){
 })
 
 route.post('/', redirectHome, async function(req, res) {
-    const {username, password} = req.body
+    const {username, password} = req.body;
     if(username && password)
     {
         const result = await loginModel.byName(username);

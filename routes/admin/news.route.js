@@ -15,30 +15,36 @@ route.get('/', async function(req, res) {
 // Thêm bài viết
 route.get('/add', async function(req, res) {
     const tagRow = await tagModel.all();
+    // Chổ này lấy tất cả category có parentID != 0 nha Quan sửa lại câu truy vấn
     const catRow = await catModel.all();
     res.render('admin/news/add', { tag: tagRow, cat: catRow });
 });
 //mo cai notepad
 route.post('/add', async function(req, res) {
-    res.send(req.body);
-    const tagIDs = [req.body.tagID];
-    const entity = {
-        name: req.body.name,
-        catID: req.body.catID,
-        isPremium: req.body.isPremium,
-        filePdf: upload.uploadFile(req.body.filePdf),
-        content: req.body.content,
-        openTime: req.body.openTime,
-    };
+    upload.uploadFile(req, res, async function(error){
+        console.log("ok");
+        console.log(req.body);
+        return res.send(req.body);
+    });
+  
+    // const tagIDs = [req.body.tagID];
+    // const entity = {
+    //     name: req.body.name,
+    //     catID: req.body.catID,
+    //     isPremium: req.body.isPremium,
+    //     filePdf: upload.uploadFile(req.body.filePdf),
+    //     content: req.body.content,
+    //     openTime: req.body.openTime,
+    // };
 
-    const resutlt = await newModel.add(entity);
-    const rowsID = resutlt[0].id;
-    if (rowsID.length === 0) return res.send('Invaild parameter');
-    const entitys = {
-        newID: rowsID,
-        tagID: list.array(tagIDs),
-    };
-    await news_tagModel.insert(entitys);
+    // const resutlt = await newModel.add(entity);
+    // const rowsID = resutlt[0].id;
+    // if (rowsID.length === 0) return res.send('Invaild parameter');
+    // const entitys = {
+    //     newID: rowsID,
+    //     tagID: list.array(tagIDs),
+    // };
+    // await news_tagModel.insert(entitys);
 
     res.redirect('/admin/news');
 });

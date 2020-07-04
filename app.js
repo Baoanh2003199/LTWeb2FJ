@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
-
+const bodyParser = require('body-parser');
 const app = express();
+
 
 app.use(
     express.urlencoded({
@@ -21,11 +22,13 @@ require('./middlewares/locals.mdw')(app);
 // require('./middlewares/bodyparse.mdw')(app);
 //require('./middlewares/passport.mdw')(app);
 // Set Public path for asset
+
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Set Layout prefix url is "/admin" is admin.hbs
 app.all('/admin*', function(req, res, next) {
     req.app.locals.layout = 'admin';
+    
     next();
 });
 // Set Layout prefix url is "/" is main.hbs
@@ -33,6 +36,7 @@ app.all('/', function(req, res, next) {
     req.app.locals.layout = 'main';
     next();
 });
+
 
 app.use(async function(req, res, next) {
     req.session.userId === undefined ?
