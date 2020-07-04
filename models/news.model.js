@@ -33,4 +33,7 @@ module.exports = {
         delete entity.id;
         return db.update(TBL_NEWS, entity, condition);
     },
+    single: function() {
+        return db.load(`selct id from ${TBL_NEWS} order by id desc limit 1`);
+    },
 };

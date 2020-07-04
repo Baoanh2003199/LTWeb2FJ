@@ -34,7 +34,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single('filePdf');
 route.post('/add', upload, async function(req, res) {
     //res.send(req.body);
-    const tagIDs = [req.body.tagID];
     if (req.file) {
         const entity = {
             name: req.body.name,
@@ -46,6 +45,14 @@ route.post('/add', upload, async function(req, res) {
         };
         console.log(entity);
         await newModel.add(entity);
+        const tags = [req.body.tagID];
+        const idNews = newModel.single();
+        const rowsID = idNews[0];
+        const entitys = {
+            tagID: list.array(tags),
+            newID: rowsID,
+        };
+        await news_tagModel.insert(entitys);
     }
     res.redirect('/admin/news');
 });
