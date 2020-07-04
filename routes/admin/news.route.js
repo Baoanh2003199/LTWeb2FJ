@@ -36,7 +36,14 @@ route.post('/add', upload, async function(req, res) {
     //res.send(req.body);
     const tagIDs = [req.body.tagID];
     if (req.file) {
-        const entity = {...req.body, filePdf: req.file.filePdf };
+        const entity = {
+            name: req.body.name,
+            catID: req.body.catID,
+            isPremium: req.body.isPremium,
+            filePdf: req.file.filePdf,
+            content: req.body.content,
+            openTime: req.body.openTime,
+        };
         console.log(entity);
         await newModel.add(entity);
     }
