@@ -68,14 +68,27 @@ route.get('/edit/:id', async function(req, res) {
     res.render('admin/news/edit', { news, tag: tagRow, cat: catRow });
 });
 
-route.post('/edit', async function(req, res) {
-    await newModel.update(req.body);
-    const tagIDs = [req.body.tagID];
-    const entity = {
-        newID: req.body.id,
-        tagID: list.array(tagIDs),
-    };
-    await news_tagModel.insert(entity);
+route.post('/edit', upload, async function(req, res) {
+    if (req.file) {
+        const entity = {
+            name: req.body.name,
+            catID: req.body.catID,
+            isPremium: req.body.isPremium,
+            filePdf: req.file.filePdf,
+            content: req.body.content,
+            openTime: req.body.openTime,
+        };
+        console.log(entity);
+        await newModel.add(entity);
+        const tags = [req.body.tagID];
+        const idNews = newModel.single();
+        const rowsID = idNews[0];
+        const entitys = {
+            tagID: list.array(tags),
+            newID: rowsID,
+        };
+        await news_tagModel.insert(entitys);
+    }
     res.redirect('/admin/news');
 });
 // Duyệt bài
