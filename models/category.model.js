@@ -27,4 +27,8 @@ module.exports = {
     view: function(id) {
         return db.load(`select * from ${TBL_CATEGORY} where id=${id}`);
     },
+
+    getList: function() {
+        return db.load(`select * from ${TBL_CATEGORY} where parentID != 0`);
+    },
 };

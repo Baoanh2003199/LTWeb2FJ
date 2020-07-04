@@ -16,17 +16,17 @@ route.get('/', async function(req, res) {
 route.get('/add', async function(req, res) {
     const tagRow = await tagModel.all();
     // Chổ này lấy tất cả category có parentID != 0 nha Quan sửa lại câu truy vấn
-    const catRow = await catModel.all();
+    const catRow = await catModel.getList();
     res.render('admin/news/add', { tag: tagRow, cat: catRow });
 });
 //mo cai notepad
 route.post('/add', async function(req, res) {
-    upload.uploadFile(req, res, async function(error){
-        console.log("ok");
+    upload.uploadFile(req, res, async function(error) {
+        console.log('ok');
         console.log(req.body);
         return res.send(req.body);
     });
-  
+
     // const tagIDs = [req.body.tagID];
     // const entity = {
     //     name: req.body.name,
