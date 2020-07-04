@@ -36,8 +36,9 @@ route.post('/add', upload, async function(req, res) {
     //res.send(req.body);
     const tagIDs = [req.body.tagID];
     if (req.file) {
-        const entity = {...req.body, images: req.file.filePdf };
+        const entity = {...req.body, filePdf: req.file.filePdf };
         console.log(entity);
+        await newModel.add(entity);
     }
     res.redirect('/admin/news');
 });
