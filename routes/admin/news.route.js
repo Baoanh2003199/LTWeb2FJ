@@ -35,17 +35,9 @@ const upload = multer({ storage: storage }).single('filePdf');
 route.post('/add', upload, async function(req, res) {
     //res.send(req.body);
     const tagIDs = [req.body.tagID];
-    console.log(tagIDs);
-    const entity = {
-        name: req.body.name,
-        catID: req.body.catID,
-        isPremium: req.body.isPremium,
-        content: req.body.content,
-        openTime: req.body.openTime,
-    };
-    console.log(entity);
     if (req.file) {
         const entity = {...req.body, images: req.file.filePdf };
+        console.log(entity);
     }
     res.redirect('/admin/news');
 });
