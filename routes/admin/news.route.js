@@ -32,7 +32,7 @@ route.post('/add', async function(req, res) {
     };
 
     await newModel.add(entity);
-    const resutlt = await newModel.all();
+    const resutlt = await newModel.add(entity);
     const rowsID = resutlt[0].id;
     if (rowsID.length === 0) return res.send('Invaild parameter');
     const entitys = {
