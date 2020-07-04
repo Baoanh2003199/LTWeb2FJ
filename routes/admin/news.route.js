@@ -20,6 +20,7 @@ route.get('/add', async function(req, res) {
 });
 //mo cai notepad
 route.post('/add', async function(req, res) {
+    res.send(req.body);
     const tagIDs = [req.body.tagID];
     const entity = {
         name: req.body.name,
@@ -29,11 +30,17 @@ route.post('/add', async function(req, res) {
         content: req.body.content,
         openTime: req.body.openTime,
     };
+
+    await newModel.add(entity);
+    const resutlt = await newModel.all();
+    const rowsID = resutlt[0].id;
+    if (rowsID.length === 0) return res.send('Invaild parameter');
     const entitys = {
+        newID: rowsID,
         tagID: list.array(tagIDs),
     };
     await news_tagModel.insert(entitys);
-    await newModel.add(entity);
+
     res.redirect('/admin/news');
 });
 
