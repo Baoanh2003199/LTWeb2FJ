@@ -1,12 +1,11 @@
 const express = require('express');
 const newModel = require('../../models/news.model');
 const tagModel = require('../../models/tag.model');
+const upload = require('../../utils/uploadFile');
 const catModel = require('../../models/category.model');
 const news_tagModel = require('../../models/news_tag.model');
 const list = require('../../utils/array');
 const route = express.Router();
-const multer = require('multer');
-const path = require('path');
 
 // Danh sách bài viết
 route.get('/', async function(req, res) {
@@ -17,28 +16,36 @@ route.get('/', async function(req, res) {
 route.get('/add', async function(req, res) {
     const tagRow = await tagModel.all();
     // Chổ này lấy tất cả category có parentID != 0 nha Quan sửa lại câu truy vấn
-    const catRow = await catModel.getList();
+    const catRow = await catModel.all();
     res.render('admin/news/add', { tag: tagRow, cat: catRow });
 });
 //mo cai notepad
+route.post('/add', async function(req, res) {
+    upload.uploadFile(req, res, async function(error) {
+        console.log('ok');
+        console.log(req.body);
+        return res.send(req.body);
+    });
 
-const storage = multer.diskStorage({
-    destination: './public/uploads/',
-    filename: function(req, file, cb) {
-        cb(
-            null,
-            file.fieldname + '-' + Date.now() + path.extname(file.originalname)
-        );
-    },
-});
-const upload = multer({ storage: storage }).single('filePdf');
-route.post('/add', upload, async function(req, res) {
-    //res.send(req.body);
-    const tagIDs = [req.body.tagID];
-    if (req.file) {
-        const entity = {...req.body, images: req.file.filePdf };
-        console.log(entity);
-    }
+    // const tagIDs = [req.body.tagID];
+    // const entity = {
+    //     name: req.body.name,
+    //     catID: req.body.catID,
+    //     isPremium: req.body.isPremium,
+    //     filePdf: upload.uploadFile(req.body.filePdf),
+    //     content: req.body.content,
+    //     openTime: req.body.openTime,
+    // };
+
+    // const resutlt = await newModel.add(entity);
+    // const rowsID = resutlt[0].id;
+    // if (rowsID.length === 0) return res.send('Invaild parameter');
+    // const entitys = {
+    //     newID: rowsID,
+    //     tagID: list.array(tagIDs),
+    // };
+    // await news_tagModel.insert(entitys);
+
     res.redirect('/admin/news');
 });
 

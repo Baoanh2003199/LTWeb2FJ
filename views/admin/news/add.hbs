@@ -15,7 +15,7 @@
 <div class="contentHeader my-4">
     <div class="card text-dark bg-light">
         <div class="card-body">
-            <form  method="post" enctype="multipart/form-data" >
+            <form method="post" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="">Tên bài viết</label>
@@ -28,7 +28,7 @@
                     <label for="">Thể loại</label>
                     <select class="form-control" name="catID" id="catID">
                         {{#each this.cat}}
-                        <option  value="{{id}}">{{name}}</option>
+                        <option value="{{id}}">{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="qtagselect from-group">
                     <label for="">Tag</label><br>
                     <select class="qtagselect__select from-control w-100"
-                        multiple name="tagIDs[]">
+                        multiple name="tagID">
                         {{#each this.tag}}
                         <option name="tagID" value="{{id}}" class="isblue">{{name}}</option>
                         {{/each}}
