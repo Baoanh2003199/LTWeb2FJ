@@ -63,6 +63,7 @@ route.post('/', redirectHome, async function(req, res) {
             {
                 var {userId, name} = req.session;
                 req.session.userId = result[0].id;
+                req.session.role = result[0].roleId;
                 req.session.name = result[0].username;
                 res.redirect('/');
             }

@@ -42,6 +42,22 @@ app.use(async function(req, res, next) {
     req.session.userId === undefined ?
         (res.locals.isLoggedIn = false) :
         (res.locals.isLoggedIn = true);
+    switch(req.session.roleId) {
+        case 1:
+             res.locals.isAdmin = true;
+            break;
+        case 11:
+            res.locals.isEditor = true;
+            break;
+        case 21:
+            res.locals.isWriter = true;
+            break;
+        case 31:
+            res.locals.isSubscriber = true;
+            break;
+        default:
+            res.locals.isGuest = true;
+        } 
     res.locals.userId = req.session.userId;
     res.locals.username = req.session.name;
     res.locals.cat = await catModel.all();

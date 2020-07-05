@@ -72,6 +72,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `roleId` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
@@ -109,12 +110,12 @@ CREATE TABLE `member` (
 );
 
 
-DROP TABLE IF EXISTS `user_role`;
-CREATE TABLE `user_role` (
-  `userID` int(11) NOT NULL,
-  `roleID` int(11) NOT NULL,
-  PRIMARY KEY (`userID`,`roleID`)
-);
+--DROP TABLE IF EXISTS `user_role`;
+--CREATE TABLE `user_role` (
+--  `userID` int(11) NOT NULL,
+--  `roleID` int(11) NOT NULL,
+--  PRIMARY KEY (`userID`,`roleID`)
+--);
 
 
 -- ALTER TABLE news ADD  FOREIGN KEY (catID) REFERENCES  category(id);
