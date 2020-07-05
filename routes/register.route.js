@@ -37,6 +37,7 @@ route.post('/', [
             return val;
         }
     }),
+    check('dob', 'Số điện thoại không hợp lệ').isISO8601('dd-mm-yyyy'),
     check('phone', 'Số điện thoại không hợp lệ').isNumeric(),
     check('terms', 'Bạn chưa đồng ý với điều khoản').not().isEmpty()
   ], async function (req, res){
@@ -80,7 +81,7 @@ route.post('/', [
                     from: 'tintuc14web@gmail.com',
                     to: `${sub.email}`,
                     subject: 'Xác minh địa chỉ email và kích hoạt tài khoản của bạn',
-                    html: `Xin chào ${sub.name}, bạn đã đăng ký 1 tài khoản ở trang https://tintuc14.herokuapp.com. Nhấp vào <a href="https://tintuc14.herokuapp.com/login"> đây </a> để xác minh email và kích hoạt tài khoản của bạn.`
+                    html: `<h2>Xác minh địa chỉ email và kích hoạt tài khoản của bạn<h2><br> Xin chào ${sub.name}, cảm ơn bạn đã đăng ký 1 tài khoản ở trang https://tintuc14.herokuapp.com.<br> Nhấp vào <a href="https://tintuc14.herokuapp.com/login"> đây </a> để xác minh email và kích hoạt tài khoản của bạn, hãy chắc chắn rằng bạn phải xác nhận tài khoản trong 24h tới. <br>(Đây là thư tự động vui lòng không phản hồi)`
                 });
                 res.redirect('/login');
             }
