@@ -81,7 +81,7 @@ route.post('/edit', upload, async function(req, res) {
             content: req.body.content,
             openTime: req.body.openTime,
         };
-        const result = await newModel.add(entity);
+        const result = await newModel.update(entity);
         console.log(`id khi insert thanh cong ${result.insertId}`);
         const tags = [req.body.tagID];
         const i = list.array(tags);
