@@ -46,22 +46,17 @@ route.post('/add', upload, async function(req, res) {
         console.log(entity);
         // Insert gán vào result
         const result = await newModel.add(entity);
-        //    Log result
-        console.log(result);
-        //    id sẽ đc lưu vào result.insertId
         console.log(`id khi insert thanh cong ${result.insertId}`);
+        const tags = [req.body.tagID];
+        const i = list.array(tags);
+        console.log(i);
+        const entitys = {
+            newID: result.insertId,
+            tagID: i,
+        };
+        console.log(entitys);
+        await news_tagModel.insert(entitys);
     }
-    const tags = [req.body.tagID];
-    console.log(tags);
-    const idNews = newModel.single();
-    const rowsID = idNews[0];
-    console.log(rowsID);
-    const entitys = {
-        tagID: list.array(tags),
-        newID: rowsID,
-    };
-    console.log(entitys);
-    await news_tagModel.insert(entitys);
     res.redirect('/admin/news');
 });
 
