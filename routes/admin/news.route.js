@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
         );
     },
 });
-const upload = multer({ storage: storage }).single('filePdf');
+const upload = multer({ storage: storage }).single('thumbnail');
 route.post('/add', upload, async function(req, res) {
     //res.send(req.body);
     if (req.file) {
@@ -39,17 +39,17 @@ route.post('/add', upload, async function(req, res) {
             name: req.body.name,
             catID: req.body.catID,
             isPremium: req.body.isPremium,
-            filePdf: req.file.filePdf,
+            thumbnail: req.file.thumbnail,
             content: req.body.content,
             openTime: req.body.openTime,
         };
         console.log(entity);
         // Insert gán vào result
-       const result =   await newModel.add(entity);
-    //    Log result
-       console.log(result);
-    //    id sẽ đc lưu vào result.insertId
-       console.log(`id khi insert thanh cong ${result.insertId}`);
+        const result = await newModel.add(entity);
+        //    Log result
+        console.log(result);
+        //    id sẽ đc lưu vào result.insertId
+        console.log(`id khi insert thanh cong ${result.insertId}`);
     }
     const tags = [req.body.tagID];
     console.log(tags);
