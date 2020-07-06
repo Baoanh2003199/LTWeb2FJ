@@ -45,15 +45,18 @@ route.post('/add', upload, async function(req, res) {
         };
         console.log(entity);
         await newModel.add(entity);
-        const tags = [req.body.tagID];
-        const idNews = newModel.single();
-        const rowsID = idNews[0];
-        const entitys = {
-            tagID: list.array(tags),
-            newID: rowsID,
-        };
-        await news_tagModel.insert(entitys);
     }
+    const tags = [req.body.tagID];
+    console.log(tags);
+    const idNews = newModel.single();
+    const rowsID = idNews[0];
+    console.log(rowsID);
+    const entitys = {
+        tagID: list.array(tags),
+        newID: rowsID,
+    };
+    console.log(entitys);
+    await news_tagModel.insert(entitys);
     res.redirect('/admin/news');
 });
 
@@ -80,15 +83,17 @@ route.post('/edit', upload, async function(req, res) {
         };
         console.log(entity);
         await newModel.add(entity);
-        const tags = [req.body.tagID];
-        const idNews = newModel.single();
-        const rowsID = idNews[0];
-        const entitys = {
-            tagID: list.array(tags),
-            newID: rowsID,
-        };
-        await news_tagModel.insert(entitys);
     }
+    const tags = [req.body.tagID];
+    const idNews = newModel.single();
+    const rowsID = idNews[0];
+    console.log(rowsID);
+    const entitys = {
+        tagID: list.array(tags),
+        newID: rowsID,
+    };
+    console.log(entitys);
+    await news_tagModel.insert(entitys);
     res.redirect('/admin/news');
 });
 // Duyệt bài
