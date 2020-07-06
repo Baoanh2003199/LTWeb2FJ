@@ -92,7 +92,7 @@ route.post('/edit', upload, async function(req, res) {
             tagID: parseInt(i, 10),
         };
         console.log(entitys);
-        await news_tagModel.update(entitys);
+        await news_tagModel.insert(entitys);
     }
 
     res.redirect('/admin/news');
