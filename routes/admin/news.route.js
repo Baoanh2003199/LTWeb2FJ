@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
         );
     },
 });
-const upload = multer({ storage: storage }).single('thumbnail');
+const upload = multer({ storage: storage }).single('filePdf');
 route.post('/add', upload, async function(req, res) {
     //res.send(req.body);
     if (req.file) {
@@ -39,7 +39,7 @@ route.post('/add', upload, async function(req, res) {
             name: req.body.name,
             catID: req.body.catID,
             isPremium: req.body.isPremium,
-            thumbnail: req.file.thumbnail,
+            filePdf: req.file.filePdf,
             content: req.body.content,
             openTime: req.body.openTime,
         };

@@ -52,8 +52,7 @@
                 <br>
                 <div class="form-group">
                     <label for="">Ảnh đại diện</label>
-                    <input type="file" class="form-control-file"
-                        name="thumbnail"
+                    <input type="file" class="form-control-file" name="filePdf"
                         id="fileInput" onchange="showMyImage(this)"
                         placeholder="" aria-describedby="fileHelpId" multiple>
                 </div>
@@ -87,7 +86,6 @@
 <script src="/tagSelector/jquery.tagselect.js"></script>
 <script src="/admin/myJs.js"></script>
 <script>
-
     CKEDITOR.replace( 'content' );
     $(function(){
         $('.qtagselect__select').tagselect({
