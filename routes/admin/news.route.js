@@ -81,19 +81,20 @@ route.post('/edit', upload, async function(req, res) {
             content: req.body.content,
             openTime: req.body.openTime,
         };
-        console.log(entity);
-        await newModel.add(entity);
+        const result = await newModel.add(entity);
+        console.log(`id khi insert thanh cong ${result.insertId}`);
+        const tags = [req.body.tagID];
+        const i = list.array(tags);
+        console.log(parseInt(i, 10));
+        await news_tagModel.del(result.insertId);
+        const entitys = {
+            newID: result.insertId,
+            tagID: parseInt(i, 10),
+        };
+        console.log(entitys);
+        await news_tagModel.update(entitys);
     }
-    const tags = [req.body.tagID];
-    const idNews = newModel.single();
-    const rowsID = idNews[0];
-    console.log(rowsID);
-    const entitys = {
-        tagID: list.array(tags),
-        newID: rowsID,
-    };
-    console.log(entitys);
-    await news_tagModel.insert(entitys);
+
     res.redirect('/admin/news');
 });
 // Duyệt bài

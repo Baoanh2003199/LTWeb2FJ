@@ -12,4 +12,12 @@ module.exports = {
         };
         return db.delete(TBL_NEWS_TAG, condition);
     },
+
+    update: function(entity) {
+        const condition = {
+            newID: entity.newID,
+        };
+        delete entity.id;
+        return db.update(TBL_NEWS_TAG, entity, condition);
+    },
 };
