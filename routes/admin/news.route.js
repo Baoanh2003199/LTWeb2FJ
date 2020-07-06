@@ -44,7 +44,12 @@ route.post('/add', upload, async function(req, res) {
             openTime: req.body.openTime,
         };
         console.log(entity);
-        await newModel.add(entity);
+        // Insert gán vào result
+       const result =   await newModel.add(entity);
+    //    Log result
+       console.log(result);
+    //    id sẽ đc lưu vào result.insertId
+       console.log(`id khi insert thanh cong ${result.insertId}`);
     }
     const tags = [req.body.tagID];
     console.log(tags);
