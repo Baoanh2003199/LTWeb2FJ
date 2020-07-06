@@ -34,6 +34,10 @@ module.exports = {
         return db.update(TBL_NEWS, entity, condition);
     },
     single: function() {
-        return db.load(`selct id from ${TBL_NEWS} order by id desc limit 1`);
+        return db.load(`select id from ${TBL_NEWS} order by id desc limit 1`);
+    },
+
+    singleName: function(name) {
+        return db.load(`select id from ${TBL_NEWS} where name=${name}`);
     },
 };
