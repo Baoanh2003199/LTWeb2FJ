@@ -92,7 +92,7 @@ route.post('/', [
                         expired: expiredHours
                     }
                     await tokenModel.add(tokenObj);
-                    /*mailer.send({
+                    mailer.send({
                         from: 'tintuc14web@gmail.com',
                         to: `${sub.email}`,
                         subject: 'Xác minh địa chỉ email của bạn',
@@ -106,8 +106,7 @@ route.post('/', [
                         (Đây là thư tự động vui lòng không phản hồi)
                         `
                     });
-                    res.redirect('/login');*/
-                    res.redirect(`/confirmation/account/${token}`);
+                    res.redirect('/login');
                 }
                 
             }
