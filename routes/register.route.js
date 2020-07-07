@@ -100,7 +100,7 @@ route.post('/', [
                         Xin chào ${sub.name}, cảm ơn bạn đã đăng ký 1 tài khoản ở trang Tin tức 14.
                         <br> 
                         Nhấp vào 
-                        <a href="https://tintuc14.herokuapp.com/confirmation/account?token=${token}"> đây </a> 
+                        <a href="https://tintuc14.herokuapp.com/confirmation/account/${token}"> đây </a> 
                         để xác minh email của bạn, xin hãy xác minh email của bạn trong vòng 24h.
                         <br>
                         (Đây là thư tự động vui lòng không phản hồi)
