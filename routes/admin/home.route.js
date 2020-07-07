@@ -1,11 +1,17 @@
 const express = require('express');
-
+const homeModel = require('../../models/home.model');
 
 const routes = express.Router();
 
-routes.get('/', function(req, res){
-    return res.render('admin/home/home');
-})
+routes.get('/', async function(req, res) {
+    const ListUser = await homeModel.CountUsers();
+    //const ListView = await homeModel.CountViews();
+    const ListNews = await homeModel.CountNews;
+    res.render('admin/home/home', {
+        user: ListUser,
+        new: ListNews,
+    });
+});
 
 // Route category
 routes.use('/category', require('./category.route'));
