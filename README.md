@@ -47,7 +47,7 @@
   - [x] Admin Panel
   - [x] Category Manager
   - [x] Tag Manager
-  - [ ] News Manager
+  - [x] News Manager
   - [ ] Account Manager
   - [x] Member Manager
 
@@ -60,8 +60,8 @@
 - Mail:
   - username: tintuc14@gmail.com
   - password: tintuc14web@mail
-- Database: 
+- Database:
   - host: us-cdbr-east-05.cleardb.net
   - database: heroku_5e52d97f3932ec5
-  - Username: 	beaaf53cb24cb4
-  - Password: 	b1834857
+  - Username: beaaf53cb24cb4
+  - Password: b1834857
