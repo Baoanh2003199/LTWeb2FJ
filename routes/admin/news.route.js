@@ -43,19 +43,17 @@ route.post('/add', upload, async function(req, res) {
             content: req.body.content,
             openTime: req.body.openTime,
         };
-        console.log(entity);
-        // Insert gán vào result
         const result = await newModel.add(entity);
-        console.log(`id khi insert thanh cong ${result.insertId}`);
-        const tags = [req.body.tagID];
-        const id = list.array(tags);
-        console.log(parseInt(i));
-        const entitys = {
-            newID: result.insertId,
-            tagID: parseInt(id),
-        };
-        console.log(entitys);
-        await news_tagModel.insert(entitys);
+        const tags = req.body.tagID;
+        const nuevo = tags.map((i) => Number(i));
+        for (i = 0; i < nuevo.length; i++) {
+            const entitys = {
+                newID: result.insertId,
+                tagID: nuevo[i],
+            };
+            console.log(entitys);
+            await news_tagModel.insert(entitys);
+        }
     }
     res.redirect('/admin/news');
 });
@@ -82,17 +80,17 @@ route.post('/edit', upload, async function(req, res) {
             openTime: req.body.openTime,
         };
         const result = await newModel.update(entity);
-        console.log(`id khi insert thanh cong ${result.insertId}`);
-        const tags = [req.body.tagID];
-        const i = list.array(tags);
-        console.log(parseInt(i, 10));
         await news_tagModel.del(result.insertId);
-        const entitys = {
-            newID: result.insertId,
-            tagID: parseInt(i, 10),
-        };
-        console.log(entitys);
-        await news_tagModel.insert(entitys);
+        const tags = req.body.tagID;
+        const nuevo = tags.map((i) => Number(i));
+        for (i = 0; i < nuevo.length; i++) {
+            const entitys = {
+                newID: result.insertId,
+                tagID: nuevo[i],
+            };
+            console.log(entitys);
+            await news_tagModel.insert(entitys);
+        }
     }
 
     res.redirect('/admin/news');
