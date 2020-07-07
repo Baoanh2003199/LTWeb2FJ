@@ -2,8 +2,11 @@ const express = require('express');
 const route = express.Router();
 const regModel = require('../models/user.model');
 const subModel = require('../models/subscriber.model');
+const tokenModel = require('../models/register_Token.model');
 var mailer = require('../utils/mailer');
 const { check, validationResult } = require('express-validator');
+const TokenGenerator = require('uuid-token-generator');
+ 
 
 
 const redirectHome = (req, res, next)=>{
@@ -59,14 +62,14 @@ route.post('/', [
             const usr={
                 username: req.body.username,
                 password: req.body.password,
-                roleId: 31
+                roleId: 31,
+                status: 0
             }
             delete req.body.cpassword
             delete req.body.terms
             const registed = await regModel.regAdd(usr);
             if(registed.affectedRows == 1)
             {
-                console.log(registed)
                 let myDate = new Date(Date.now() + 7 * 86400000);
                 const sub={
                     name: req.body.name,
@@ -76,14 +79,37 @@ route.post('/', [
                     userId: registed.insertId,
                     expired: myDate
                 }
-                await subModel.add(sub);
-                mailer.send({
-                    from: 'tintuc14web@gmail.com',
-                    to: `${sub.email}`,
-                    subject: 'Xác minh địa chỉ email và kích hoạt tài khoản của bạn',
-                    html: `<h2>Xác minh địa chỉ email và kích hoạt tài khoản của bạn<h2><br> Xin chào ${sub.name}, cảm ơn bạn đã đăng ký 1 tài khoản ở trang https://tintuc14.herokuapp.com.<br> Nhấp vào <a href="https://tintuc14.herokuapp.com/login"> đây </a> để xác minh email và kích hoạt tài khoản của bạn, hãy chắc chắn rằng bạn phải xác nhận tài khoản trong 24h tới. <br>(Đây là thư tự động vui lòng không phản hồi)`
-                });
-                res.redirect('/login');
+                const subscriberAdded = await subModel.add(sub);
+                if(subscriberAdded.affectedRows == 1)
+                {
+                    const tokgen = new TokenGenerator(256, TokenGenerator.BASE62);
+                    const token = tokgen.generate();
+                    let expiredHours = new Date(Date.now() + 1 * 86400000);
+                    const tokenObj = 
+                    {
+                        userId: registed.insertId,
+                        token: token,
+                        expired: expiredHours
+                    }
+                    await tokenModel.add(tokenObj);
+                    /*mailer.send({
+                        from: 'tintuc14web@gmail.com',
+                        to: `${sub.email}`,
+                        subject: 'Xác minh địa chỉ email của bạn',
+                        html: `
+                        Xin chào ${sub.name}, cảm ơn bạn đã đăng ký 1 tài khoản ở trang Tin tức 14.
+                        <br> 
+                        Nhấp vào 
+                        <a href="https://tintuc14.herokuapp.com/confirmation/account?token=${token}"> đây </a> 
+                        để xác minh email của bạn, xin hãy xác minh email của bạn trong vòng 24h.
+                        <br>
+                        (Đây là thư tự động vui lòng không phản hồi)
+                        `
+                    });
+                    res.redirect('/login');*/
+                    res.redirect(`/confirmation/account/${token}`);
+                }
+                
             }
             
             

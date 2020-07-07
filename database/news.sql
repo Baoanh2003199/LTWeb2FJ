@@ -109,6 +109,16 @@ CREATE TABLE `member` (
   PRIMARY KEY (`id`)
 );
 
+DROP TABLE IF EXISTS `registerToken`
+CREATE TABLE `registerToken` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `expired` timestamp,
+  PRIMARY KEY (`id`)
+);
+
+
 
 --DROP TABLE IF EXISTS `user_role`;
 --CREATE TABLE `user_role` (
