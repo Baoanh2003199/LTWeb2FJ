@@ -42,6 +42,7 @@ route.post('/add', upload, async function(req, res) {
             filePdf: req.file.filePdf,
             content: req.body.content,
             openTime: req.body.openTime,
+            description: req.body.description,
         };
         const result = await newModel.add(entity);
         const tags = req.body.tagID;
@@ -78,6 +79,7 @@ route.post('/edit', upload, async function(req, res) {
             filePdf: req.file.filePdf,
             content: req.body.content,
             openTime: req.body.openTime,
+            description: req.body.description,
         };
         const result = await newModel.update(entity);
         await news_tagModel.del(result.insertId);
