@@ -48,11 +48,11 @@ route.post('/add', upload, async function(req, res) {
         const result = await newModel.add(entity);
         console.log(`id khi insert thanh cong ${result.insertId}`);
         const tags = [req.body.tagID];
-        const i = list.array(tags);
+        const id = list.array(tags);
         console.log(parseInt(i));
         const entitys = {
             newID: result.insertId,
-            tagID: parseInt(i),
+            tagID: parseInt(id),
         };
         console.log(entitys);
         await news_tagModel.insert(entitys);
