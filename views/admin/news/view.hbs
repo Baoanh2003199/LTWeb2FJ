@@ -17,7 +17,7 @@
         <div class="card-body text-center">
             {{!-- Thầy bảo phải dung method post nên phải dùng form method post
             để gửi request --}}
-            <form action="/admin/news/delete" class="float-right pt-3"
+            <form action="/admin/news/delete/{{id}}" class="float-right pt-3"
                 method="POST">
                 <button type="submit" class="btn btn-danger mx-3"><i class="fa
                         fa-trash" aria-hidden="true" title="Xóa"></i> Xóa</button>
