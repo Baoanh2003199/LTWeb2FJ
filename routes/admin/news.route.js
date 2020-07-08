@@ -61,7 +61,7 @@ route.post('/add', upload, async function(req, res) {
 
 // Lấy id tìm model rồi gán vào views
 route.get('/edit/:id', async function(req, res) {
-    const id = req.params['id'];
+    const id = req.params.id;
     const rows = await newModel.view(id);
     const tagRow = await tagModel.all();
     const catRow = await catModel.all();
@@ -117,14 +117,14 @@ route.post('/check/:id', async function(req, res) {
 });
 // Xem chi tiết
 route.get('/view/:id', async function(req, res) {
-    const id = req.params['id'];
+    const id = req.params.id;
     const list = await newModel.view(id);
     res.render('admin/news/view', { news: list, empty: list.length === 0 });
 });
 
 //xoa bai biet
 route.post('/delete/:id', async function(req, res) {
-    const id = req.params['id'];
+    const id = req.params.id;
     await newModel.del(id);
     res.redirect('/admin/news');
 });
