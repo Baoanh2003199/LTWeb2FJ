@@ -46,7 +46,7 @@ route.post('/add', upload, async function(req, res) {
         };
         const result = await newModel.add(entity);
         const tags = req.body.tagID;
-        const nuevo = tags.map((i) => Number(i));
+        const nuevo = tags.map((i) => Number(i, 10));
         for (i = 0; i < nuevo.length; i++) {
             const entitys = {
                 newID: result.insertId,
@@ -84,7 +84,7 @@ route.post('/edit', upload, async function(req, res) {
         const result = await newModel.update(entity);
         await news_tagModel.del(result.insertId);
         const tags = req.body.tagID;
-        const nuevo = tags.map((i) => Number(i));
+        const nuevo = tags.map((i) => Number(i, 10));
         for (i = 0; i < nuevo.length; i++) {
             const entitys = {
                 newID: result.insertId,
