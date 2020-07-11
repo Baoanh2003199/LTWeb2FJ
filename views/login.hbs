@@ -1,5 +1,7 @@
   {{#section 'title'}}Đăng nhập{{/section}}
-<div class="card">
+<div class="card mx-auto rounded" style="max-width: 50%; margin-top:3% -webkit-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+-moz-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
   <div class="card-header">
     <h5 style="font-weight: bold;">Đăng nhập</h5>
   </div>
@@ -13,40 +15,22 @@
       <label for="password"><i class="fa fa-lock" aria-hidden="true"></i> Mật khẩu:</label>
       <input name="password" type="password" class="form-control" id="password">
     </div>
-    <div class="checkbox" style="margin: 10px">
-      <label><input type="checkbox"> Luôn đăng nhập</label>
-      <br>
+       <br>
       {{#if this.isLoginFalse}}
       <!--Hiển thị modal thông báo login fail -->
       <label style="color: red;">Tên người dùng không tồn tài hoặc sai mật khẩu</label>
        {{/if}}
-    </div>
+
+
     <div style="text-align: center;">
-       <button id="submit" type="submit" class="btn btn-success">
+       <button id="submit" type="submit" class="btn btn-primary" style="min-width: 96%; min-height: 50px">
       <i class="fa fa-sign-in" aria-hidden="true"></i>
       Đăng nhập</button>
     </div>
   </form>
   </div>
+  <div class="card-footer" class="mx-auto">
+    <a href="/" class="btn btn-light" style="min-height: 100%; min-width:100%">Quên mật khẩu?</a>
+  </div>
 </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Thông báo</h4>
-        </div>
-        <div class="modal-body">
-          <p>Tên người dùng hoặc mật khẩu không đúng</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-        </div>
-      </div>
-      
-    </div>
-  </div> 

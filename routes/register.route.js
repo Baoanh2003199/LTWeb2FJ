@@ -26,10 +26,10 @@ route.get('/', redirectHome, function (req, res) {
 })
 
 route.post('/', [
-    check('username', 'Tên người dùng không được rỗng').not().isEmpty(),
+    check('username', 'Tên người dùng không được trống').not().isEmpty(),
     check('username', 'Tên người dùng phải chỉ được dùng chữ và số').isAlphanumeric(),
     check('username', 'Tên người dùng phải hơn 6 kí tự').isLength({ min: 6 }),
-    check('email', 'Email không được rỗng').not().isEmpty(),
+    check('email', 'Email không được trống').not().isEmpty(),
     check('email', 'Email không hợp lệ').isEmail(),
     check('password', 'Mật khẩu phải hơn 6 kí tự').isLength({ min: 6 }).custom((val, { req}) => {
         if (val !== req.body.cpassword) {
@@ -40,7 +40,7 @@ route.post('/', [
             return val;
         }
     }),
-    check('dob', 'Số điện thoại không hợp lệ').isISO8601('dd-mm-yyyy'),
+    check('dob', 'Ngày sinh không hợp lệ').isISO8601('dd-mm-yyyy'),
     check('phone', 'Số điện thoại không hợp lệ').isNumeric(),
     check('terms', 'Bạn chưa đồng ý với điều khoản').not().isEmpty()
   ], async function (req, res){
@@ -100,13 +100,13 @@ route.post('/', [
                         Xin chào ${sub.name}, cảm ơn bạn đã đăng ký 1 tài khoản ở trang Tin tức 14.
                         <br> 
                         Nhấp vào 
-                        <a href="https://tintuc14.herokuapp.com/confirmation/account/${token}"> đây </a> 
+                        <a href="http://localhost:3000/confirmation/account/${token}"> đây </a> 
                         để xác minh email của bạn, xin hãy xác minh email của bạn trong vòng 24h.
                         <br>
                         (Đây là thư tự động vui lòng không phản hồi)
                         `
                     });
-                    res.redirect('/login');
+                    res.redirect(`/`);
                 }
                 
             }
