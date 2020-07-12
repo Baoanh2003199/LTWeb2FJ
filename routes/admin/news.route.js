@@ -23,7 +23,9 @@ route.get('/add', async function(req, res) {
 //mo cai notepad
 
 const storage = multer.diskStorage({
-    destination: './public/uploads/',
+    destination: function(req, file, cb) {
+        cb(null, './public/uploads/');
+    },
     filename: function(req, file, cb) {
         cb(
             null,
