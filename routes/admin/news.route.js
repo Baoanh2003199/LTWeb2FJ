@@ -33,19 +33,20 @@ const storage = multer.diskStorage({
         );
     },
 });
-const upload = multer({ storage: storage }).single('filePdf');
-route.post('/add', upload, async function(req, res) {
+const upload = multer({ storage: storage });
+route.post('/add', upload.single('filePdf'), async function(req, res) {
     //res.send(req.body);
     if (req.file) {
         const entity = {
             name: req.body.name,
             catID: req.body.catID,
             isPremium: req.body.isPremium,
-            filePdf: req.file.filePdf,
+            filePdf: req.file.path,
             content: req.body.content,
             openTime: req.body.openTime,
             description: req.body.description,
         };
+        console.log(entity);
         const result = await newModel.add(entity);
         const tags = req.body.tagID;
         const nuevo = tags.map((i) => Number(i, 10));
@@ -72,13 +73,13 @@ route.get('/edit/:id', async function(req, res) {
     res.render('admin/news/edit', { news, tag: tagRow, cat: catRow });
 });
 
-route.post('/edit', upload, async function(req, res) {
+route.post('/edit', upload.single('filePdf'), async function(req, res) {
     if (req.file) {
         const entity = {
             name: req.body.name,
             catID: req.body.catID,
             isPremium: req.body.isPremium,
-            filePdf: req.file.filePdf,
+            filePdf: req.file.path,
             content: req.body.content,
             openTime: req.body.openTime,
             description: req.body.description,
