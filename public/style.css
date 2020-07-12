@@ -1,0 +1,32 @@
+.headerBar{
+    width: 100%;
+    height: 5%;
+    padding: .5% 0;
+    margin-bottom: 2%;
+    border-bottom: 3px solid black;
+    font-size: 130%;
+    font-weight: 500;
+    text-indent: 1.5%;
+    text-transform: uppercase;
+}
+.newsControlPrev, .newsControlNext{
+    height: 100px;
+    width: 100px;
+    background-size: 100%, 100%;
+    background-image: none;
+    margin: auto;
+}
+.newsControlPrev{
+    content: '>';
+    font-size: 120%;
+    color:black;
+}
+.newsControlNext{
+    content: '>';
+    font-size: 120%;
+    color:black;
+}
+.clear-float{
+    display: table;
+    clear: both;
+}
