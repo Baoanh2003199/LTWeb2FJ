@@ -34,7 +34,14 @@
                         <tr>
                             <th scope="row">{{id}}</th>
                             <td>{{name}}</td>
-                            <td>{{parentID}}</td>
+                            <td>
+                                {{#if parentName }}
+                                    {{parentName}}
+                                {{else}}
+                                    không có
+                                {{/if}}
+                                
+                            </td>
                             <td class="d-flex justify-content-center">
                                 <a class="btn btn-success float-left mx-3"
                                     href="/admin/category/edit/{{id}}"><i
