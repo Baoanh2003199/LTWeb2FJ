@@ -69,6 +69,7 @@ app.use('/admin', require('./routes/admin/home.route'));
 app.use('/login', require('./routes/login.route'));
 app.use('/register', require('./routes/register.route'));
 app.use('/confirmation', require('./routes/confirmation.route'));
+app.use('/retrievepassword', require('./routes/reset_password.route'));
 
 app.get('/logout', function(req, res) {
     if (req.session) {
