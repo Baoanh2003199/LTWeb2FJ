@@ -30,8 +30,8 @@ route.post('/', async function (req, res)
         {
             const name = subscriber[0].name;
             const record = {
-                email = subscriber[0].email,
-                token_reset = randomString()
+                email : subscriber[0].email,
+                token_reset : randomString()
             } 
             await reset_password.add(record);
             mailer.send({
