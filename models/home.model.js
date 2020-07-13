@@ -20,4 +20,8 @@ module.exports = {
     CatNews: function(catID) {
         return db.load(`select * from ${TBL_NEWS} where catID=${catID}`);
     },
+
+    NewsDetail: function(idNews) {
+        return db.load(`select * from ${TBL_NEWS} where id=${idNews}`);
+    },
 };

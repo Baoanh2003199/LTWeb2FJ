@@ -20,4 +20,8 @@ module.exports = {
         delete entity.id;
         return db.update(TBL_NEWS_TAG, entity, condition);
     },
+
+    loadIDNews: function(idNews) {
+        return db.load(`select * from ${TBL_NEWS_TAG} where newID=${idNews}`);
+    },
 };
