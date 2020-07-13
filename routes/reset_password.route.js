@@ -57,7 +57,6 @@ route.post('/', async function (req, res)
                         (Đây là thư tự động vui lòng không phản hồi)
                         `
                     });*/
-                    res.locals.tempusrname = req.body.username;
                     res.redirect('/retrievepassword/confirm');
                 }
                 else{
@@ -85,6 +84,15 @@ res.render('reset_confirm')
 
 route.post('/confirm', function (req, res)
 {
+   
+});
+
+route.get('/resend', function(req, res){
+
+});
+
+
+route.post('/resend', function(req, res){
 
 });
 
