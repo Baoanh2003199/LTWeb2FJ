@@ -12,4 +12,8 @@ module.exports = {
     CountViews: function() {
         return db.load(`select views from ${TBL_NEWS}`);
     },
+
+    NewNews: function() {
+        return db.load(`select * from ${TBL_NEWS} order by id desc limit 6`);
+    },
 };
