@@ -28,17 +28,64 @@ route.post('/', async function (req, res)
         if(usrid) 
         {
             const subscriber = await subModel.view(usrid);
-            if(subscriber != undefined)
+            if(subscriber[0] != undefined)
             {
                 const name = subscriber[0].name;
-                const rsRecord = rsModel.byEmail(subscriber[0].email);
-                if(rsRecord[0].sent_times < 3)
+                const rsRecord = await rsModel.byEmail(subscriber[0].email);
+                console.log(rsRecord[0]);
+                if(rsRecord[0] != undefined)
+                {
+                    console.log("not empty")
+                    if(rsRecord[0].sent_time < 3 && rsRecord[0].available_time <= new Date(Date.now())) // Existed reset_password record
+                    {
+                        const record = {
+                            id: rsRecord[0].id,
+                            email : subscriber[0].email,
+                            token_reset : randomString(),
+                            expired: new Date(Date.now() + 1 * 86400000),
+                            sent_time: rsRecord[0].sent_time + 1,
+                            available_time: Date.now()
+                        }; 
+                        await rsModel.update(record);
+                        /*mailer.send({
+                            from: 'tintuc14web@gmail.com',
+                            to: `${record.email}`,
+                            subject: 'Khôi phục mật khẩu',
+                            html: `
+                            Xin chào <label style="font-weight:bold">${name}</label>, bạn đã gửi yêu cầu khôi phục mật khẩu.
+                            <br> 
+                            Xin hãy nhập mã xác nhận bên dưới vào trang xác nhận để khôi phục lại mật khẩu: <br>
+                            <label style="font-weight:bold">${record.token_reset}</label> 
+                            <br>
+                            Mã xác nhận có hiệu lực trong vòng 24h, xin hãy xác nhận trước khi hết hạn
+                            <br>
+                            Nếu bạn không yêu cầu khôi phục mật khẩu, xin vui lòng bỏ qua thư này.
+                            (Đây là thư tự động vui lòng không phản hồi)
+                            `
+                        });*/
+                        res.redirect('/retrieve/confirm');
+                    }
+                    else{
+                        const record = {
+                            id: rsRecord[0].id,
+                            email : subscriber[0].email,
+                            token_reset : randomString(),
+                            expired: new Date(Date.now() + 1 * 86400000),
+                            sent_time: 3,
+                            available_time: new Date(Date.now() + 1 * 86400000)
+                        }; 
+                        await rsModel.update(record);
+                        res.render('reset_password',{OutOfSend: true});
+                    }
+                }
+                else // New reset_password record;
                 {
                     const record = {
                         email : subscriber[0].email,
                         token_reset : randomString(),
                         expired: new Date(Date.now() + 1 * 86400000),
-                        sent_times: rsRecord[0].sent_times + 1
+                        sent_time:1,
+                        available_time: Date.now()
                     }; 
                     await rsModel.add(record);
                     /*mailer.send({
@@ -57,11 +104,9 @@ route.post('/', async function (req, res)
                         (Đây là thư tự động vui lòng không phản hồi)
                         `
                     });*/
-                    res.redirect('/retrievepassword/confirm');
+                    res.redirect('/retrieve/confirm');
                 }
-                else{
-                    res.render('reset_password',{OutOfSend: true});
-                }
+               
                 
         }
     }
@@ -87,14 +132,6 @@ route.post('/confirm', function (req, res)
    
 });
 
-route.get('/resend', function(req, res){
-
-});
-
-
-route.post('/resend', function(req, res){
-
-});
 
 
 module.exports = route;
