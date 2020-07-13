@@ -21,4 +21,7 @@ module.exports = {
     add: function(entity) {
         return db.insert(TBL_SUBSCRIBER, entity);
     },
+    byEmail: function(email){
+        return db.load(`select * from ${TBL_SUBSCRIBER} where email='${email}'`);
+    }
 };

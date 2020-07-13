@@ -4,8 +4,101 @@ const rsModel = require('../models/reset_password.model');
 const userModel = require('../models/user.model');
 const subModel = require('../models/subscriber.model');
 var mailer = require('../utils/mailer');
+const { check, validationResult } = require('express-validator');
 
 
+const restrict = (req, res, next)=>{
+    console.log(res.locals.available_pwtoken);
+    if(res.locals.available_pwtoken)// lỗi ở đây giá trị của res.locals.available_pwtoken là undenfined dù đã được gán ở dòng 42
+    {
+        next();
+    }
+    else
+    {
+        res.redirect('/');
+    }
+}
+
+
+route.get('/', function(req, res){
+res.render('reset_password');
+});
+
+route.post('/', async function (req, res)
+{
+    handler(req, res, 'reset_password');
+});
+
+route.get('/confirm', function (req, res)
+{
+res.render('reset_confirm');
+});
+
+route.post('/confirm',async function (req, res)
+{
+    const result = await rsModel.byToken(req.body.pwtoken)
+    if(result[0] != undefined)
+    {
+        res.locals.available_pwtoken = true;
+        const sub = await subModel.byEmail(result[0].email);
+        if(sub[0] != undefined)
+        {
+            res.locals.changepw_usrid = sub[0].userID;
+            res.redirect('/retrieve/newpassword');
+        }
+        else
+        {
+            res.render('reset_confirm',{isNotExists: true});
+        }
+
+    }
+    else
+    {
+        res.render('reset_confirm',{isNotExists: true});
+    }
+});
+
+route.get('/newpassword', function (req, res){
+    res.render('reset_newpw');
+});
+
+route.post('/newpassword',[
+    check('newpassword', 'Mật khẩu phải hơn 6 kí tự').isLength({ min: 6 }).custom((val, { req}) => {
+        if (val !== req.body.cnewpassword) {
+            throw new Error("Mật khẩu không khớp");
+        }
+        else
+        {
+            return val;
+        }
+    }),
+  ], async function(req, res)
+{
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        res.render('reset_newpw', {Error: errors.array(), isError: true });
+        //return res.status(422).json({ errors: errors.array() })
+    }
+    else
+    {
+        console.log(res.locals.changepw_usrid);
+        const queryEntity = await userModel.view(res.locals.changepw_usrid);//lỗi ở đây, giá trị của res.locals.changepw_usrid là undefined dù đã được gán ở dòng 46
+        entity = {
+            id: queryEntity[0].id,
+            username: queryEntity[0].username,
+            password: req.body.newpassword,
+            roleId: queryEntity[0].roleId,
+            status: queryEntity[0].status
+        }
+        const result = await userModel.update(entity);
+        if(result[0]!= undefined)
+        {
+            delete res.locals.changepw_usrid;
+            delete res.locals.available_pwtoken;
+            res.redirect('/login');
+        }
+    }
+})
 
 function randomString() {
     var result = '';
@@ -15,15 +108,12 @@ function randomString() {
     return result;
 }
 
-route.get('/', function(req, res){
-res.render('reset_password');
-});
-
-route.post('/', async function (req, res)
+async function handler(req, res, view)
 {
     const result = await userModel.byName(req.body.username);
     if(result[0] != undefined)
     {
+        re_usrname = result[0].username;
         const usrid = result[0].id;
         if(usrid) 
         {
@@ -32,50 +122,106 @@ route.post('/', async function (req, res)
             {
                 const name = subscriber[0].name;
                 const rsRecord = await rsModel.byEmail(subscriber[0].email);
-                console.log(rsRecord[0]);
                 if(rsRecord[0] != undefined)
                 {
-                    console.log("not empty")
-                    if(rsRecord[0].sent_time < 3 && rsRecord[0].available_time <= new Date(Date.now())) // Existed reset_password record
+                    if(rsRecord[0].sent_time < 3 && rsRecord[0].available_time <= new Date(Date.now())) // Update lại record nếu thỏa điều kiện số lần gửi < 3 và thời gian gửi khả dụng < hiện tại
                     {
-                        const record = {
-                            id: rsRecord[0].id,
-                            email : subscriber[0].email,
-                            token_reset : randomString(),
-                            expired: new Date(Date.now() + 1 * 86400000),
-                            sent_time: rsRecord[0].sent_time + 1,
-                            available_time: Date.now()
-                        }; 
-                        await rsModel.update(record);
-                        /*mailer.send({
-                            from: 'tintuc14web@gmail.com',
-                            to: `${record.email}`,
-                            subject: 'Khôi phục mật khẩu',
-                            html: `
-                            Xin chào <label style="font-weight:bold">${name}</label>, bạn đã gửi yêu cầu khôi phục mật khẩu.
-                            <br> 
-                            Xin hãy nhập mã xác nhận bên dưới vào trang xác nhận để khôi phục lại mật khẩu: <br>
-                            <label style="font-weight:bold">${record.token_reset}</label> 
-                            <br>
-                            Mã xác nhận có hiệu lực trong vòng 24h, xin hãy xác nhận trước khi hết hạn
-                            <br>
-                            Nếu bạn không yêu cầu khôi phục mật khẩu, xin vui lòng bỏ qua thư này.
-                            (Đây là thư tự động vui lòng không phản hồi)
-                            `
-                        });*/
-                        res.redirect('/retrieve/confirm');
+                        if(rsRecord[0].sent_time == 2)
+                        {
+                            const record = {
+                                id: rsRecord[0].id,
+                                email : subscriber[0].email,
+                                token_reset : randomString(),
+                                expired: new Date(Date.now() + 1 * 86400000),
+                                sent_time: rsRecord[0].sent_time + 1,
+                                available_time: new Date(Date.now() + 1 * 86400000)
+                            }; 
+                            await rsModel.update(record);
+                            /*mailer.send({
+                                from: 'tintuc14web@gmail.com',
+                                to: `${record.email}`,
+                                subject: 'Khôi phục mật khẩu',
+                                html: `
+                                Xin chào <label style="font-weight:bold">${name}</label>, bạn đã gửi yêu cầu khôi phục mật khẩu.
+                                <br> 
+                                Xin hãy nhập mã xác nhận bên dưới vào trang xác nhận để khôi phục lại mật khẩu: <br>
+                                <label style="font-weight:bold">${record.token_reset}</label> 
+                                <br>
+                                Mã xác nhận có hiệu lực trong vòng 24h, xin hãy xác nhận trước khi hết hạn
+                                <br>
+                                Nếu bạn không yêu cầu khôi phục mật khẩu, xin vui lòng bỏ qua thư này.
+                                (Đây là thư tự động vui lòng không phản hồi)
+                                `
+                            });*/
+                            res.redirect('/retrieve/confirm');
+                        }
+                        else
+                        {
+                            const record = {
+                                id: rsRecord[0].id,
+                                email : subscriber[0].email,
+                                token_reset : randomString(),
+                                expired: new Date(Date.now() + 1 * 86400000),
+                                sent_time: rsRecord[0].sent_time + 1,
+                                available_time: new Date(Date.now() + 0)
+                            }; 
+                            await rsModel.update(record);
+                            /*mailer.send({
+                                from: 'tintuc14web@gmail.com',
+                                to: `${record.email}`,
+                                subject: 'Khôi phục mật khẩu',
+                                html: `
+                                Xin chào <label style="font-weight:bold">${name}</label>, bạn đã gửi yêu cầu khôi phục mật khẩu.
+                                <br> 
+                                Xin hãy nhập mã xác nhận bên dưới vào trang xác nhận để khôi phục lại mật khẩu: <br>
+                                <label style="font-weight:bold">${record.token_reset}</label> 
+                                <br>
+                                Mã xác nhận có hiệu lực trong vòng 24h, xin hãy xác nhận trước khi hết hạn
+                                <br>
+                                Nếu bạn không yêu cầu khôi phục mật khẩu, xin vui lòng bỏ qua thư này.
+                                (Đây là thư tự động vui lòng không phản hồi)
+                                `
+                            });*/
+                            res.redirect('/retrieve/confirm');
+                        }
+                        
                     }
-                    else{
-                        const record = {
-                            id: rsRecord[0].id,
-                            email : subscriber[0].email,
-                            token_reset : randomString(),
-                            expired: new Date(Date.now() + 1 * 86400000),
-                            sent_time: 3,
-                            available_time: new Date(Date.now() + 1 * 86400000)
-                        }; 
-                        await rsModel.update(record);
-                        res.render('reset_password',{OutOfSend: true});
+                    if(rsRecord[0].sent_time == 3)//nếu đã gửi lại 3 lần email và thời gian có thể gửi tiếp > hiện tại => thông báo lỗi
+                    {
+                        if(rsRecord[0].available_time < new Date(Date.now()))// Update lại record nếu thỏa mãn điều kiện là thời gian gửi khả dụng < hiện tại
+                        {
+                            const record = {
+                                id: rsRecord[0].id,
+                                email : subscriber[0].email,
+                                token_reset : randomString(),
+                                expired: new Date(Date.now() + 1 * 86400000),
+                                sent_time: rsRecord[0].sent_time + 1,
+                                available_time: new Date(Date.now() + 0)
+                            }; 
+                            await rsModel.update(record);
+                            /*mailer.send({
+                                from: 'tintuc14web@gmail.com',
+                                to: `${record.email}`,
+                                subject: 'Khôi phục mật khẩu',
+                                html: `
+                                Xin chào <label style="font-weight:bold">${name}</label>, bạn đã gửi yêu cầu khôi phục mật khẩu.
+                                <br> 
+                                Xin hãy nhập mã xác nhận bên dưới vào trang xác nhận để khôi phục lại mật khẩu: <br>
+                                <label style="font-weight:bold">${record.token_reset}</label> 
+                                <br>
+                                Mã xác nhận có hiệu lực trong vòng 24h, xin hãy xác nhận trước khi hết hạn
+                                <br>
+                                Nếu bạn không yêu cầu khôi phục mật khẩu, xin vui lòng bỏ qua thư này.
+                                (Đây là thư tự động vui lòng không phản hồi)
+                                `
+                            });*/
+                            res.redirect('/retrieve/confirm');
+                        }
+                        else
+                        {
+                            res.render(view,{OutOfSend: true});
+                        }
+                        
                     }
                 }
                 else // New reset_password record;
@@ -85,7 +231,7 @@ route.post('/', async function (req, res)
                         token_reset : randomString(),
                         expired: new Date(Date.now() + 1 * 86400000),
                         sent_time:1,
-                        available_time: Date.now()
+                        available_time: new Date(Date.now() + 0)
                     }; 
                     await rsModel.add(record);
                     /*mailer.send({
@@ -112,26 +258,14 @@ route.post('/', async function (req, res)
     }
     else
         {
-            res.render('reset_password',{isNotExists: true});
+            res.render(view,{isNotExists: true});
         }
     }
     else
     {
-        res.render('reset_password',{isNotExists: true});
+        res.render(view,{isNotExists: true});
     }
 
-});
-
-route.get('/confirm', function (req, res)
-{
-res.render('reset_confirm')
-});
-
-route.post('/confirm', function (req, res)
-{
-   
-});
-
-
+}
 
 module.exports = route;

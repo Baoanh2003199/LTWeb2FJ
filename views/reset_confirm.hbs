@@ -9,8 +9,8 @@ box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
     <label>Hãy nhập mã xác nhận bạn nhận được qua email vào ô bên dưới và chọn "Xác nhận"</label>
     <form method="POST">
     <div class="form-group" style="margin: 10px;">
-      <label for="code"><i class="fa fa-key" aria-hidden="true"></i> Mã xác nhận:</label>
-      <input name="code" type="code" class="form-control" id="code">
+      <label for="pwtoken"><i class="fa fa-key" aria-hidden="true"></i> Mã xác nhận:</label>
+      <input name="pwtoken" type="text" class="form-control" id="pwtoken">
     </div>
       {{#if this.sent}}
       <div class="alert alert-success" role="alert">
