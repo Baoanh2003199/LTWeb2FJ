@@ -8,7 +8,7 @@ const { check, validationResult } = require('express-validator');
 
 
 const restrict = (req, res, next)=>{
-    console.log(res.locals.available_pwtoken);
+    // đổi qua req.session
     if(res.locals.available_pwtoken)// lỗi ở đây giá trị của res.locals.available_pwtoken là undenfined dù đã được gán ở dòng 42
     {
         next();
@@ -37,13 +37,15 @@ res.render('reset_confirm');
 route.post('/confirm',async function (req, res)
 {
     const result = await rsModel.byToken(req.body.pwtoken)
-    if(result[0] != undefined)
+    if(result[0])
     {
-        res.locals.available_pwtoken = true;
+        req.session.available_pwtoken = true;
         const sub = await subModel.byEmail(result[0].email);
-        if(sub[0] != undefined)
+        if(sub[0])
         {
-            res.locals.changepw_usrid = sub[0].userID;
+            req.session.changepw_usrid = sub[0].userID;
+            console.log('-----------------set value---------------------');
+            console.log(req.sesion);
             res.redirect('/retrieve/newpassword');
         }
         else
@@ -59,6 +61,8 @@ route.post('/confirm',async function (req, res)
 });
 
 route.get('/newpassword', function (req, res){
+    console.log('-----------------result-------------------------');
+    console.log(req.session);
     res.render('reset_newpw');
 });
 
@@ -81,7 +85,8 @@ route.post('/newpassword',[
     }
     else
     {
-        console.log(res.locals.changepw_usrid);
+
+        // chuyển qua sài req.session
         const queryEntity = await userModel.view(res.locals.changepw_usrid);//lỗi ở đây, giá trị của res.locals.changepw_usrid là undefined dù đã được gán ở dòng 46
         entity = {
             id: queryEntity[0].id,
