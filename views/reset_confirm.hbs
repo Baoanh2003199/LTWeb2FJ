@@ -1,0 +1,40 @@
+  {{#section 'title'}}Khôi phục mật khẩu{{/section}}
+<div class="card mx-auto rounded" style="max-width: 50%; margin-top:3% -webkit-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+-moz-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
+  <div class="card-header">
+    <h5 style="font-weight: bold;">Khôi phục mật khẩu</h5>
+  </div>
+  <div class="card-body">
+    <label>Hãy nhập mã xác nhận bạn nhận được qua email vào ô bên dưới và chọn "Xác nhận"</label>
+    <form method="POST">
+    <div class="form-group" style="margin: 10px;">
+      <label for="code"><i class="fa fa-key" aria-hidden="true"></i> Mã xác nhận:</label>
+      <input name="code" type="code" class="form-control" id="code">
+    </div>
+      {{#if this.isNotExists}}
+      <label style="color: red;">&nbsp<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Mã xác nhận đã hết hạn hoặc không tồn tại</label>
+       {{/if}}
+       {{#if this.OutOfSend}}
+      <label style="color: red;">&nbsp<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Số lần gửi lại mã xác nhận đã hết, vui lòng thử lại sau 24h</label>
+       {{/if}}
+       <br>
+    <div style="text-align: center;">
+       <button id="submit" type="submit" class="btn btn-success" style="min-width: 96%; min-height: 50px">
+      <i class="fa fa-lock" aria-hidden="true"></i>
+      Xác nhận</button>
+    </div>
+  </form>
+  </div>
+  <div class="card-footer" class="mx-auto">
+    <form method="POST">
+      <div style="text-align: center;">
+       <button id="submit" type="submit" class="btn btn-light" style="min-width: 96%; min-height: 50px">
+      <i class="fa fa-envelope" aria-hidden="true"></i>
+      Gửi lại mã xác nhận</button>
+    </div>
+    </form>
+    
+  </div>
+</div>
+

@@ -32,5 +32,8 @@ module.exports = {
 
     byToken: function(token){
         return db.load(`select * from ${TBL_Token} where token_reset='${token}'`);
+    },
+    byEmail: function(email){
+        return db.load(`select * from ${TBL_Token} where email='${email}'`);
     }
 };

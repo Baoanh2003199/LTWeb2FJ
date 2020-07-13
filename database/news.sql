@@ -82,6 +82,9 @@ CREATE TABLE `reset_password` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `token_reset` varchar(255) NOT NULL,
+  `expired` timestamp,
+  `sent_times` int(11),
+  `available_times` timestamp,
   PRIMARY KEY (`id`)
 );
 

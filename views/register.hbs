@@ -42,14 +42,16 @@ box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
     </div>
       {{#if this.isExists}}
         <br>
-      <!--Hiển thị modal thông báo login fail -->
-      <label style="color: red;">Tên người dùng đã tồn tại</label>
+      <div class="alert alert-danger" role="alert">
+       <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Tên người dùng đã tồn tại
+      </div>
        {{/if}}
-       {{#if this.noError}}
-       {{else}}
+       {{#if this.isError}}
+       <div class="alert alert-danger" role="alert">
           {{#each this.Error}}
-          <label style="color:crimson;">● {{msg}}</label> <br>
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{msg}} <br>
           {{/each}}
+          </div>
        <br>
        {{/if}}
     <button id="submit" type="submit" class="btn btn-success" style="margin-right: 2%; margin-left:2%">
