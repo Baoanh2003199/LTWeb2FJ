@@ -64,8 +64,8 @@ route.post('/', async function (req, res)
                 }
                 
         }
-        }
-        else
+    }
+    else
         {
             res.render('reset_password',{isNotExists: true});
         }
