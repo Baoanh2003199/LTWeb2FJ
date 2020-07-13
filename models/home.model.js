@@ -14,7 +14,7 @@ module.exports = {
     },
 
     NewNews: function() {
-        return db.load(`select * from ${TBL_NEWS} order by id desc limit 6`);
+        return db.load(`select * from ${TBL_NEWS} order by id desc limit 10`);
     },
 
     CatNews: function(catID) {
