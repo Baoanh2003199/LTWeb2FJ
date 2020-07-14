@@ -41,13 +41,14 @@ route.post('/add', upload.single('filePdf'), async function(req, res) {
             name: req.body.name,
             catID: req.body.catID,
             isPremium: req.body.isPremium,
-            filePdf: req.file.fieldname,
+            filePdf: req.file.filename,
             content: req.body.content,
             openTime: req.body.openTime,
             description: req.body.description,
         };
         console.log(entity);
         const result = await newModel.add(entity);
+        console.log(result);
         const tags = req.body.tagID;
         const nuevo = tags.map((i) => Number(i, 10));
         for (i = 0; i < nuevo.length; i++) {
@@ -79,7 +80,7 @@ route.post('/edit', upload.single('filePdf'), async function(req, res) {
             name: req.body.name,
             catID: req.body.catID,
             isPremium: req.body.isPremium,
-            filePdf: req.file.fieldname,
+            filePdf: req.file.filename,
             content: req.body.content,
             openTime: req.body.openTime,
             description: req.body.description,
