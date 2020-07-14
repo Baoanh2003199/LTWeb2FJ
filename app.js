@@ -82,14 +82,13 @@ app.get('/logout', function(req, res) {
     }
 });
 
-<<<<<<< HEAD
-app.get('/', function(req, res) {
+app.get('/', async function(req, res) {
     res.render('home/home');
-    console.log(catModel.allSubCategory())
+    const categories = await catModel.allSubCategory();
+    console.log( categories);
 });
-=======
-app.use('/', require('./routes/home.route'));
->>>>>>> 9db8723fc4cfd879f51ded016bd4f32c38d987d8
+// Để sau nhau Quan
+// app.use('/', require('./routes/home.route'));
 
 // Listen Port
 const PORT = process.env.PORT || 3000;
