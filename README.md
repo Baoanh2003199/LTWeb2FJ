@@ -1,5 +1,5 @@
 # 1. Phân hệ độc giả vãng lai - guest
-[x]Hệ thống Menu
+[x] Hệ thống Menu
     - Hiển thị danh sách chuyên mục
 **Lưu ý:**
    - Có 2 cấp chuyên mục
