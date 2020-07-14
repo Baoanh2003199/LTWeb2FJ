@@ -96,7 +96,7 @@ Lưu ý: Bài viết hiển thị trên trang chủ gồm các thông tin
     - Bút danh (trong trường hợp là writer)
     - Email liên lạc
     - Ngày tháng năm sinh
-- [ ]Đổi mật khẩu
+- [ ] Đổi mật khẩu
     - Mật khẩu được mã hoá bằng thuật toán bcrypt
 - [ ] Quên mật khẩu
     - Yêu cầu xác nhận bằng email OTP
