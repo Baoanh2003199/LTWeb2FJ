@@ -86,6 +86,7 @@ app.get('/logout', function(req, res) {
 
 app.get('/', function(req, res) {
     res.render('home/home');
+    console.log(catModel.allSubCategory())
 });
 
 // Listen Port
