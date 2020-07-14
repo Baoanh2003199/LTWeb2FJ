@@ -1,8 +1,8 @@
-  {{#section 'title'}}Đăng nhập{{/section}}
+ {{#section 'title'}}Đăng nhập{{/section}}
 <div class="card">
   <div class="card-header">
     <h5 style="font-weight: bold;">{{#if this.isSuccess}}
-      Kích hoạt tài khoản thành công 
+      Kích hoạt tài khoản thành công
       {{else}}
       Đã xảy ra lỗi :(
       {{/if}}
@@ -13,17 +13,21 @@
     {{#if this.isSuccess}}
     <div class="row">
       <div class="col text-center">
-          <p style="vertical-align: center;">Tài khoản của bạn đã được kích hoạt thành công !</p>
-          <a type="button" href="/login" class="btn btn-success" style="vertical-align: center;">Đăng nhập</a>
-        </div>
+        <p style="vertical-align: center;">Tài khoản của bạn đã được kích hoạt
+          thành công !</p>
+        <a type="button" href="/login" class="btn btn-success"
+          style="vertical-align: center;">Đăng nhập</a>
+      </div>
     </div>
-   
+
     {{else}}
-       <div class="row">
+    <div class="row">
       <div class="col text-center">
-  <p style="vertical-align: center;">Có vẻ như mã kích hoạt của bạn không chính xác hoặc đã hết hạn</p>
-    <a type="button" href="/" class="btn btn-primary" style="vertical-align: center;">Trang chủ</a>
-     </div>
+        <p style="vertical-align: center;">Có vẻ như mã kích hoạt của bạn không
+          chính xác hoặc đã hết hạn</p>
+        <a type="button" href="/" class="btn btn-primary" style="vertical-align:
+          center;">Trang chủ</a>
+      </div>
     </div>
     {{/if}}
 
