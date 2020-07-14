@@ -28,7 +28,9 @@ body{
         display: none;
     }
 }
-
+.w3-allerta {
+    font-family: "Allerta Stencil", Sans-serif;
+  }
 @media only screen and (max-width: 375){
     .leftMenu{
         height: 5%;
