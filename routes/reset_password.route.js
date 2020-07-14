@@ -8,8 +8,7 @@ const { check, validationResult } = require('express-validator');
 
 
 const restrict = (req, res, next)=>{
-    // đổi qua req.session
-    if(res.locals.available_pwtoken)// lỗi ở đây giá trị của res.locals.available_pwtoken là undenfined dù đã được gán ở dòng 42
+    if(req.session.available_pwtoken)
     {
         next();
     }
@@ -44,8 +43,6 @@ route.post('/confirm',async function (req, res)
         if(sub[0])
         {
             req.session.changepw_usrid = sub[0].userID;
-            console.log('-----------------set value---------------------');
-            console.log(req.sesion);
             res.redirect('/retrieve/newpassword');
         }
         else
@@ -60,9 +57,7 @@ route.post('/confirm',async function (req, res)
     }
 });
 
-route.get('/newpassword', function (req, res){
-    console.log('-----------------result-------------------------');
-    console.log(req.session);
+route.get('/newpassword', restrict, function (req, res){
     res.render('reset_newpw');
 });
 
@@ -81,13 +76,11 @@ route.post('/newpassword',[
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         res.render('reset_newpw', {Error: errors.array(), isError: true });
-        //return res.status(422).json({ errors: errors.array() })
     }
     else
     {
 
-        // chuyển qua sài req.session
-        const queryEntity = await userModel.view(res.locals.changepw_usrid);//lỗi ở đây, giá trị của res.locals.changepw_usrid là undefined dù đã được gán ở dòng 46
+        const queryEntity = await userModel.view(req.session.changepw_usrid);//lỗi ở đây, giá trị của res.locals.changepw_usrid là undefined dù đã được gán ở dòng 46
         entity = {
             id: queryEntity[0].id,
             username: queryEntity[0].username,
@@ -95,11 +88,10 @@ route.post('/newpassword',[
             roleId: queryEntity[0].roleId,
             status: queryEntity[0].status
         }
-        const result = await userModel.update(entity);
-        if(result[0]!= undefined)
+        const result = await userModel.hashUpdate(entity);
+        console.log("result of update: "+ result);
+        if(result)
         {
-            delete res.locals.changepw_usrid;
-            delete res.locals.available_pwtoken;
             res.redirect('/login');
         }
     }
@@ -142,7 +134,7 @@ async function handler(req, res, view)
                                 available_time: new Date(Date.now() + 1 * 86400000)
                             }; 
                             await rsModel.update(record);
-                            /*mailer.send({
+                            mailer.send({
                                 from: 'tintuc14web@gmail.com',
                                 to: `${record.email}`,
                                 subject: 'Khôi phục mật khẩu',
@@ -155,9 +147,9 @@ async function handler(req, res, view)
                                 Mã xác nhận có hiệu lực trong vòng 24h, xin hãy xác nhận trước khi hết hạn
                                 <br>
                                 Nếu bạn không yêu cầu khôi phục mật khẩu, xin vui lòng bỏ qua thư này.
-                                (Đây là thư tự động vui lòng không phản hồi)
+                                (Đây là thư tự động vui lòng không phản hồi).
                                 `
-                            });*/
+                            });
                             res.redirect('/retrieve/confirm');
                         }
                         else
@@ -171,7 +163,7 @@ async function handler(req, res, view)
                                 available_time: new Date(Date.now() + 0)
                             }; 
                             await rsModel.update(record);
-                            /*mailer.send({
+                            mailer.send({
                                 from: 'tintuc14web@gmail.com',
                                 to: `${record.email}`,
                                 subject: 'Khôi phục mật khẩu',
@@ -184,9 +176,9 @@ async function handler(req, res, view)
                                 Mã xác nhận có hiệu lực trong vòng 24h, xin hãy xác nhận trước khi hết hạn
                                 <br>
                                 Nếu bạn không yêu cầu khôi phục mật khẩu, xin vui lòng bỏ qua thư này.
-                                (Đây là thư tự động vui lòng không phản hồi)
+                                (Đây là thư tự động vui lòng không phản hồi).
                                 `
-                            });*/
+                            });
                             res.redirect('/retrieve/confirm');
                         }
                         
@@ -204,7 +196,7 @@ async function handler(req, res, view)
                                 available_time: new Date(Date.now() + 0)
                             }; 
                             await rsModel.update(record);
-                            /*mailer.send({
+                            mailer.send({
                                 from: 'tintuc14web@gmail.com',
                                 to: `${record.email}`,
                                 subject: 'Khôi phục mật khẩu',
@@ -217,9 +209,9 @@ async function handler(req, res, view)
                                 Mã xác nhận có hiệu lực trong vòng 24h, xin hãy xác nhận trước khi hết hạn
                                 <br>
                                 Nếu bạn không yêu cầu khôi phục mật khẩu, xin vui lòng bỏ qua thư này.
-                                (Đây là thư tự động vui lòng không phản hồi)
+                                (Đây là thư tự động vui lòng không phản hồi).
                                 `
-                            });*/
+                            });
                             res.redirect('/retrieve/confirm');
                         }
                         else
@@ -239,7 +231,7 @@ async function handler(req, res, view)
                         available_time: new Date(Date.now() + 0)
                     }; 
                     await rsModel.add(record);
-                    /*mailer.send({
+                    mailer.send({
                         from: 'tintuc14web@gmail.com',
                         to: `${record.email}`,
                         subject: 'Khôi phục mật khẩu',
@@ -252,9 +244,9 @@ async function handler(req, res, view)
                         Mã xác nhận có hiệu lực trong vòng 24h, xin hãy xác nhận trước khi hết hạn
                         <br>
                         Nếu bạn không yêu cầu khôi phục mật khẩu, xin vui lòng bỏ qua thư này.
-                        (Đây là thư tự động vui lòng không phản hồi)
+                        (Đây là thư tự động vui lòng không phản hồi).
                         `
-                    });*/
+                    });
                     res.redirect('/retrieve/confirm');
                 }
                

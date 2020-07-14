@@ -3,7 +3,6 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 
-
 app.use(
     express.urlencoded({
         extended: true,
@@ -28,7 +27,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 // Set Layout prefix url is "/admin" is admin.hbs
 app.all('/admin*', function(req, res, next) {
     req.app.locals.layout = 'admin';
-    
+
     next();
 });
 // Set Layout prefix url is "/" is main.hbs
@@ -37,14 +36,13 @@ app.all('/', function(req, res, next) {
     next();
 });
 
-
 app.use(async function(req, res, next) {
     req.session.userId === undefined ?
         (res.locals.isLoggedIn = false) :
         (res.locals.isLoggedIn = true);
-    switch(req.session.roleId) {
+    switch (req.session.roleId) {
         case 1:
-             res.locals.isAdmin = true;
+            res.locals.isAdmin = true;
             break;
         case 11:
             res.locals.isEditor = true;
@@ -57,7 +55,7 @@ app.use(async function(req, res, next) {
             break;
         default:
             res.locals.isGuest = true;
-        } 
+    }
     res.locals.userId = req.session.userId;
     res.locals.username = req.session.name;
     res.locals.cat = await catModel.all();
@@ -84,10 +82,14 @@ app.get('/logout', function(req, res) {
     }
 });
 
+<<<<<<< HEAD
 app.get('/', function(req, res) {
     res.render('home/home');
     console.log(catModel.allSubCategory())
 });
+=======
+app.use('/', require('./routes/home.route'));
+>>>>>>> 9db8723fc4cfd879f51ded016bd4f32c38d987d8
 
 // Listen Port
 const PORT = process.env.PORT || 3000;

@@ -35,6 +35,18 @@ module.exports = {
         return db.update(TBL_LOGIN, entity, condition);
     },
 
+    hashUpdate: function(entity) {
+        const salt = bcrypt.genSaltSync(saltRounds);
+        const hash = bcrypt.hashSync(entity.password, salt);
+        entity.password = hash;
+        const condition = {
+            id: entity.id,
+        };
+
+        delete entity.id;
+        return db.update(TBL_LOGIN, entity, condition);
+    },
+
     view: function(id) {
         return db.load(`select * from ${TBL_LOGIN} where id=${id}`);
     },
