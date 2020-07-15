@@ -21,7 +21,9 @@ router.get('/', async function(req, res) {
     });
 });
 
-router.get('/news', function(req, res) {
+router.get('/:name/:id', function(req, res) {
+    const name = req.params.name;
+    const id = req.params.id;
     res.render('home/news');
 });
 
