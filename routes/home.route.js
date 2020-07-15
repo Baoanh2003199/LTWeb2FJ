@@ -21,10 +21,11 @@ router.get('/', async function(req, res) {
     });
 });
 
-router.get('/:name/:id', function(req, res) {
+router.get('/:name/:id', async function(req, res) {
     const name = req.params.name;
     const id = req.params.id;
-    res.render('home/news');
+    const list = await newModel.NewsDetail(name, id);
+    res.render('home/news', { list: list });
 });
 
 router.get('/search', function(req, res) {
