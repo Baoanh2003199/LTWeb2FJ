@@ -28,12 +28,12 @@ route.post('/', async function (req, res)
     handler(req, res, 'reset_password');
 });
 
-route.get('/confirm', function (req, res)
+route.get('/verify', function (req, res)
 {
 res.render('reset_confirm');
 });
 
-route.post('/confirm',async function (req, res)
+route.post('/verify',async function (req, res)
 {
     const result = await rsModel.byToken(req.body.pwtoken)
     if(result[0])
@@ -80,7 +80,7 @@ route.post('/newpassword',[
     else
     {
 
-        const queryEntity = await userModel.view(req.session.changepw_usrid);//lỗi ở đây, giá trị của res.locals.changepw_usrid là undefined dù đã được gán ở dòng 46
+        const queryEntity = await userModel.view(req.session.changepw_usrid);
         entity = {
             id: queryEntity[0].id,
             username: queryEntity[0].username,
@@ -105,6 +105,7 @@ function randomString() {
     return result;
 }
 
+
 async function handler(req, res, view)
 {
     const result = await userModel.byName(req.body.username);
@@ -121,7 +122,7 @@ async function handler(req, res, view)
                 const rsRecord = await rsModel.byEmail(subscriber[0].email);
                 if(rsRecord[0] != undefined)
                 {
-                    if(rsRecord[0].sent_time < 3 && rsRecord[0].available_time <= new Date(Date.now())) // Update lại record nếu thỏa điều kiện số lần gửi < 3 và thời gian gửi khả dụng < hiện tại
+                    if(rsRecord[0].sent_time < 3 && rsRecord[0].available_time <= new Date(Date.now()))
                     {
                         if(rsRecord[0].sent_time == 2)
                         {
@@ -150,7 +151,7 @@ async function handler(req, res, view)
                                 (Đây là thư tự động vui lòng không phản hồi).
                                 `
                             });
-                            res.redirect('/retrieve/confirm');
+                            res.redirect('/retrieve/verify');
                         }
                         else
                         {
@@ -179,13 +180,13 @@ async function handler(req, res, view)
                                 (Đây là thư tự động vui lòng không phản hồi).
                                 `
                             });
-                            res.redirect('/retrieve/confirm');
+                            res.redirect('/retrieve/verify');
                         }
                         
                     }
-                    if(rsRecord[0].sent_time == 3)//nếu đã gửi lại 3 lần email và thời gian có thể gửi tiếp > hiện tại => thông báo lỗi
+                    if(rsRecord[0].sent_time == 3)
                     {
-                        if(rsRecord[0].available_time < new Date(Date.now()))// Update lại record nếu thỏa mãn điều kiện là thời gian gửi khả dụng < hiện tại
+                        if(rsRecord[0].available_time < new Date(Date.now()))
                         {
                             const record = {
                                 id: rsRecord[0].id,
@@ -212,7 +213,7 @@ async function handler(req, res, view)
                                 (Đây là thư tự động vui lòng không phản hồi).
                                 `
                             });
-                            res.redirect('/retrieve/confirm');
+                            res.redirect('/retrieve/verify');
                         }
                         else
                         {
@@ -221,7 +222,7 @@ async function handler(req, res, view)
                         
                     }
                 }
-                else // New reset_password record;
+                else
                 {
                     const record = {
                         email : subscriber[0].email,
@@ -247,10 +248,8 @@ async function handler(req, res, view)
                         (Đây là thư tự động vui lòng không phản hồi).
                         `
                     });
-                    res.redirect('/retrieve/confirm');
+                    res.redirect('/retrieve/verify');
                 }
-               
-                
         }
     }
     else
