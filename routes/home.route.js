@@ -1,10 +1,18 @@
 const express = require('express');
 const newModel = require('../models/home.model');
+const catModel = require('../models/category.model');
 
 const router = express.Router();
 
-router.get('/', function(req, res) {
-    res.render('home/home');
+router.get('/', async function(req, res) {
+    const resultCat = await catModel.allSubCategory();
+    console.log(resultCat);
+    console.log(resultCat[0]);
+    const idCat = resultCat[0].id;
+    const listNew = await newModel.NewNews();
+    const idCatNews = listNew[0].id;
+    const CatName = await catModel.singeNew(idCatNews);
+    res.render('home/home', { listNew: listNew, CatName: CatName });
 });
 
 router.get('/news', function(req, res) {
