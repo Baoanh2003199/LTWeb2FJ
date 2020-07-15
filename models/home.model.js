@@ -23,8 +23,10 @@ module.exports = {
         );
     },
 
-    NewsDetail: function(idNews) {
-        return db.load(`select * from ${TBL_NEWS} where id=${idNews}`);
+    NewsDetail: function(nameNew, idNews) {
+        return db.load(
+            `select * from ${TBL_NEWS} where id=${idNews} and name=${nameNew}`
+        );
     },
 
     ManyNews: function(catID) {
