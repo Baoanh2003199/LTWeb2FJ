@@ -82,13 +82,7 @@ app.get('/logout', function(req, res) {
     }
 });
 
-app.get('/', async function(req, res) {
-    res.render('home/home');
-    const categories = await catModel.allSubCategory();
-    console.log( categories);
-});
-// Để sau nhau Quan
-// app.use('/', require('./routes/home.route'));
+app.use('/', require('./routes/home.route'));
 
 // Listen Port
 const PORT = process.env.PORT || 3000;
