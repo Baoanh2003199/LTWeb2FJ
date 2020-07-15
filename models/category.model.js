@@ -4,7 +4,7 @@ const TBL_CATEGORY = 'category';
 
 module.exports = {
     all: function() {
-        return db.load(`select cat1.*, cat2.name  parentName 
+        return db.load(`select cat1.*, cat2.name  parentName
         from ${TBL_CATEGORY} cat1
         left join ${TBL_CATEGORY} cat2
         on cat1.parentID = cat2.id`);
@@ -39,4 +39,7 @@ module.exports = {
         return db.load(`select * from ${TBL_CATEGORY}`);
     },
 
+    singeNew: function(idNews) {
+        return db.load(`select name from ${TBL_CATEGORY} where id=${idNews}`);
+    },
 };
