@@ -34,14 +34,14 @@ const storage = multer.diskStorage({
     },
 });
 const upload = multer({ storage: storage });
-route.post('/add', upload.single('filePdf'), async function(req, res) {
+route.post('/add', upload.single('thumbnail'), async function(req, res) {
     //res.send(req.body);
     if (req.file) {
         const entity = {
             name: req.body.name,
             catID: req.body.catID,
             isPremium: req.body.isPremium,
-            filePdf: req.file.filename,
+            thumbnail: req.file.filename,
             content: req.body.content,
             openTime: req.body.openTime,
             description: req.body.description,
@@ -74,13 +74,13 @@ route.get('/edit/:id', async function(req, res) {
     res.render('admin/news/edit', { news, tag: tagRow, cat: catRow });
 });
 
-route.post('/edit', upload.single('filePdf'), async function(req, res) {
+route.post('/edit', upload.single('thumbnail'), async function(req, res) {
     if (req.file) {
         const entity = {
             name: req.body.name,
             catID: req.body.catID,
             isPremium: req.body.isPremium,
-            filePdf: req.file.filename,
+            thumbnail: req.file.filename,
             content: req.body.content,
             openTime: req.body.openTime,
             description: req.body.description,

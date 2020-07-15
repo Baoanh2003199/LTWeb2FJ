@@ -34,4 +34,9 @@ module.exports = {
     getList: function() {
         return db.load(`select * from ${TBL_CATEGORY} where parentID != 0`);
     },
+
+    allSubCategory: function() {
+        return db.load(`select * from ${TBL_CATEGORY}`);
+    },
+
 };
