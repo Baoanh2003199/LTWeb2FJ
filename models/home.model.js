@@ -27,7 +27,9 @@ module.exports = {
         return db.load(`select * from ${TBL_NEWS} where id=${idNews}`);
     },
 
-    ManyNews: function() {
-        return db.load(`select * from ${TBL_NEWS} order by views limit 10`);
+    ManyNews: function(catID) {
+        return db.load(
+            `select * from ${TBL_NEWS} where catID=${catID}  order by views limit 10`
+        );
     },
 };
