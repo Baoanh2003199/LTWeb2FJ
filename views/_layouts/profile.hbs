@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tin tức 14 - {{{_sections.title}}}</title>
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="/public/font-awesome/css/fontawesome.min.css" rel="stylesheet">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/admin/style.css" type="text/css" >
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+  <script src="/ckeditor/ckeditor.js"></script>
+  {{{_sections.css}}}
+</head>
+<body>
+{{!-- END HEAD 
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <a class="navbar-brand" href="/admin" style="font-style: Time new romans, font-weight: bold">Bảng quản trị</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-5">
+      <li class="nav-item">
+         <a class="nav-link" href="/logout" id="categoryDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a>
+      </li>
+    </ul>
+  </div>
+</nav>--}}
+<div class="row content my-2 mx-1 d-flex justify-content-center" >
+        <div class="bg-light leftMenu" style="-webkit-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+-moz-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
+             <nav class="navbar nav-left-sidebar sidebar-light navbar-light bg-light navbar-expand-lg w-130 rounded">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#leftMenu" aria-controls="leftMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="leftMenu">
+                    <ul class="navbar-nav flex-column">
+                      <li class="nav-item">
+                        <a class="nav-link" href="/profile"><h1 style="font-weight: bold;"> Menu</h1></a>
+                      </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i> Trang chủ <span class="sr-only">(current)</span></a>
+                        </li>
+                         <li class="nav-item ">
+                            <a class="nav-link" href="#" id="/profile" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                Thông tin cá nhân
+                            </a>
+                        </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                Bài viết
+                            </a>
+                            <div class="dropdown-menu w-auto " aria-labelledby="newsDropdown">
+                                <a class="dropdown-item" href="/">Đăng bài</a>
+                                <a class="dropdown-item" href="/">Bài viết được duyệt</a>
+                                <a class="dropdown-item" href="/">Bài viết chưa được duyệt</a>
+                                <a class="dropdown-item" href="/">Chờ xuất bản</a>
+                                <a class="dropdown-item" href="/">Đã xuất bản</a>
+                                <a class="dropdown-item" href="/">Bị từ chối</a>
+                            </div>
+                        </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-tags" aria-hidden="true"></i>
+                                Template
+                            </a>
+                            <div class="dropdown-menu w-auto " aria-labelledby="tagDropdown">
+                                <a class="dropdown-item" href="/">Template a</a>
+                                <a class="dropdown-item" href="/">Template b</a>
+                            </div>
+                        </li>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/logout" id="categoryDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a>
+                         </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    <div class="col-md-10 mx-auto rightContent">
+         {{!-- START Main --}}
+         <div class="card" style="-webkit-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+-moz-box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);
+box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
+            <div class="card-body">
+                {{{body}}}
+            </div>
+          </div>
+        {{!-- END MAIN --}}
+    </div>
+</div>
+
+
+
+
+
+{{!--START FOOTER --}}
+<!-- Footer -->
+<footer class="page-footer font-small bg-light text-secondary mt-5">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a class="text-secondary"  href="/admin"> Trang Tin Tức</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+{{!-- END FOOTER --}}
+<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+-->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+{{{_sections.js}}}
+</body>
+</html>
