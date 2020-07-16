@@ -15,7 +15,7 @@ route.get('/',async function(req, res){
     const obj = {
         username: user[0].username,
         name: subRes[0].name,
-        dob: DATE_FORMATER( subRes[0].dob, "dd/mm/yyyy"),
+        dob: DATE_FORMATER( subRes[0].dob, "yyyy-mm-dd"),
         email: subRes[0].email,
         phone: subRes[0].phone,
         expired: DATE_FORMATER( subRes[0].expired, "HH:MM:ss - dd/mm/yyyy"),

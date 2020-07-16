@@ -1,0 +1,44 @@
+input[type=text]
+{
+	margin-top:5px;
+	font-size: inherit;
+	color:inherit;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	-border-radius: 1px;
+	display:none;
+	width:280px;
+}
+
+input[type=email]
+{
+	margin-top:5px;
+	font-size: inherit;
+	color:inherit;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	-border-radius: 1px;
+	display:none;
+	width:280px;
+}
+
+.edit
+{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.edit:before {
+    content: "\f040";
+}
+
+.clear
+{
+	clear:both;
+	height:20px;
+}

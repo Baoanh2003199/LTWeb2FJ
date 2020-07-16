@@ -1,9 +1,6 @@
 {{#section 'title'}}Thông tin cá nhân{{/section}}
-{{#section 'js'}}
-    <script src="admin/easy-editable-text.js"></script>
-{{/section}}
 <nav class="breadcrumb">
-    <a class="breadcrumb-item active" href="/profile">Thônng tin</a>
+    <a class="breadcrumb-item active" href="/profile">Thông tin</a>
 </nav>
 <div class="contentHeader">
     <div class="card text-dark bg-light">
@@ -14,7 +11,7 @@
 </div>
 <div class="contentMain my-5">
     <div class="card text-dark bg-light">
-    <div class="card-header text-white" style="background-color: #00AA9E;"> <i class="fa fa-user" aria-hidden="true"></i> Chỉnh sửa thông tin cá nhân</div>
+    <div class="card-header text-white" style="background-color: #00AA9E;"> <i class="fa fa-user-circle" aria-hidden="true"></i> Chỉnh sửa thông tin cá nhân</div>
     <div class="card-body">
             <div class="container">
             <div class="row">
@@ -26,36 +23,46 @@
                 <div class="col-sm-6">
                         <div class="form-group" style="margin: 10px;">
                         <label for="username"> <i class="fa fa-user" aria-hidden="true"></i> Tên người dùng: </label>
-                        <lable name="username">{{user.username}}</lable>
+                        <lable name="email">{{user.username}}</lable>
                         </div>
                         <div class="form-group" style="margin: 10px;">
                         <label for="password"> <i class="fa fa-lock" aria-hidden="true"></i> Mẩu khẩu: <a href="#">Thay đổi</a></label>
-                        </div>
-                        <div class="form-group" style="margin: 10px;">
-                        <label for="name"><i class="fa fa-pencil" aria-hidden="true"></i> Tên đầy đủ: </label>
-                        <lable name="name">{{user.name}}</lable>
                         </div>
                         <div class="form-group" style="margin: 10px">
                         <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i> Email: </label>
                         <lable name="email">{{user.email}}</lable>
                         </div>
                         <div class="form-group" style="margin: 10px;">
-                        <label for="dob"><i class="fa fa-pencil" aria-hidden="true"></i> Ngày sinh: </label>
-                        <lable name="dob">{{user.dob}}</lable>
+                        <label for="name"><i class="fa fa-id-badge" aria-hidden="true"></i> Họ tên: </label>
+                        <label class="text_label" name="name">{{user.name}}</label><div class="edit"></div>
+                        <input type="text" value="{{user.name}}" name="name"/>
+                        </div>
+                        <div class="form-group" style="margin: 10px;">
+                        <label for="dob"><i class="fa fa-calendar" aria-hidden="true"></i> Ngày sinh: </label>
+                        <input type="date" value="{{user.dob}}"/>
                         </div>
                         <div class="form-group" style="margin: 10px">
                         <label for="phone"><i class="fa fa-phone" aria-hidden="true"></i> Số điện thoại: </label>
-                        <lable name="phone">{{user.phone}}</lable>
+                        <label class="text_label" name="phone">{{user.phone}}</label><div class="edit"></div>
+                        <input type="text" value="{{user.phone}}" name="phone"/>
                         </div>
                         <div class="form-group" style="margin: 10px">
                         <label for="role"><i class="fa fa-users" aria-hidden="true"></i> Vai trò: </label>
-                        <lable name="phone">{{user.role}}</lable>
+                        <lable name="role">{{user.role}}</lable>
                         </div>
                         {{#if isSubscriber}}
                         <div class="form-group" style="margin: 10px">
                         <label for="role"><i class="fa fa-clock-o" aria-hidden="true"></i> Hạn sử dụng: </label>
                         <lable name="expired" style="color: red;">{{user.expired}}</lable>
                         </div>
+                        {{/if}}
+                        {{#if this.isError}}
+                            <div class="alert alert-danger" role="alert">
+                                {{#each this.Error}}
+                                <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{msg}} <br>
+                                {{/each}}
+                                </div>
+                            <br>
                         {{/if}}
                         <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o" aria-hidden="true"></i> Lưu thông tin </button>
                     </div>
@@ -65,3 +72,7 @@
     </div>
     </div>
 </div>
+{{#section 'js'}}
+    <script type="text/javascript" src="/admin/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/admin/easy-editable-text.js"></script>
+{{/section}}
