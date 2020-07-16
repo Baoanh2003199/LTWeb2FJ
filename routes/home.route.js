@@ -18,7 +18,7 @@ router.get('/', async function(req, res) {
     });
 });
 
-router.get('/:name/:id', async function(req, res) {
+router.get('/:name/baiviet/:id', async function(req, res) {
     const name = req.params.name;
     const id = req.params.id;
     const list = await newModel.NewsDetail(name, id);
