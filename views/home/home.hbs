@@ -62,101 +62,572 @@
 
       <!--First slide-->
       <div class="carousel-item active">
-        {{#each listNew}}
+
         <div class="row">
           <div class="col-md-4">
             <div class="card mb-2">
-              <a href="/{{name}}/{{id}}">
+              <a href="/news/{{id}}">
                 <img class="card-img-top"
-                  src="uploads/{{thumbnail}}"
+                  src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
                   alt="Card image cap">
               </a>
               <div class="card-body">
-                <h5 class="card-title">{{name}}</h5>
-                <small>ngày đăng: {{openTime}}</small>
-                <div class="card-text">{{description}}</div>
+                <h5 class="card-title">Card title</h5>
+                <small>ngày đăng: sadas</small>
+                <div class="card-text">Chuyên mục</div>
+                <div class="card-text">giới thiệu</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <small>ngày đăng: sadas</small>
+                <div class="card-text">Chuyên mục</div>
+                <div class="card-text">giới thiệu</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <small>ngày đăng: sadas</small>
+                <div class="card-text">Chuyên mục</div>
+                <div class="card-text">giới thiệu</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--/.First slide-->
+
+      <!--Second slide-->
+      <div class="carousel-item">
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <small>ngày đăng: sadas</small>
+                <div class="card-text">Chuyên mục</div>
+                <div class="card-text">giới thiệu</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <small>ngày đăng: sadas</small>
+                <div class="card-text">Chuyên mục</div>
+                <div class="card-text">giới thiệu</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <small>ngày đăng: sadas</small>
+                <div class="card-text">Chuyên mục</div>
+                <div class="card-text">giới thiệu</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <a class="carousel-control-prev newsControlPrev"
+        href="#multi-item-example" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next newsControlNext"
+        href="#multi-item-example" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+    <div class="container py-4">
+      <div class="headerBar">Mới nhất theo chuyên mục</div>
+      <div class="row d-flex justify-content-left">
+        {{#each resultCat}}
+        <div class="col-sm-6 py-2">
+          <div class="card text-left">
+            <div class="card-body">
+              <h4 class="card-title pb-3">{{name}}</h4>
+              <div class="itemNews py-2">
+                {{#each resultNewCatMuch}}
+                <div class="row">
+                  <div class="col-sm-5">
+                    <a href="">
+                      <img
+                        src="uploads/{{thumbnail}}"
+                        class="w-100 m-auto" alt="">
+                    </a>
+                  </div>
+                  <div class="col-sm-7">
+
+                    <h5 class="card-title"> <a href="">{{name}}</a></h5>
+                    <small>ngày đăng: {{openTime}}</small>
+                    <div class="card-text">{{description}}</div>
+                  </div>
+                </div>
+                {{/each}}
               </div>
             </div>
           </div>
         </div>
         {{/each}}
-        <a class="carousel-control-prev newsControlPrev"
-          href="#multi-item-example" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next newsControlNext"
-          href="#multi-item-example" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
-
-      <div class="container py-4">
-        <div class="headerBar">Mới nhất theo chuyên mục</div>
-        <div class="row d-flex justify-content-left">
-          {{#each resultCat}}
-          <div class="col-sm-6 py-2">
-            <div class="card text-left">
-              <div class="card-body">
-
-                <h4 class="card-title pb-3">{{name}}</h4>
-                <div class="itemNews py-2">
-                  {{#each listVewCat}}
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="/{{name}}/{{id}}">
-                        <img
-                          src="uploads/{{thumbnail}}"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-                      <h5 class="card-title"> <a href="">{{name}}</a></h5>
-                      <small>ngày đăng: {{createdBy}}</small>
-                      <div class="card-text">{{description}}</div>
-                    </div>
-                  </div>
-                  {{/each}}
-                </div>
-              </div>
-            </div>
-          </div>
-          {{/each}}
-        </div>
-      </div>
-
       <div class="container py-4">
         <div class="headerBar">Xem nhiết nhất</div>
         <div class="row d-flex justify-content-left">
-          {{#each resultCat}}
           <div class="col-sm-6 py-2">
             <div class="card text-left">
               <div class="card-body">
-                <h4 class="card-title pb-3">{{name}}</h4>
+                <h4 class="card-title pb-3">Thời sự</h4>
                 <div class="itemNews py-2">
-                  {{#each manyNew}}
                   <div class="row">
                     <div class="col-sm-5">
-                      <a href="/{{name}}/{{id}}">
+                      <a href="">
                         <img
-                          src="uploads/{{thumbnail}}"
+                          src="https://via.placeholder.com/120x100"
                           class="w-100 m-auto" alt="">
                       </a>
                     </div>
                     <div class="col-sm-7">
 
-                      <h5 class="card-title"> <a href="">{{name}}</a></h5>
-                      <small>ngày đăng: {{openTime}}</small>
-                      <div class="card-text">{{description}}</div>
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
                     </div>
                   </div>
-                  {{/each}}
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          {{/each}}
+          <div class="col-sm-6 py-2">
+            <div class="card text-left">
+              <div class="card-body">
+                <h4 class="card-title pb-3">Thời sự</h4>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 py-2">
+            <div class="card text-left">
+              <div class="card-body">
+                <h4 class="card-title pb-3">Thời sự</h4>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemNews py-2">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <a href="">
+                        <img
+                          src="https://via.placeholder.com/120x100"
+                          class="w-100 m-auto" alt="">
+                      </a>
+                    </div>
+                    <div class="col-sm-7">
+
+                      <h5 class="card-title"> <a href="">Tiêu
+                          đề</a></h5>
+                      <small>ngày đăng: sadas</small>
+                      <div class="card-text">Chuyên mục</div>
+                      <div class="card-text">giới thiệu</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       {{!-- END MAIN --}}
