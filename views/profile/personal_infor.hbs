@@ -48,6 +48,12 @@
                         <label for="role"><i class="fa fa-users" aria-hidden="true"></i> Vai trò: </label>
                         <lable name="phone">{{user.role}}</lable>
                         </div>
+                        {{#if isSubscriber}}
+                        <div class="form-group" style="margin: 10px">
+                        <label for="role"><i class="fa fa-clock-o" aria-hidden="true"></i> Hạn sử dụng: </label>
+                        <lable name="expired" style="color: red;">{{user.expired}}</lable>
+                        </div>
+                        {{/if}}
                         <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o" aria-hidden="true"></i> Lưu thông tin </button>
                     </div>
                 </form>

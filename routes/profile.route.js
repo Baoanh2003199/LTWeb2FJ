@@ -18,7 +18,7 @@ route.get('/',async function(req, res){
         dob: DATE_FORMATER( subRes[0].dob, "dd/mm/yyyy"),
         email: subRes[0].email,
         phone: subRes[0].phone,
-        expired: subRes[0].expired,
+        expired: DATE_FORMATER( subRes[0].expired, "HH:MM:ss - dd/mm/yyyy"),
         role: roleRes[0].name
     }
     res.render('profile/personal_infor',{user: obj});
