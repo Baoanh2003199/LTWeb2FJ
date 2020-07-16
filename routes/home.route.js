@@ -6,16 +6,17 @@ const router = express.Router();
 
 router.get('/', async function(req, res) {
     const resultCat = await catModel.allSubCategory();
-    const idCat = resultCat[0].id;
-    const listVewCat = await newModel.CatNews(idCat);
-    const listNew = await newModel.NewNews();
-    const manyNew = await newModel.ManyNews(idCat);
-    res.render('home/home', {
-        listNew: listNew,
-        listVewCat: listVewCat,
-        resultCat: resultCat,
-        manyNew: manyNew,
-    });
+    for (i = 0; i < resultCat.length; i++) {
+        const catID = resultCat[i].id;
+        const resultNewCatMuch = await newModel.CatToNews(catID);
+        console.log(catID);
+        console.log(resultNewCatMuch);
+
+        res.render('home/home', {
+            resultCat: resultCat,
+            resultNewCatMuch: resultNewCatMuch,
+        });
+    }
 });
 
 router.get('/:name/:id', async function(req, res) {
