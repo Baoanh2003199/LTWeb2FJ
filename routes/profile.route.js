@@ -5,8 +5,9 @@ const subModel = require('../models/subscriber.model');
 const memModel = require('../models/member.model');
 const { check, validationResult } = require('express-validator');
 
-route.get('/', function(req, res){
-    res.render('profile/home');
+
+route.get('/',function(req, res){
+    res.render('profile/personal_infor');
 });
 
 route.post('/', async function(req, res){

@@ -35,12 +35,12 @@
 
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
             role="button" data-toggle="dropdown">
+            {{#if isLoggedIn}}
             <i class="fa fa-user-circle" aria-hidden="true">
             </i>
-            {{#if isLoggedIn}}
             <aclass="nav-item">{{username}}</a>
             {{else}}
-            <aclass="nav-item">Đăng nhập/Đăng ký</a>
+            <aclass="nav-item">Đăng nhập | Đăng ký</a>
             {{/if}}
           </a>
           <div class="dropdown-menu dropdown-menu-right"
