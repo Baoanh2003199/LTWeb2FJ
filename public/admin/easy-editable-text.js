@@ -36,5 +36,34 @@ $(document).ready(function(){
 			 $(this).prev().prev().show();
 		  }
 	  });
+
+	  $('input[type="date"]').blur(function() {  
+		if ($.trim(this.value) == ''){  
+			this.value = (this.defaultValue ? this.defaultValue : '');  
+		}
+		else{
+			$(this).prev().prev().html(this.value);
+		}
+		
+		$(this).hide();
+		$(this).prev().show();
+		$(this).prev().prev().show();
+	});
+	 
+	 $('input[type="date"]').keypress(function(event) {
+		 if (event.keyCode == '13') {
+			 if ($.trim(this.value) == ''){  
+				this.value = (this.defaultValue ? this.defaultValue : '');  
+			}
+			else
+			{
+				$(this).prev().prev().html(this.value);
+			}
+			
+			$(this).hide();
+			$(this).prev().show();
+			$(this).prev().prev().show();
+		 }
+	 });
 		  
 });

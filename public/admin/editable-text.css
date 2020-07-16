@@ -10,7 +10,7 @@ input[type=text]
 	width:280px;
 }
 
-input[type=email]
+input[type=date]
 {
 	margin-top:5px;
 	font-size: inherit;
