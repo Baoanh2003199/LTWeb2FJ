@@ -29,7 +29,7 @@ CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `content` varchar(255) NOT NULL,
+  `content` TEXT NOT NULL,
   `isPremium` int(11) DEFAULT NULL,
   `openTime` timestamp default null,
   -- nếu bị lỗi thì bỏ comment dòng bên dưới và comment dòng bên trên
@@ -187,5 +187,3 @@ insert into role values(null, 'Quản trị','ADMINSTRATOR');
 insert into role values(null, 'Biên tập','EDITOR');
 insert into role values(null, 'Phóng viên','WRITER');
 insert into role values(null, 'Đọc giả','SUBSCRIBER');
-
-
