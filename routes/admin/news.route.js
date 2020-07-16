@@ -110,7 +110,7 @@ route.post('/check/:id', async function(req, res) {
     const num = req.params.num;
     entity = {
         id: req.params.id,
-        status: req.params.status,
+        status: req.query.status,
     };
     if (num == '1') {
         await newModel.update(entity);
