@@ -2,6 +2,7 @@ const express = require('express');
 const route = express.Router();
 const bcrypt = require('bcrypt');
 const loginModel = require('../models/user.model');
+const roleModel = require('../models/role.model');
 
 
 const redirectLogin = (req, res, next)=>{
@@ -58,12 +59,13 @@ route.post('/', redirectHome, async function(req, res) {
         if(result[0])
         {
             var hashed = result[0].password
+            const roleObj = await roleModel.single(result[0].roleId);
             var validUser = bcrypt.compareSync(password, hashed)
             if(validUser)
             {
                 var {userId, name} = req.session;
                 req.session.userId = result[0].id;
-                req.session.role = result[0].roleId;
+                req.session.role = roleObj[0].code;
                 req.session.name = result[0].username;
                 res.redirect('/');
             }

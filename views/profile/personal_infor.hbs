@@ -6,7 +6,6 @@
     <div class="card text-dark bg-light">
         <div class="card-body text-center">
             <h4 class="card-title">Trang thông tin cá nhân</h4>
-            <p class="card-text">{{username}}</p>
         </div>
     </div>
 </div>
@@ -16,37 +15,44 @@
     <div class="card-body">
             <div class="container">
             <div class="row">
+                <form method="POST"></form>
                 <div class="col-sm-4">
                 <img src="https://taimienphi.vn/tmp/cf/aut/cZ1E-anh-avatar-dep-2.jpg" alt="User_image" style="margin-top:3%; max-width: 100%; max-height:100%" class="border rounded">
+                <lable>Ảnh đại diện</lable>
                 </div>
                 <div class="col-sm-6">
-                <form method="POST">
                         <div class="form-group" style="margin: 10px;">
-                        <label for="username"> <i class="fa fa-user" aria-hidden="true"></i> Tên người dùng: Conan</label>
+                        <label for="username"> <i class="fa fa-user" aria-hidden="true"></i> Tên người dùng: </label>
+                        <lable name="username">{{user.username}}</lable>
                         </div>
                         <div class="form-group" style="margin: 10px;">
                         <label for="password"> <i class="fa fa-lock" aria-hidden="true"></i> Mẩu khẩu: <a href="#">Thay đổi</a></label>
                         </div>
                         <div class="form-group" style="margin: 10px;">
-                        <label for="name"><i class="fa fa-pencil" aria-hidden="true"></i> Tên đầy đủ: Cô Văn Nan</label>
+                        <label for="name"><i class="fa fa-pencil" aria-hidden="true"></i> Tên đầy đủ: </label>
+                        <lable name="name">{{user.name}}</lable>
                         </div>
                         <div class="form-group" style="margin: 10px">
-                        <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i> Email: covannan@gmail.com</label>
+                        <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i> Email: </label>
+                        <lable name="email">{{user.email}}</lable>
                         </div>
                         <div class="form-group" style="margin: 10px;">
-                        <label for="dob"><i class="fa fa-pencil" aria-hidden="true"></i> Ngày sinh: 01/01/2000</label>
+                        <label for="dob"><i class="fa fa-pencil" aria-hidden="true"></i> Ngày sinh: </label>
+                        <lable name="dob">{{user.dob}}</lable>
                         </div>
                         <div class="form-group" style="margin: 10px">
-                        <label for="phone"><i class="fa fa-phone" aria-hidden="true"></i> Số điện thoại: 0123456789</label>
+                        <label for="phone"><i class="fa fa-phone" aria-hidden="true"></i> Số điện thoại: </label>
+                        <lable name="phone">{{user.phone}}</lable>
                         </div>
                         <div class="form-group" style="margin: 10px">
-                        <label for="role"><i class="fa fa-users" aria-hidden="true"></i> Vai trò: Thám tử</label>
+                        <label for="role"><i class="fa fa-users" aria-hidden="true"></i> Vai trò: </label>
+                        <lable name="phone">{{user.role}}</lable>
                         </div>
                         <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o" aria-hidden="true"></i> Lưu thông tin </button>
+                    </div>
                 </form>
-                </div>
             </div>
-            </div>
+        </div>
     </div>
     </div>
 </div>

@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 const redirectLogin = (req, res, next)=>{
     if(!res.locals.isLoggedIn)
     {
+        req.app.locals.layout = 'main';
         res.redirect('/login');
     }
     else
@@ -54,21 +55,41 @@ app.use(async function(req, res, next) {
     req.session.userId === undefined ?
         (res.locals.isLoggedIn = false) :
         (res.locals.isLoggedIn = true);
-    switch (req.session.roleId) {
-        case 1:
+    switch (req.session.role) {
+        case "ADMINSTRATOR":
             res.locals.isAdmin = true;
+            res.locals.isSubscriber = false;
+            res.locals.isGuest = false;
+            res.locals.isEditor = false;
+            res.locals.isWriter = false;
             break;
-        case 11:
+        case "EDITOR":
             res.locals.isEditor = true;
+            res.locals.isSubscriber = false;
+            res.locals.isGuest = false;
+            res.locals.isAdmin = false;
+            res.locals.isWriter = false;
             break;
-        case 21:
+        case "WRITER":
             res.locals.isWriter = true;
+            res.locals.isSubscriber = false;
+            res.locals.isGuest = false;
+            res.locals.isAdmin = false;
+            res.locals.isEditor = false;
             break;
-        case 31:
+        case "SUBSCRIBER":
             res.locals.isSubscriber = true;
+            res.locals.isWriter = false;
+            res.locals.isGuest = false;
+            res.locals.isAdmin = false;
+            res.locals.isEditor = false;
             break;
         default:
             res.locals.isGuest = true;
+            res.locals.isEditor = false;
+            res.locals.isSubscriber = false;
+            res.locals.isWriter = false;
+            res.locals.isAdmin = false;
     }
     res.locals.userId = req.session.userId;
     res.locals.username = req.session.name;
