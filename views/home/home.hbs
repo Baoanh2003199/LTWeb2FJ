@@ -181,7 +181,7 @@
             <div class="card-body">
               <h4 class="card-title pb-3">{{name}}</h4>
               <div class="itemNews py-2">
-                {{#each resultNewCatMuch}}
+                {{#each news}}
                 <div class="row">
                   <div class="col-sm-5">
                     <a href="">
@@ -191,7 +191,6 @@
                     </a>
                   </div>
                   <div class="col-sm-7">
-
                     <h5 class="card-title"> <a href="">{{name}}</a></h5>
                     <small>ngày đăng: {{openTime}}</small>
                     <div class="card-text">{{description}}</div>
@@ -207,427 +206,34 @@
       <div class="container py-4">
         <div class="headerBar">Xem nhiết nhất</div>
         <div class="row d-flex justify-content-left">
+          {{#each resultCat}}
           <div class="col-sm-6 py-2">
             <div class="card text-left">
               <div class="card-body">
-                <h4 class="card-title pb-3">Thời sự</h4>
+                <h4 class="card-title pb-3">{{name}}</h4>
+                {{#each new}}
                 <div class="itemNews py-2">
                   <div class="row">
                     <div class="col-sm-5">
                       <a href="">
                         <img
-                          src="https://via.placeholder.com/120x100"
+                          src="uploads/{{thumbnail}}"
                           class="w-100 m-auto" alt="">
                       </a>
                     </div>
                     <div class="col-sm-7">
 
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
+                      <h5 class="card-title"> <a href="">{{name}}</a></h5>
+                      <small>ngày đăng: {{openTime}}</small>
+                      <div class="card-text">{{description}}</div>
                     </div>
                   </div>
                 </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
+                {{/each}}
               </div>
             </div>
           </div>
-          <div class="col-sm-6 py-2">
-            <div class="card text-left">
-              <div class="card-body">
-                <h4 class="card-title pb-3">Thời sự</h4>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 py-2">
-            <div class="card text-left">
-              <div class="card-body">
-                <h4 class="card-title pb-3">Thời sự</h4>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemNews py-2">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <a href="">
-                        <img
-                          src="https://via.placeholder.com/120x100"
-                          class="w-100 m-auto" alt="">
-                      </a>
-                    </div>
-                    <div class="col-sm-7">
-
-                      <h5 class="card-title"> <a href="">Tiêu
-                          đề</a></h5>
-                      <small>ngày đăng: sadas</small>
-                      <div class="card-text">Chuyên mục</div>
-                      <div class="card-text">giới thiệu</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          {{/each}}
         </div>
       </div>
       {{!-- END MAIN --}}
