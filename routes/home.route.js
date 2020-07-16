@@ -9,14 +9,16 @@ router.get('/', async function(req, res) {
     for (i = 0; i < resultCat.length; i++) {
         const catID = resultCat[i].id;
         const resultNewCatMuch = await newModel.CatToNews(catID);
-        console.log(catID);
         console.log(resultNewCatMuch);
-
-        res.render('home/home', {
-            resultCat: resultCat,
-            resultNewCatMuch: resultNewCatMuch,
-        });
+        // bài viết mỗi chuyên mục sẽ nằm ở  news của mỗi resultCat thêm cái foreach bên trong cho news ra là đc
+        resultCat[i].news  = resultNewCatMuch;
+        // console.log(catID);
+        // console.log(resultCat[i].news);      
+        // Nãy mày để res.render ở trong for nên nó chạy hoài cái đó với nhớ phải return về
     }
+    return res.render('home/home', {
+        resultCat: resultCat,
+    });
 });
 
 router.get('/:name/:id', async function(req, res) {
