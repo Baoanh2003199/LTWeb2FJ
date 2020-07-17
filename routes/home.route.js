@@ -9,8 +9,8 @@ router.get('/', async function(req, res) {
     for (i = 0; i < resultCat.length; i++) {
         const catID = resultCat[i].id;
         const resultNewCatMuch = await newModel.CatToNews(catID);
-        const resultManyToCatMuch = await newModel.ManyToNews(catID);
-        resultCat[i].news = resultNewCatMuch;
+        const resultManyToCatMuch = await newModel.ManyNews(catID);
+        resultCat[i].new = resultNewCatMuch;
         resultCat[i].new = resultManyToCatMuch;
     }
     return res.render('home/home', {

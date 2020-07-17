@@ -13,22 +13,15 @@
     <div class="card text-dark bg-light">
     <div class="card-header text-white" style="background-color: #00AA9E;"> <i class="fa fa-user-circle" aria-hidden="true"></i> Chỉnh sửa thông tin cá nhân</div>
     <div class="card-body">
-            <div class="container">
-            <div class="row">
-                <form method="POST" enctype="multipart/form-data">
-                    <input type="file" class="form-control-file"
-                        name="avatar"
-                        id="fileInput" onchange="showMyImage(this)"
-                        placeholder="" aria-describedby="fileHelpId" multiple>
-                </form>
-                <div class="col-sm-4">
-                <img src="https://taimienphi.vn/tmp/cf/aut/cZ1E-anh-avatar-dep-2.jpg" alt="User_image" style="margin-top:3%; max-width: 100%; max-height:100%" class="border rounded">
-                <lable>Ảnh đại diện</lable>
-                <img src="/admin/img/click.svg" class="select_img w-25 h-25"
-                        id="avatar" alt="ảnh đại diện" id="avatar">
-                </div>
-                <div class="col-sm-6">
-                        <div class="form-group" style="margin: 10px;">
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data"></form>
+        <div class="row">
+            <div class="col-sm-4">
+            <img src="/avatar/{{user.avatar}}" class="select_img border rouded" id="imgava" alt="ảnh đại diện" style="margin-top:3%; max-width: 100%; max-height:100%">
+            <input type="file" class="form-control-file" name="avatar" id="fileInput" onchange="showMyImage(this)" placeholder="" aria-describedby="fileHelpId" multiple>
+            </div>
+            <div class="col-sm-8">
+      <div class="form-group" style="margin: 10px;">
                         <label for="username"> <i class="fa fa-user" aria-hidden="true"></i> Tên người dùng: </label>
                         <lable name="email">{{user.username}}</lable>
                         </div>
@@ -73,10 +66,10 @@
                             <br>
                         {{/if}}
                         <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o" aria-hidden="true"></i> Lưu thông tin </button>
-                    </div>
-                </form>
             </div>
         </div>
+        </form>
+    </div>
     </div>
     </div>
 </div>

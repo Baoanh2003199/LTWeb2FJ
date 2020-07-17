@@ -96,6 +96,7 @@ CREATE TABLE `subscriber` (
   `phone` varchar(255) DEFAULT NULL,
   `dob` datetime DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
+  `avatar` nvarchar(255) default null,
   `expired` timestamp,
   PRIMARY KEY (`id`)
 );
@@ -109,6 +110,7 @@ CREATE TABLE `member` (
   `phone` varchar(255) DEFAULT NULL,
   `dob` datetime DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
+  `avatar` nvarchar(255) default null,
   PRIMARY KEY (`id`)
 );
 

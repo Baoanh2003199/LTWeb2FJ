@@ -34,6 +34,7 @@ route.get('/', async function(req, res) {
         phone: subRes[0].phone,
         expired: DATE_FORMATER(subRes[0].expired, 'HH:MM:ss - dd/mm/yyyy'),
         role: roleRes[0].name,
+        avatar: subRes[0].avatar
     };
     res.render('profile/personal_infor', { user: obj });
 });
