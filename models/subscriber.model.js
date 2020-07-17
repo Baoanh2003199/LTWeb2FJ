@@ -21,6 +21,16 @@ module.exports = {
     add: function(entity) {
         return db.insert(TBL_SUBSCRIBER, entity);
     },
+
+    update: function(entity) {
+        const condition = {
+            id: entity.id,
+        };
+
+        delete entity.id;
+        return db.update(TBL_SUBSCRIBER, entity, condition);
+    },
+
     byEmail: function(email){
         return db.load(`select * from ${TBL_SUBSCRIBER} where email='${email}'`);
     }

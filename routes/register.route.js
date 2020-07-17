@@ -77,7 +77,8 @@ route.post('/', [
                     dob: req.body.dob,
                     phone: req.body.phone,
                     userId: registed.insertId,
-                    expired: myDate
+                    expired: myDate,
+                    avatar: "default.png"
                 }
                 const subscriberAdded = await subModel.add(sub);
                 if(subscriberAdded.affectedRows == 1)
