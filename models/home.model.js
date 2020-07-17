@@ -15,7 +15,7 @@ module.exports = {
 
     NewNews: function() {
         return db.load(
-            `select * from ${TBL_NEWS} where status=1 order by id desc limit 10`
+            `select * from ${TBL_NEWS} where status=1 order by id desc limit 12`
         );
     },
 
