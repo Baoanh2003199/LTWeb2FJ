@@ -11,8 +11,8 @@ router.get('/', async function(req, res) {
         const catID = resultCat[i].id;
         const resultNewCatMuch = await newModel.CatToNews(catID);
         const resultManyToCatMuch = await newModel.ManyNews(catID);
-        resultCat[i].new = resultNewCatMuch;
-        resultCat[i].new = resultManyToCatMuch;
+        resultCat[i].newCat = resultNewCatMuch;
+        resultCat[i].newMany = resultManyToCatMuch;
     }
     const resultNews = await newModel.NewNews();
     const resultNew1 = resultNews.slice(0, 3);
