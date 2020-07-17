@@ -32,6 +32,14 @@ const storage = multer.diskStorage({
             file.fieldname + '-' + Date.now() + path.extname(file.originalname)
         );
     },
+    fileFilter: function(req, file, callback) {
+        var ext = path.extname(file.originalname);
+        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+            return callback( /*res.end('Only images are allowed')*/ null, false);
+        }
+
+        callback(null, true);
+    },
 });
 const upload = multer({ storage: storage });
 route.post('/add', upload.single('thumbnail'), async function(req, res) {
