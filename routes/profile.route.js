@@ -59,8 +59,7 @@ route.post('/', upload.single('avatar'), async function(req, res) {
             phone: req.body.phone,
             dob: req.body.dob,
             userID: sObj[0].userID,
-            avatar: sObj[0].avatar, 
-            expired: sObj[0].expired  
+            avatar: sObj[0].avatar,  
         }
         const succes = await subModel.update(entity);
         if(succes)
@@ -91,7 +90,6 @@ route.post('/', upload.single('avatar'), async function(req, res) {
                 dob: req.body.dob,
                 userID: sObj[0].userID,
                 avatar: '200x240-'+req.file.filename, 
-                expired: sObj[0].expired  
             }
             const succes = await subModel.update(entity);
             if(succes)
