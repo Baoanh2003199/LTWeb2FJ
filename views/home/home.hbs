@@ -160,6 +160,7 @@
             </a>
         </div>
 
+
         <div class="container py-4">
             <div class="headerBar">Mới nhất theo chuyên mục</div>
             <div class="row d-flex justify-content-left">
@@ -168,8 +169,8 @@
                     <div class="card text-left">
                         <div class="card-body">
                             <h4 class="card-title pb-3">{{name}}</h4>
+                            {{#each newCat}}
                             <div class="itemNews py-2">
-                                {{#each news}}
                                 <div class="row">
                                     <div class="col-sm-5">
                                         <a href="/{{name}}/id=/{{id}}">
@@ -179,18 +180,21 @@
                                         </a>
                                     </div>
                                     <div class="col-sm-7">
+
                                         <h5 class="card-title"> <a href="">{{name}}</a></h5>
                                         <small>ngày đăng: {{openTime}}</small>
                                         <div class="card-text">{{description}}</div>
                                     </div>
                                 </div>
-                                {{/each}}
                             </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
                 {{/each}}
             </div>
+
+
             <div class="container py-4">
                 <div class="headerBar">Xem nhiết nhất</div>
                 <div class="row d-flex justify-content-left">
@@ -199,7 +203,7 @@
                         <div class="card text-left">
                             <div class="card-body">
                                 <h4 class="card-title pb-3">{{name}}</h4>
-                                {{#each new}}
+                                {{#each newMany}}
                                 <div class="itemNews py-2">
                                     <div class="row">
                                         <div class="col-sm-5">
