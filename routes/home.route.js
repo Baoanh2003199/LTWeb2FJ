@@ -19,10 +19,6 @@ router.get('/', async function(req, res) {
     const resultNew2 = resultNews.slice(3, 6);
     const resultNew3 = resultNews.slice(6, 9);
     const resultNew4 = resultNews.slice(9, 12);
-    console.log(resultNew1);
-    console.log(resultNew2);
-    console.log(resultNew3);
-    console.log(resultNew4);
     return res.render('home/home', {
         resultCat: resultCat,
         resultNew1: resultNew1,
@@ -32,11 +28,13 @@ router.get('/', async function(req, res) {
     });
 });
 
-router.get('/:name/baiviet=/:id', async function(req, res) {
+router.get('/:name/id=/:id', async function(req, res) {
     const name = req.params.name;
     const id = req.params.id;
     const list = await newModel.NewsDetail(name, id);
-    res.render('home/news', { list: list });
+    console.log(list);
+    res.send(list);
+    //res.render('home/news');
 });
 
 router.get('/search', function(req, res) {
