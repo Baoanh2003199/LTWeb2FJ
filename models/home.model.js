@@ -21,7 +21,7 @@ module.exports = {
 
     CatToNews: function(catID) {
         return db.load(
-            `select * from ${TBL_NEWS} where catID=${catID} and status=0 order by id desc limit 10`
+            `select * from ${TBL_NEWS} where catID=${catID} and status=1 order by id desc limit 10`
         );
     },
 
