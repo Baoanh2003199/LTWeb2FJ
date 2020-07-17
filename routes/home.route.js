@@ -1,6 +1,7 @@
 const express = require('express');
 const newModel = require('../models/home.model');
 const catModel = require('../models/category.model');
+const range = require('../utils/range');
 
 const router = express.Router();
 
@@ -13,8 +14,21 @@ router.get('/', async function(req, res) {
         resultCat[i].new = resultNewCatMuch;
         resultCat[i].new = resultManyToCatMuch;
     }
+    const resultNews = await newModel.NewNews();
+    const resultNew1 = resultNews.slice(0, 3);
+    const resultNew2 = resultNews.slice(3, 6);
+    const resultNew3 = resultNews.slice(6, 9);
+    const resultNew4 = resultNews.slice(9, 12);
+    console.log(resultNew1);
+    console.log(resultNew2);
+    console.log(resultNew3);
+    console.log(resultNew4);
     return res.render('home/home', {
         resultCat: resultCat,
+        resultNew1: resultNew1,
+        resultNew2: resultNew2,
+        resultNew3: resultNew3,
+        resultNew4: resultNew4,
     });
 });
 
