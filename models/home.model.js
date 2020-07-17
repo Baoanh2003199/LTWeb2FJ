@@ -36,4 +36,12 @@ module.exports = {
             `select * from ${TBL_NEWS} where catID=${catID} and status=1 order by views limit 10`
         );
     },
+
+    updateViews: function(entity) {
+        const condition = {
+            id: entity.id,
+        };
+        delete entity.views;
+        return db.update(TBL_NEWS, entity, condition);
+    },
 };
