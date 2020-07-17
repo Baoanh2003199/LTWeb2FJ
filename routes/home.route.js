@@ -32,6 +32,9 @@ router.get('/:name/id=:id', async function(req, res) {
     const name = req.params.name;
     const id = req.params.id;
     const list = await newModel.NewsDetail(name, id);
+    const addViews = list[0].views + 1;
+    console.log(list[0].views);
+    console.log(addViews);
     console.log(list);
     res.send(list);
     //res.render('home/news');
