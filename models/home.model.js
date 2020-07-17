@@ -27,7 +27,7 @@ module.exports = {
 
     NewsDetail: function(nameNew, idNews) {
         return db.load(
-            `select * from ${TBL_NEWS} where id=${idNews} and name=${nameNew}`
+            `select * from ${TBL_NEWS} where id=${idNews} and name like '${nameNew}'`
         );
     },
 
