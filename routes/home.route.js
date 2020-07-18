@@ -13,6 +13,7 @@ router.get('/', async function(req, res) {
         const resultManyToCatMuch = await newModel.ManyNews(catID);
         resultCat[i].newCat = resultNewCatMuch;
         resultCat[i].newMany = resultManyToCatMuch;
+        console.log(resultCat[i]);
     }
     const resultNews = await newModel.NewNews();
     const resultNew1 = resultNews.slice(0, 3);
@@ -33,11 +34,21 @@ router.get('/:name/id=:id', async function(req, res) {
     const id = req.params.id;
     const list = await newModel.NewsDetail(name, id);
     const addViews = list[0].views + 1;
-    console.log(list[0].views);
-    console.log(addViews);
-    console.log(list);
-    res.send(list);
-    //res.render('home/news');
+    const news = list[0];
+    if(news.length != 0){
+        news.tag = await newModel.getTagByNewsId(news.id);
+        news.tag.forEach(tag => {
+            console.log(tag);
+        });
+        console.log(list[0].views);
+        console.log(addViews);
+        console.log(list);
+        // res.send(list);
+        return  res.render('home/news',{
+            news: news
+        });
+    }
+   
 });
 
 router.get('/search', function(req, res) {

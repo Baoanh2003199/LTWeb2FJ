@@ -42,3 +42,23 @@ body{
 .container{
     background-color: whitesmoke;
 }
+.newsTitle{
+    text-align: center;
+    text-transform: uppercase;
+}
+.clearFloat{
+    clear: both;
+}
+.newsContent{
+    font-size: 120%;
+}
+.newsCategory{
+    font-size: 140%;
+    text-transform: uppercase;
+}
+.newsCategory a{
+    text-decoration: none; 
+}
+.eachNews{
+    flex-direction: row;
+}

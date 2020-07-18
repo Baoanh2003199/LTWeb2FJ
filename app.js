@@ -22,7 +22,7 @@ require('./middlewares/locals.mdw')(app);
 //require('./middlewares/passport.mdw')(app);
 // Set Public path for asset
 
-app.use(express.static(path.join(__dirname, '/public')));
+app.use('/public',express.static(__dirname + '/public'));
 
 const redirectLogin = (req, res, next)=>{
     if(!res.locals.isLoggedIn)

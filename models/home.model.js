@@ -27,7 +27,11 @@ module.exports = {
 
     NewsDetail: function(nameNew, idNews) {
         return db.load(
-            `select * from ${TBL_NEWS} where id=${idNews} and name like '${nameNew}'`
+            `select n.*, c.name catName
+            from ${TBL_NEWS} n, category c
+            where n.id=${idNews} 
+            and n.name like '${nameNew}'
+            and n.catId = c.id`
         );
     },
 
@@ -44,4 +48,12 @@ module.exports = {
         delete entity.views;
         return db.update(TBL_NEWS, entity, condition);
     },
+    getTagByNewsId: function(newsId){
+        return db.load(
+            `select t.*
+            from  news_tag nt, tag t
+            where nt.newID = ${newsId}
+            and nt.tagID = t.id`
+        );
+    }
 };
