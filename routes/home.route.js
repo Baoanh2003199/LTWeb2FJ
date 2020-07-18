@@ -35,20 +35,24 @@ router.get('/:name/id=:id', async function(req, res) {
     const list = await newModel.NewsDetail(name, id);
     const addViews = list[0].views + 1;
     const news = list[0];
-    if(news.length != 0){
+    if (news.length != 0) {
         news.tag = await newModel.getTagByNewsId(news.id);
-        news.tag.forEach(tag => {
+        news.tag.forEach((tag) => {
             console.log(tag);
         });
         console.log(list[0].views);
         console.log(addViews);
         console.log(list);
         // res.send(list);
-        return  res.render('home/news',{
-            news: news
+        const entity = {
+            id: id,
+            views: addViews,
+        };
+        await newModel.updateViews(entity);
+        return res.render('home/news', {
+            news: news,
         });
     }
-   
 });
 
 router.get('/search', function(req, res) {
