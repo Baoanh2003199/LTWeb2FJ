@@ -7,31 +7,31 @@
 
 {{!-- START MAIN --}}
 <div class="container pt-5 min-vh-100">
-    <div class="newsCategory float-left ml-4 mt-2">
-        <div><a href="/category/{{news.catID}}">{{news.catName}}</a></div>
-    </div>
-   <h2 class="newsTitle py-5">{{news.name}}</h2>
-   <div class="d-flex justify-content-center">
-       <img src="" alt="main image">
-   </div>
-  
-   <div class="float-left ml-5">
-     <div> Ngày đăng: 12/02/2020</div> 
+  <div class="newsCategory float-left ml-4 mt-2">
+    <div><a href="/category/{{news.catID}}">{{news.catName}}</a></div>
+  </div>
+  <h2 class="newsTitle py-5">{{news.name}}</h2>
+  <div class="d-flex justify-content-center">
+    <img src="/public/uploads/{{news.thumbnail}}" alt="main image">
+  </div>
 
-     <div>tag: 
-       {{#each news.tag}}
-         <a href="/tag/{{id}}"><span class="badge badge-success">{{name}}</span></a> 
-       {{/each}}
-     </div>
+  <div class="float-left ml-5">
+    <div> Ngày đăng: 12/02/2020</div>
+
+    <div>tag:
+      {{#each news.tag}}
+      <a href="/tag/{{id}}"><span class="badge badge-success">{{name}}</span></a>
+      {{/each}}
     </div>
-    <div class="clearFloat"></div>
-    <div class="newsContent p-2 pt-3">
-      {{{news.content}}}
-    </div>
+  </div>
+  <div class="clearFloat"></div>
+  <div class="newsContent p-2 pt-3">
+    {{{news.content}}}
+  </div>
 </div>
 
 <div class="container py-4">
   <div class="headerBar">bình luận</div>
-</div>          
+</div>
 
 {{!-- END MAIN --}}
