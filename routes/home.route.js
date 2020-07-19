@@ -47,6 +47,7 @@ router.get('/:name/id=:id', async function(req, res) {
             id: id,
             views: addViews,
         };
+        console.log(entity);
         await newModel.updateViews(entity);
         return res.render('home/news', {
             news: news,
