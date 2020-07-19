@@ -27,6 +27,7 @@
         <div class="form-group">
           <label for="">Mục chính</label>
           <select class="form-control" name="parentID" id="">
+            <option name="parentID" value="0" id="0">khong co</option>
             {{#each list}}
             <option name="parentID" value="{{id}}" id="{{id}}">{{name}}</option>
             {{/each}}
