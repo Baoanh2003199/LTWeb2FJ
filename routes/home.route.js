@@ -43,7 +43,6 @@ router.get('/:name/id=:id', async function(req, res) {
         console.log(list[0].views);
         console.log(addViews);
         console.log(list);
-        // res.send(list);
         const entity = {
             id: id,
             views: addViews,
