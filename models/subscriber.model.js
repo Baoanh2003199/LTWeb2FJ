@@ -27,11 +27,10 @@ module.exports = {
             id: entity.id,
         };
 
-        delete entity.id;
         return db.update(TBL_SUBSCRIBER, entity, condition);
     },
 
-    byEmail: function(email){
+    byEmail: function(email) {
         return db.load(`select * from ${TBL_SUBSCRIBER} where email='${email}'`);
-    }
+    },
 };

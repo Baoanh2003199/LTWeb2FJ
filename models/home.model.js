@@ -29,7 +29,7 @@ module.exports = {
         return db.load(
             `select n.*, c.name catName
             from ${TBL_NEWS} n, category c
-            where n.id=${idNews} 
+            where n.id=${idNews}
             and n.name like '${nameNew}'
             and n.catId = c.id`
         );
@@ -45,15 +45,14 @@ module.exports = {
         const condition = {
             id: entity.id,
         };
-        delete entity.views;
         return db.update(TBL_NEWS, entity, condition);
     },
-    getTagByNewsId: function(newsId){
+    getTagByNewsId: function(newsId) {
         return db.load(
             `select t.*
             from  news_tag nt, tag t
             where nt.newID = ${newsId}
             and nt.tagID = t.id`
         );
-    }
+    },
 };

@@ -22,7 +22,6 @@ module.exports = {
         const condition = {
             id: entity.id,
         };
-        delete entity.id;
         return db.update(TBL_TAG, entity, condition);
     },
 

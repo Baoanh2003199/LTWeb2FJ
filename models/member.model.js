@@ -23,7 +23,6 @@ module.exports = {
             id: entity.id,
         };
 
-        delete entity.id;
         return db.update(TBL_MEMBER, entity, condition);
     },
 
