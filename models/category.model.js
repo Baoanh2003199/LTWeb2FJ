@@ -10,6 +10,10 @@ module.exports = {
         on cat1.parentID = cat2.id`);
     },
 
+    catSingle: function() {
+        return db.load(`select * from ${TBL_CATEGORY} where parentID='0'`);
+    },
+
     add: function(entity) {
         return db.insert(TBL_CATEGORY, entity);
     },
@@ -35,7 +39,7 @@ module.exports = {
     },
 
     allSubCategory: function() {
-        return db.load(`select * from ${TBL_CATEGORY}`);
+        return db.load(`select * from ${TBL_CATEGORY} where parentID='0'`);
     },
 
     singeNew: function(idNews) {
