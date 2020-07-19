@@ -42,4 +42,8 @@ module.exports = {
     singeNew: function(idNews) {
         return db.load(`select name from ${TBL_CATEGORY} where id=${idNews}`);
     },
+
+    nameCategory: function() {
+        return db.load(`select * from ${TBL_CATEGORY} where parentID='0'`);
+    },
 };
