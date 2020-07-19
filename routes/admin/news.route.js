@@ -81,6 +81,7 @@ route.get('/edit/:id', async function(req, res) {
     const tagRow = await tagModel.all();
     const catRow = await catModel.all();
     const news = rows[0];
+    console.log(news);
     if (rows.length === 0) return res.send('Invalid parameter.');
     res.render('admin/news/edit', { news, tag: tagRow, cat: catRow });
 });
