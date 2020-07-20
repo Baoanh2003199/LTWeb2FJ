@@ -1,9 +1,9 @@
 const express = require('express');
-const route = express.Router();
-const userModel = require('../models/user.model');
-const subModel = require('../models/subscriber.model');
-const memModel = require('../models/member.model');
-const roleModel = require('../models/role.model');
+const routes = express.Router();
+const userModel = require('../../models/user.model');
+const subModel = require('../../models/subscriber.model');
+const memModel = require('../../models/member.model');
+const roleModel = require('../../models/role.model');
 const { check, validationResult } = require('express-validator');
 const DATE_FORMATER = require('dateformat');
 const multer = require('multer');
@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-route.get('/', async function(req, res) {
+routes.get('/', async function(req, res) {
     const subRes = await subModel.view(res.locals.userId);
     const user = await userModel.view(res.locals.userId);
     const roleRes = await roleModel.single(user[0].roleId);
@@ -48,9 +48,8 @@ route.get('/', async function(req, res) {
     res.render('profile/personal_infor', { user: obj });
 });
 
-route.post('/', upload.single('avatar'), async function(req, res) {
+routes.post('/', upload.single('avatar'), async function(req, res) {
     const sObj = await subModel.view(res.locals.userId);
-    console.log(req.body);
     if(!req.file){
         const entity = {
             id: sObj[0].id,
@@ -102,4 +101,6 @@ route.post('/', upload.single('avatar'), async function(req, res) {
     
 });
 
-module.exports = route;
+routes.use('/changepassword', require('./change_password.route'));
+
+module.exports = routes;
