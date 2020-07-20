@@ -193,7 +193,7 @@ async function handler(req, res, view)
                                 email : subscriber[0].email,
                                 token_reset : randomString(),
                                 expired: new Date(Date.now() + 1 * 86400000),
-                                sent_time: rsRecord[0].sent_time + 1,
+                                sent_time: 0,
                                 available_time: new Date(Date.now() + 0)
                             }; 
                             await rsModel.update(record);

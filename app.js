@@ -10,6 +10,7 @@ app.use(
 );
 
 const catModel = require('./models/category.model');
+const subModel = require('./models/subscriber.model');
 // Include MiddleWare
 // - View: Config for view handlebars
 require('./middlewares/views.mdw')(app);
@@ -94,6 +95,11 @@ app.use(async function(req, res, next) {
     res.locals.userId = req.session.userId;
     res.locals.username = req.session.name;
     res.locals.cat = await catModel.all();
+    if(res.locals.isLoggedIn)
+    {
+        const sub = await subModel.view(res.locals.userId);
+        res.locals.avatar = sub[0].avatar;
+    }
     next();
 });
 
