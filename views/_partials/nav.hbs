@@ -14,12 +14,11 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    {{#each listMain}}
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
+        <ul class="navbar-nav mr-auto">        
+      {{#each listMain}}
+        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
           role="button" data-toggle="dropdown">
-          <i class="fa fa-bars"></i>
           {{name}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,8 +26,8 @@
           <a class="dropdown-item" href="/category/name={{name}}/id={{id}}">{{name}}</a>
           {{/each}}
         </li>
-      </ul>
       {{/each}}
+      </ul>
       <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex
         dropdown-menu-right">
         <li class="nav-item">
