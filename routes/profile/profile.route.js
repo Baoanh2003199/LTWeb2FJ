@@ -51,6 +51,14 @@ routes.get('/', async function(req, res) {
 routes.post('/', upload.single('avatar'), async function(req, res) {
     const sObj = await subModel.view(res.locals.userId);
     if(!req.file){
+        var path = './public/avatar/'+sObj[0].avatar;
+        var avatarname = "default.png";
+        fs.access(path, fs.F_OK, (err) => {
+            if (!err) {
+                console.log("avatar exists");
+                 avatarname = sObj[0].avatar;
+            }
+          })
         const entity = {
             id: sObj[0].id,
             email: sObj[0].email,
@@ -58,7 +66,8 @@ routes.post('/', upload.single('avatar'), async function(req, res) {
             phone: req.body.phone,
             dob: req.body.dob,
             userID: sObj[0].userID,
-            avatar: sObj[0].avatar,  
+            avatar: avatarname,
+            expired: sObj[0].expired 
         }
         const succes = await subModel.update(entity);
         if(succes)
@@ -87,6 +96,7 @@ routes.post('/', upload.single('avatar'), async function(req, res) {
                 name: req.body.name,
                 phone: req.body.phone,
                 dob: req.body.dob,
+                expired: sObj[0].expired,
                 userID: sObj[0].userID,
                 avatar: '200x240-'+req.file.filename, 
             }
