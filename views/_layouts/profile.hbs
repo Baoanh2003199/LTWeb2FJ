@@ -57,6 +57,7 @@ box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
                                 Thông tin cá nhân
                             </a>
                         </li>
+                        {{#if isWriter}}
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -64,13 +65,30 @@ box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
                             </a>
                             <div class="dropdown-menu w-auto " aria-labelledby="newsDropdown">
                                 <a class="dropdown-item" href="/">Đăng bài</a>
-                                <a class="dropdown-item" href="/">Bài viết được duyệt</a>
-                                <a class="dropdown-item" href="/">Bài viết chưa được duyệt</a>
+                                <a class="dropdown-item" href="/">Đã Được duyệt</a>
+                                <a class="dropdown-item" href="/">Chưa được duyệt</a>
                                 <a class="dropdown-item" href="/">Chờ xuất bản</a>
                                 <a class="dropdown-item" href="/">Đã xuất bản</a>
                                 <a class="dropdown-item" href="/">Bị từ chối</a>
                             </div>
                         </li>
+                        {{/if}}
+                          {{#if isEditor}}
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                Bài viết
+                            </a>
+                            <div class="dropdown-menu w-auto " aria-labelledby="newsDropdown">
+                                <a class="dropdown-item" href="/">Đã được duyệt</a>
+                                <a class="dropdown-item" href="/">Chưa được duyệt</a>
+                                <a class="dropdown-item" href="/">Chờ xuất bản</a>
+                                <a class="dropdown-item" href="/">Đã xuất bản</a>
+                                <a class="dropdown-item" href="/">Bị từ chối</a>
+                            </div>
+                        </li>
+                        {{/if}}
+                        
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-tags" aria-hidden="true"></i>
