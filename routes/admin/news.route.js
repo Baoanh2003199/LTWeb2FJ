@@ -7,6 +7,9 @@ const list = require('../../utils/array');
 const route = express.Router();
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+const PDFDocument = require('pdfkit');
+const doc = new PDFDocument();
 
 // Danh sách bài viết
 route.get('/', async function(req, res) {
@@ -62,6 +65,7 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
         console.log(result);
         const tags = req.body.tagID;
         const nuevo = tags.map((i) => Number(i, 10));
+
         for (i = 0; i < nuevo.length; i++) {
             const entitys = {
                 newID: result.insertId,
@@ -70,6 +74,14 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
             console.log(entitys);
             await news_tagModel.insert(entitys);
         }
+        var path = './public/pdf/' + entity.name + '.pdf';
+        var contentHTML = entity.content;
+        doc.text(entity.content);
+        doc.fontSize(15);
+        doc.pipe(fs.createWriteStream(path, 'utf8')).on('finish', function() {
+            console.log('PDF closed');
+        });
+        doc.end();
     }
     res.redirect('/admin/news');
 });
