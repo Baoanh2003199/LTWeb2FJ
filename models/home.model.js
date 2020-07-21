@@ -55,4 +55,10 @@ module.exports = {
             and nt.tagID = t.id`
         );
     },
+
+    search: function(text) {
+        return db.load(
+            `select id,name,description,thumbnail from ${TBL_NEWS} WHERE MATCH (name,description) AGAINST ('${text}' IN NATURAL LANGUAGE MODE)`
+        );
+    },
 };

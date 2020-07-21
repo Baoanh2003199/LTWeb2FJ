@@ -10,6 +10,10 @@ module.exports = {
         on cat1.parentID = cat2.id`);
     },
 
+    catParentID: function(parentID) {
+        return db.load(`select * from ${TBL_CATEGORY} where parentID=${parentID}`);
+    },
+
     catSingle: function() {
         return db.load(`select * from ${TBL_CATEGORY} where parentID='0'`);
     },

@@ -7,7 +7,10 @@ const route = express.Router();
 // Danh sách thể loại
 route.get('/', async function(req, res) {
     const list = await catModel.all();
-    res.render('admin/category/home', { cat: list, empty: list.length === 0 });
+    return res.render('admin/category/home', {
+        cat: list,
+        empty: list.length === 0,
+    });
 });
 
 // Thêm thể loại
