@@ -64,6 +64,7 @@ router.get('/search', async function(req, res) {
     const name = req.query.name;
     console.log(name);
     const searchList = await newModel.search(name);
+    console.log(searchList);
     res.render('home/search', {
         searchList: searchList,
         empty: searchList.length === 0,
