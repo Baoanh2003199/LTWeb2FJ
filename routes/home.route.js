@@ -60,7 +60,13 @@ router.get('/:name/id=:id', async function(req, res) {
     }
 });
 
-router.get('/search', function(req, res) {
-    res.render('home/search');
+router.get('/search', async function(req, res) {
+    const name = req.query.name;
+    console.log(name);
+    const searchList = await newModel.search(name);
+    res.render('home/search', {
+        searchList: searchList,
+        empty: searchList.length === 0,
+    });
 });
 module.exports = router;
