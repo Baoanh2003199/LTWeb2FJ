@@ -36,7 +36,8 @@
                             <td>{{phone}}</td>
                             <td>{{dob}}</td>
                             <td>{{expired}}</td>
-                            <td class="d-flex justify-content-center">
+                            <td >
+                                <div class="d-flex justify-content-center">
                                 <a class="btn btn-success float-left mx-1"
                                     href="/admin/member/edit/{{id}}"><i
                                         class="fa fa-pencil"
@@ -54,6 +55,7 @@
                                         mx-1"><i class="fa fa-trash"
                                             aria-hidden="true" title="Xóa"></i></button>
                                 </form>
+                                </div>
                             </td>
                         </tr>
                         {{/each}}

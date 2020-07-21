@@ -39,7 +39,8 @@
                             <td>{{phone}}</td>
                             <td>{{dob}}</td>
                             <td>{{userID}}</td>
-                            <td class="d-flex justify-content-center">
+                            <td>
+                                <div class="d-flex justify-content-center">
                                 <a class="btn btn-success float-left mx-1"
                                     href="/admin/member/edit/{{id}}"><i
                                         class="fa fa-pencil"
@@ -56,7 +57,8 @@
                                     <button type="submit" class="btn btn-danger
                                         mx-1"><i class="fa fa-trash"
                                             aria-hidden="true" title="Xóa"></i></button>
-                                </form>
+                                </form>       
+                                </div>
                             </td>
                         </tr>
                         {{/each}}

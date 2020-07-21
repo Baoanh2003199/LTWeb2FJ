@@ -39,8 +39,9 @@
                             <td>{{description}}</td>
                             <td>{{catID}}</td>
                             <td>{{status}}</td>
-                            <td class="d-flex justify-content-center">
-                                <a class="btn btn-success float-left mx-3"
+                            <td >
+                                <div class="d-flex justify-content-center">
+                                    <a class="btn btn-success float-left mx-3"
                                     href="/admin/news/edit/{{id}}"><i class="fa
                                         fa-pencil"
                                         aria-hidden="true" title="Sửa"></i></a>
@@ -57,6 +58,7 @@
                                         mx-3"><i class="fa fa-trash"
                                             aria-hidden="true" title="Xóa"></i></button>
                                 </form>
+                                </div>
                             </td>
                         </tr>
                         {{/each}}

@@ -1,11 +1,15 @@
 const express = require('express');
 const subscriberModel = require('../../models/subscriber.model');
-
+const DATE_FORMATER = require('dateformat');
 const route = express.Router();
 
 //list all
 route.get('/', async function(req, res) {
     const list = await subscriberModel.all();
+    list.forEach(subscriber => { 
+        subscriber.dob = DATE_FORMATER(subscriber.dob, 'dd/mm/yyyy'),
+        subscriber.expired = DATE_FORMATER(subscriber.expired, 'HH:MM:ss - dd/mm/yyyy')
+      }); 
     res.render('admin/subscriber/home', { sub: list });
 });
 
