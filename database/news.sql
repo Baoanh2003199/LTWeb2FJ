@@ -41,6 +41,7 @@ CREATE TABLE `news` (
    `status` nvarchar(255) default 0,
    `views` int(11) default 0,
    `thumbnail` nvarchar(255) default null,
+	 FULLTEXT (name,description)
   PRIMARY KEY (`id`)
 );
 
