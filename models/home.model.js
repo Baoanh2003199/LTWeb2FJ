@@ -58,7 +58,7 @@ module.exports = {
 
     search: function(text) {
         return db.load(
-            `select name,description,thumbnail from ${TBL_NEWS} WHERE MATCH (name,description) AGAINST ('${text}' IN NATURAL LANGUAGE MODE)`
+            `select id,name,description,thumbnail from ${TBL_NEWS} WHERE MATCH (name,description) AGAINST ('${text}' IN NATURAL LANGUAGE MODE)`
         );
     },
 };
