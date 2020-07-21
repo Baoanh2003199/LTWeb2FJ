@@ -1,7 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow" style="background: #8360c3;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #2ebf91, #8360c3);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-">
+<nav class="navbar navbar-expand-lg navbar-dark shadow" style="background:
+  #8360c3; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #2ebf91, #8360c3); /* Chrome
+  10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #2ebf91, #8360c3); /* W3C, IE 10+/
+  Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
   <a class="navbar-brand" href="/">
     <h5><i class="fa fa-home" aria-hidden="true"></i> Tin Tức 14</h5>
   </a>
@@ -12,30 +14,35 @@ background: linear-gradient(to left, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, Fi
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    {{#each listMain}}
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
           role="button" data-toggle="dropdown">
           <i class="fa fa-bars"></i>
-          Danh mục
+          {{name}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          {{#each cat}}
-          <a class="dropdown-item" href="category/{{id}}">{{name}}</a>
+          {{#each parentCat}}
+          <a class="dropdown-item" href="/category/name={{name}}/id={{id}}">{{name}}</a>
           {{/each}}
         </li>
       </ul>
+      {{/each}}
       <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex
         dropdown-menu-right">
         <li class="nav-item">
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <input class="form-control" type="text" placeholder="Search"
+            aria-label="Search">
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+          <a class="nav-link dropdown-toggle" href="#"
+            id="navbarDropdown"
             role="button" data-toggle="dropdown">
             {{#if isLoggedIn}}
-                <img src="/public/avatar/{{avatar}}" class="rounded-circle z-depth-0"
-            alt="avatar image" height="35" width="35">
+            <img src="/public/avatar/{{avatar}}"
+              class="rounded-circle z-depth-0"
+              alt="avatar image" height="35" width="35">
             <aclass="nav-item">{{username}}</a>
             {{else}}
             <aclass="nav-item">Đăng nhập | Đăng ký</a>
@@ -48,8 +55,8 @@ background: linear-gradient(to left, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, Fi
             <a class="dropdown-item" href="/admin">
               <i class="fa fa-address-card-o" aria-hidden="true"></i>
               Bảng quản trị</a>
-              {{/if}}
-              <a class="dropdown-item" href="/profile">
+            {{/if}}
+            <a class="dropdown-item" href="/profile">
               <i class="fa fa-user" aria-hidden="true"></i>
               Thông tin cá nhân</a>
             <a class="dropdown-item" href="/logout">
