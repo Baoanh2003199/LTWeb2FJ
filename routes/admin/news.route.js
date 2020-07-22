@@ -8,6 +8,7 @@ const route = express.Router();
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+var encoding = require('encoding');
 const PDFDocument = require('pdfkit');
 const doc = new PDFDocument();
 
@@ -76,7 +77,8 @@ route.post('/add', upload.single('thumbnail'), async function (req, res) {
     }
     var path = './public/pdf/' + entity.name + '.pdf';
     var contentHTML = entity.content;
-    doc.text(contentHTML, 20, 20);
+    var resultBuffer = encoding.convert(contentHTML, 'ASCII', 'UTF-8');
+    doc.text(resultBuffer, 20, 20);
     doc.fontSize(15);
     doc.pipe(fs.createWriteStream(path, 'utf8')).on('finish', function () {
       console.log('PDF closed');
