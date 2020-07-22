@@ -2,7 +2,6 @@ const express = require('express');
 const routes = express.Router();
 const userModel = require('../../models/user.model');
 const subModel = require('../../models/subscriber.model');
-const memModel = require('../../models/member.model');
 const roleModel = require('../../models/role.model');
 const { check, validationResult } = require('express-validator');
 const DATE_FORMATER = require('dateformat');

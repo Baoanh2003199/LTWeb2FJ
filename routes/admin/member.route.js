@@ -1,14 +1,31 @@
 const express = require('express');
-const memberModel = require('../../models/member.model');
-const userModel = require('../../models/user.model');
+const memberModel = require('../../models/subscriber.model');
 const roleModel = require('../../models/role.model');
+const DATE_FORMATER = require('dateformat');
 
 const route = express.Router();
 
 // Danh sách thành viên
 route.get('/', async function(req, res) {
-    const list = await memberModel.all();
-    res.render('admin/member/home', { member: list });
+    const list = await memberModel.allMember();
+    const listRole = await roleModel.all;
+      for(var subscriber of list)
+      {
+            subscriber.dob = DATE_FORMATER(subscriber.dob, 'dd/mm/yyyy')
+            subscriber.expired = DATE_FORMATER(subscriber.expired, 'HH:MM:ss - dd/mm/yyyy')
+            var role = await roleModel.single(subscriber.roleId)
+            subscriber.role = role[0].name
+            if(subscriber.userID == res.locals.userId)
+            {
+                subscriber.self = true
+            }
+            else
+            {
+                subscriber.self = false
+            }
+            
+      }
+    res.render('admin/member/home', { member: list, roleList: listRole, isEmpty: listRole.length === 0 });
 });
 
 // Thêm thành viên

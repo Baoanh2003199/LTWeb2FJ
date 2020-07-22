@@ -5,7 +5,7 @@ const route = express.Router();
 
 //list all
 route.get('/', async function(req, res) {
-    const list = await subscriberModel.all();
+    const list = await subscriberModel.allSubscriber();
     list.forEach(subscriber => { 
         subscriber.dob = DATE_FORMATER(subscriber.dob, 'dd/mm/yyyy'),
         subscriber.expired = DATE_FORMATER(subscriber.expired, 'HH:MM:ss - dd/mm/yyyy')

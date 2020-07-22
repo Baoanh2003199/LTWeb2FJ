@@ -7,6 +7,14 @@ module.exports = {
         return db.load(`select * from ${TBL_SUBSCRIBER}`);
     },
 
+    allMember: function()
+    {
+        return db.load(`select * from ${TBL_SUBSCRIBER} s join user u on s.UserID = u.id where u.roleID <> (select id from role where code = 'SUBSCRIBER') `);
+    },
+    allSubscriber: function(){
+        return db.load(`select * from ${TBL_SUBSCRIBER} s join user u on s.UserID = u.id where u.roleID = (select id from role where code = 'SUBSCRIBER') `);
+    },
+
     view: function(id) {
         return db.load(`select * from ${TBL_SUBSCRIBER} where id=${id}`);
     },
