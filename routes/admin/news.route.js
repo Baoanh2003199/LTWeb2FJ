@@ -77,7 +77,8 @@ route.post('/add', upload.single('thumbnail'), async function (req, res) {
     }
     var path = './public/pdf/' + entity.name + '.pdf';
     var contentHTML = entity.content;
-    var resultBuffer = encoding.convert(contentHTML, 'ASCII', 'UTF-8');
+    var regexContent = contentHTML.replace(/<[^>]+>/g, '');
+    var resultBuffer = encoding.convert(regexContent, 'ASCII', 'UTF-8');
     doc.text(resultBuffer, 20, 20);
     doc.fontSize(15);
     doc.pipe(fs.createWriteStream(path, 'utf8')).on('finish', function () {
