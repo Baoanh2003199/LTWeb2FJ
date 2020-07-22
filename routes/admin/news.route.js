@@ -77,7 +77,9 @@ route.post('/add', upload.single('thumbnail'), async function (req, res) {
     }
     var path = './public/pdf/' + entity.name + '.pdf';
     var contentHTML = entity.content;
-    var regexContent = contentHTML.replace(/<[^>]+>/g, '');
+    var regexContent = contentHTML.replace(
+      /<(div)([ ]([a-zA-Z]+)=("|')[^"\']+("|'))*[^>]+>([^<]+)(<\/div>)/gi
+    );
     var resultBuffer = encoding.convert(regexContent, 'ASCII', 'UTF-8');
     doc.text(resultBuffer, 20, 20);
     doc.fontSize(15);
