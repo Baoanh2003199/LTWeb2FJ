@@ -41,4 +41,8 @@ module.exports = {
     byEmail: function(email) {
         return db.load(`select * from ${TBL_SUBSCRIBER} where email='${email}'`);
     },
+
+    byNickname: function(nickname) {
+        return db.load(`select * from ${TBL_SUBSCRIBER} where nickname='${nickname}'`);
+    },
 };

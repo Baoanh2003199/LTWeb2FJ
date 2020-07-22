@@ -25,18 +25,6 @@ require('./middlewares/locals.mdw')(app);
 
 app.use('/public',express.static(__dirname + '/public'));
 
-const redirectLogin = (req, res, next)=>{
-    if(!res.locals.isLoggedIn)
-    {
-        req.app.locals.layout = 'main';
-        res.redirect('/login');
-    }
-    else
-    {
-        next();
-    }
-}
-
 // Set Layout prefix url is "/admin" is admin.hbs
 app.all('/admin*', function(req, res, next) {
     req.app.locals.layout = 'admin';
@@ -103,12 +91,37 @@ app.use(async function(req, res, next) {
     next();
 });
 
+const adminOnly = (req, res, next)=>{
+    if(!res.locals.isLoggedIn && !res.locals.isAdmin)
+    {
+        req.app.locals.layout = 'main';
+        res.redirect('/login');
+    }
+    else
+    {
+        next();
+    }
+}
+
+
+const redirectLogin = (req, res, next)=>{
+    if(!res.locals.isLoggedIn)
+    {
+        req.app.locals.layout = 'main';
+        res.redirect('/login');
+    }
+    else
+    {
+        next();
+    }
+}
+
 // Route
-app.use('/admin', require('./routes/admin/home.route'));
-app.use('/login', require('./routes/login.route'));
-app.use('/register', require('./routes/register.route'));
-app.use('/confirmation', require('./routes/confirmation.route'));
-app.use('/retrieve', require('./routes/reset_password.route'));
+app.use('/admin', adminOnly ,require('./routes/admin/home.route'));
+app.use('/login',require('./routes/login.route'));
+app.use('/register',require('./routes/register.route'));
+app.use('/confirmation',require('./routes/confirmation.route'));
+app.use('/retrieve',require('./routes/reset_password.route'));
 app.use('/profile',redirectLogin, require('./routes/profile/profile.route'));
 
 app.get('/logout', function(req, res) {

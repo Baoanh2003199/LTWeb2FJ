@@ -32,7 +32,7 @@ box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
       <input name="name" type="text" class="form-control" id="name" placeholder="Nhập họ tên đầy đủ">
     </div>
     <div class="form-group" style="margin: 10px;">
-      <label for="dob"><i class="fa fa-pencil" aria-hidden="true"></i> Ngày sinh: </label>
+      <label for="dob"><i class="fa fa-calendar" aria-hidden="true"></i> Ngày sinh: </label>
       <input name="dob" type="date" class="form-control" id="dob" >
     </div>
       <div class="form-group" style="margin: 10px">
@@ -43,12 +43,6 @@ box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
     <div class="checkbox" style="margin: 10px">
       <label><input type="checkbox" name="terms" id="terms"> Tôi đã đồng ý với các điều khoản trên</label>
     </div>
-      {{#if this.isExists}}
-        <br>
-      <div class="alert alert-danger" role="alert">
-       <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Tên người dùng đã tồn tại
-      </div>
-       {{/if}}
        {{#if this.isError}}
        <div class="alert alert-danger" role="alert">
           {{#each this.Error}}
@@ -58,9 +52,9 @@ box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
        <br>
        {{/if}}
     <button id="submit" type="submit" class="btn btn-success" style="margin-right: 2%; margin-left:2%">
-      <i class="fa fa-user-plus" aria-hidden="true"></i>
+      <i class="fa fa-check" aria-hidden="true"></i>
       Đăng Ký</button>
-    <h7>Đã có tài khoản ? <a href="/login">Đăng nhập</a> </h7> 
+    <h7>Đã có tài khoản ? <i class="fa fa-hand-o-right" aria-hidden="true"></i> <a href="/login">Đăng nhập</a> </h7> 
   </form> 
   </div>
 </div>

@@ -6,6 +6,7 @@ const tokenModel = require('../models/register_Token.model');
 var mailer = require('../utils/mailer');
 const { check, validationResult } = require('express-validator');
 const TokenGenerator = require('uuid-token-generator');
+const userModel = require('../models/user.model');
  
 
 
@@ -29,8 +30,16 @@ route.post('/', [
     check('username', 'Tên người dùng không được trống').not().isEmpty(),
     check('username', 'Tên người dùng phải chỉ được dùng chữ và số').isAlphanumeric(),
     check('username', 'Tên người dùng phải hơn 6 kí tự').isLength({ min: 6 }),
+    check('username').custom(async function(value){
+        var user = await regModel.byName(value)
+        return user.length == 0;
+    }).withMessage('Tên người dùng đã tồn tại'),
     check('email', 'Email không được trống').not().isEmpty(),
-    check('email', 'Email không hợp lệ').isEmail(),
+    check('email').custom(async function(value){
+        var email = await subModel.byEmail(value)
+        return email.length == 0;
+    }).withMessage('Tên người dùng đã tồn tại'),
+    check('email', 'Định dạng email không hợp lệ').isEmail(),
     check('password', 'Mật khẩu phải hơn 6 kí tự').isLength({ min: 6 }).custom((val, { req}) => {
         if (val !== req.body.cpassword) {
             throw new Error("Mật khẩu không khớp");
@@ -52,13 +61,6 @@ route.post('/', [
     }
     else
     {
-        const result = await regModel.byName(req.body.username);
-        if(result[0])
-        {
-            res.render('register', {isExists: true})
-        }
-        else
-        {
             const usr={
                 username: req.body.username,
                 password: req.body.password,
@@ -111,9 +113,6 @@ route.post('/', [
                 }
                 
             }
-            
-            
-        }
     }
     
   })

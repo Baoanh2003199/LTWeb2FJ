@@ -39,8 +39,8 @@
                         {{#if isWriter}}
                         <div class="form-group" style="margin: 10px;">
                         <label for="nickname"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Bút danh: </label>
-                        <label class="text_label" name="nickname">{{user.name}}</label><div class="edit"></div>
-                        <input type="text" value="{{user.name}}" name="nickname"/>
+                        <label class="text_label" name="nickname">{{user.nickname}}</label><div class="edit"></div>
+                        <input type="text" value="{{user.nickname}}" name="nickname"/>
                         </div>
                         {{/if}}
                         <div class="form-group" style="margin: 10px;">
@@ -64,6 +64,13 @@
                         <lable name="expired" style="color: red;">{{user.expired}}</lable>
                         </div>
                         {{/if}}
+                        {{#if this.nicknameExists}}
+                            <div class="alert alert-danger" role="alert">
+                                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>Bút danh đã tồn tại, vui lòng chọn bút danh khác <br>
+                                </div>
+                            <br>
+                        {{/if}}
+
                         {{#if this.isError}}
                             <div class="alert alert-danger" role="alert">
                                 {{#each this.Error}}

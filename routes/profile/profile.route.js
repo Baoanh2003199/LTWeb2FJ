@@ -49,30 +49,64 @@ routes.get('/', async function(req, res) {
 
 routes.post('/', upload.single('avatar'), async function(req, res) {
     const sObj = await subModel.view(res.locals.userId);
+    const nick = null;
     if(!req.file){
         var path = './public/avatar/'+sObj[0].avatar;
         var avatarname = "default.png";
         fs.access(path, fs.F_OK, (err) => {
             if (!err) {
-                console.log("avatar exists");
                  avatarname = sObj[0].avatar;
             }
           })
-        const entity = {
-            id: sObj[0].id,
-            email: sObj[0].email,
-            name: req.body.name,
-            phone: req.body.phone,
-            dob: req.body.dob,
-            userID: sObj[0].userID,
-            avatar: avatarname,
-            expired: sObj[0].expired 
-        }
-        const succes = await subModel.update(entity);
-        if(succes)
-        {
-            res.redirect('/profile');
-        }
+        if(res.locals.isWriter)
+          {
+              const subQuery = await subModel.byNickname(req.body.nickname);
+              if(!subModel)
+              { 
+                const entity = {
+                    id: sObj[0].id,
+                    email: sObj[0].email,
+                    name: req.body.name,
+                    phone: req.body.phone,
+                    dob: req.body.dob,
+                    userID: sObj[0].userID,
+                    avatar: avatarname,
+                    expired: sObj[0].expired,
+                    nickname: req.body.nickname
+                }
+                const succes = await subModel.update(entity);
+                if(succes)
+                {
+                    res.render('profile/personal_infor');
+                }
+              }
+              else
+              { 
+                res.render('profile/personal_infor',{nicknameExists:true});
+              }
+              
+              
+          } 
+          else
+          {
+            const entity = {
+                id: sObj[0].id,
+                email: sObj[0].email,
+                name: req.body.name,
+                phone: req.body.phone,
+                dob: req.body.dob,
+                userID: sObj[0].userID,
+                avatar: avatarname,
+                expired: sObj[0].expired,
+                nickname: ''
+            }
+            const succes = await subModel.update(entity);
+            if(succes)
+            {
+                res.render('profile/personal_infor');
+            }
+          }
+
     }
     else
     {
@@ -89,21 +123,53 @@ routes.post('/', upload.single('avatar'), async function(req, res) {
             fs.unlink("./public/avatar/"+req.file.filename, function (err) {
                 if (err) throw err;
             }); 
-            const entity = {
-                id: sObj[0].id,
-                email: sObj[0].email,
-                name: req.body.name,
-                phone: req.body.phone,
-                dob: req.body.dob,
-                expired: sObj[0].expired,
-                userID: sObj[0].userID,
-                avatar: '200x240-'+req.file.filename, 
-            }
-            const succes = await subModel.update(entity);
-            if(succes)
+            if(res.locals.isWriter)
             {
-                res.redirect('/profile');
+                const subQuery = await subModel.byNickname(req.body.nickname);
+                if(!subModel)
+                { 
+                    const entity = {
+                        id: sObj[0].id,
+                        email: sObj[0].email,
+                        name: req.body.name,
+                        phone: req.body.phone,
+                        dob: req.body.dob,
+                        expired: sObj[0].expired,
+                        userID: sObj[0].userID,
+                        avatar: '200x240-'+req.file.filename, 
+                        nickname: req.body.nickname
+                    }
+                    const succes = await subModel.update(entity);
+                    if(succes)
+                    {
+                        res.render('profile/personal_infor');
+                    }
+                }
+                else
+                { 
+                  res.render('profile/personal_infor',{nicknameExists:true});
+                }
+            } 
+            else
+            {
+                const entity = {
+                    id: sObj[0].id,
+                    email: sObj[0].email,
+                    name: req.body.name,
+                    phone: req.body.phone,
+                    dob: req.body.dob,
+                    expired: sObj[0].expired,
+                    userID: sObj[0].userID,
+                    avatar: '200x240-'+req.file.filename, 
+                    nickname: ''
+                }
+                const succes = await subModel.update(entity);
+                if(succes)
+                {
+                    res.render('profile/personal_infor');
+                }
             }
+       
         })
     }
 
