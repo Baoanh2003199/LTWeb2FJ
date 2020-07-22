@@ -87,7 +87,7 @@ route.post('/add', upload.single('thumbnail'), async function (req, res) {
     doc.end();
     const entityss = {
       id: result.insertId,
-      filePdf: contentHTML,
+      filePdf: path,
     };
     await newModel.update(entityss);
   }
