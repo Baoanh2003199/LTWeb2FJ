@@ -15,7 +15,7 @@ module.exports = {
     },
 
     catSingle: function() {
-        return db.load(`select * from ${TBL_CATEGORY} where parentID='0'`);
+        return db.load(`select * from ${TBL_CATEGORY} where parentID=0`);
     },
 
     add: function(entity) {
@@ -37,9 +37,9 @@ module.exports = {
     },
     view: function(id) {
         return db.load(`select cat1.*, cat2.name parentName
-        from ${TBL_CATEGORY} cat1 
+        from ${TBL_CATEGORY} cat1
         left join category cat2
-        on cat1.parentID = cat2.id 
+        on cat1.parentID = cat2.id
         where cat1.id=${id}`);
     },
 
@@ -48,7 +48,7 @@ module.exports = {
     },
 
     allSubCategory: function() {
-        return db.load(`select * from ${TBL_CATEGORY} where parentID='0'`);
+        return db.load(`select * from ${TBL_CATEGORY} where parentID!=0`);
     },
 
     singeNew: function(idNews) {
