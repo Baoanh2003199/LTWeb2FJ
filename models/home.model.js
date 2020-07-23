@@ -68,7 +68,7 @@ module.exports = {
 
     catParentID: function(name, parentID) {
         return db.load(
-            `select * from ${TBL_CATEGORY} where name='${name}' and parentID=${parentID}`
+            `select * from ${TBL_CATEGORY} where name='${name}' and id=${parentID}`
         );
     },
 

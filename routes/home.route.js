@@ -101,22 +101,20 @@ router.get('/category/name=:name/id=:id', async function(req, res) {
     const name = req.params.name;
     const parentID = req.params.id;
     const list = await newModel.catParentID(name, parentID);
-    for (i = 1; i < list.length; i++) {
+    for (i = 0; i < list.length; i++) {
         const catID = list[i].id;
-        const catNewList = await newModel.catNews(catID);
-        list[i].catNew = catNewList;
+        const catNew = await newModel.catNews(catID);
+        list[i].new = catNew;
     }
     const listMain = await catModel.catSingle();
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        console.log(listParentID);
         listMain[i].parentCat = listParentID;
-        console.log(listMain);
     }
     return res.render('home/tag', {
-        list: list,
         listMain: listMain,
+        list: list,
     });
 });
 module.exports = router;
