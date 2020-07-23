@@ -1,0 +1,90 @@
+{{#section 'title'}}Thông tin cá nhân{{/section}}
+<nav class="breadcrumb">
+    <a class="breadcrumb-item active" href="/profile">Thông tin</a>
+</nav>
+<div class="contentHeader">
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <h4 class="card-title">Quản lý bài viết</h4>
+        </div>
+    </div>
+</div>
+<div class="contentMain my-5">
+    <div class="card text-dark bg-light">
+    <div class="card-header text-white" style="background-color: #00AA9E;"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Quản lý bài viết</div>
+    <div class="card-body">
+    <div class="container">
+        <div class="table-responsive">
+            <form method="POST"></form>
+             <div class="form-group">
+                 <button type="button" class="btn btn-outline-success"><i class="fa fa-pencil" aria-hidden="true"></i> Đăng bài</button>
+                    <button type="button" class="btn btn-info float-right"><i class="fa fa-filter" aria-hidden="true"></i> Lọc danh sách</button>
+                    <select class="form-control float-right" id="postFilter" style="max-width:30%; margin-right:2%">
+                    <option "4">Tất cả bài viết</option>
+                    <option value="1">Đã được duyệt</option>
+                    <option value="2">Đã xuất bản</option>
+                    <option value="0">Chưa được duyệt</option>
+                    <option value="3">Bị từ chối</option>
+                    </select>
+                    </div>
+                 </form>
+         
+                
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" >Tiêu đề</th>
+                            <th scope="col" >Thể loại</th>
+                            <th scope="col" >Trạng thái</th>
+                            <th scope="col" >Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if this.empty}}
+                        {{else}}
+                        {{#each this.news}}
+                        <tr>
+                            <th scope="row">{{id}}</th>
+                            <td>{{name}}</td>
+                            <td>{{description}}</td>
+                            <td>{{catName}}</td>
+                            <td>{{status}}</td>
+                            <td >
+                                <div class="d-flex justify-content-center">
+                                    <a class="btn btn-success float-left mx-3"
+                                    href="/admin/news/edit/{{id}}"><i class="fa
+                                        fa-pencil"
+                                        aria-hidden="true" title="Sửa"></i></a>
+                                <a class="btn btn-primary float-left mx-3"
+                                    href="/admin/news/view/{{id}}"><i class="fa
+                                        fa-eye"
+                                        aria-hidden="true" title="Xem"></i> </a>
+                                {{!-- Thầy bảo phải dung method post nên phải
+                                dùng form method post để gửi request --}}
+                                <form class="float-left"
+                                    action="/admin/news/delete/{{id}}"
+                                    method="POST">
+                                    <button type="submit" class="btn btn-danger
+                                        mx-3"><i class="fa fa-trash"
+                                            aria-hidden="true" title="Xóa"></i></button>
+                                </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+    </div>
+    </div>
+    </div>
+</div>
+{{#section 'js'}}
+    <script type="text/javascript" src="/public/admin/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/public/admin/easy-editable-text.js"></script>
+{{/section}}

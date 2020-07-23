@@ -42,7 +42,8 @@ routes.get('/', async function(req, res) {
         phone: subRes[0].phone,
         expired: DATE_FORMATER(subRes[0].expired, 'HH:MM:ss - dd/mm/yyyy'),
         role: roleRes[0].name,
-        avatar: subRes[0].avatar
+        avatar: subRes[0].avatar,
+        nickname: subRes[0].nickname
     };
     res.render('profile/personal_infor', { user: obj });
 });
@@ -175,5 +176,6 @@ routes.post('/', upload.single('avatar'), async function(req, res) {
 });
 
 routes.use('/changepassword', require('./change_password.route'));
+routes.use('/postmanagement',require('./post_management.route'))
 
 module.exports = routes;

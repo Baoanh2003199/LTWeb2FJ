@@ -58,50 +58,23 @@ box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
                             </a>
                         </li>
                         {{#if isWriter}}
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                Bài viết
+          <li class="nav-item">
+                            <a class="nav-link" href="/profile/postmanagement" id="postmanagement" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                Quản lý bài viết
                             </a>
-                            <div class="dropdown-menu w-auto " aria-labelledby="newsDropdown">
-                                <a class="dropdown-item" href="/">Đăng bài</a>
-                                <a class="dropdown-item" href="/">Đã Được duyệt</a>
-                                <a class="dropdown-item" href="/">Chưa được duyệt</a>
-                                <a class="dropdown-item" href="/">Chờ xuất bản</a>
-                                <a class="dropdown-item" href="/">Đã xuất bản</a>
-                                <a class="dropdown-item" href="/">Bị từ chối</a>
-                            </div>
                         </li>
                         {{/if}}
                           {{#if isEditor}}
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                Bài viết
+                          <li class="nav-item">
+                            <a class="nav-link" href="/profile/postmanagement" id="postmanagement" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                Quản lý bài viết
                             </a>
-                            <div class="dropdown-menu w-auto " aria-labelledby="newsDropdown">
-                                <a class="dropdown-item" href="/">Đã được duyệt</a>
-                                <a class="dropdown-item" href="/">Chưa được duyệt</a>
-                                <a class="dropdown-item" href="/">Chờ xuất bản</a>
-                                <a class="dropdown-item" href="/">Đã xuất bản</a>
-                                <a class="dropdown-item" href="/">Bị từ chối</a>
-                            </div>
                         </li>
                         {{/if}}
-                        
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-tags" aria-hidden="true"></i>
-                                Template
-                            </a>
-                            <div class="dropdown-menu w-auto " aria-labelledby="tagDropdown">
-                                <a class="dropdown-item" href="/">Template a</a>
-                                <a class="dropdown-item" href="/">Template b</a>
-                            </div>
-                        </li>
-                          </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="/logout" id="categoryDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="/logout" id="logout" role="button" aria-haspopup="true" aria-expanded="false">
                              <i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a>
                          </li>
                     </ul>
