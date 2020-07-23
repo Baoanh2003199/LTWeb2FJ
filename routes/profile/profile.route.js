@@ -84,8 +84,6 @@ routes.post('/', upload.single('avatar'), async function(req, res) {
               { 
                 res.render('profile/personal_infor',{nicknameExists:true});
               }
-              
-              
           } 
           else
           {
