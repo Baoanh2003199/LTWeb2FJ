@@ -20,7 +20,6 @@ router.get('/', async function(req, res) {
     const resultNew3 = resultNews.slice(6, 9);
     const resultNew4 = resultNews.slice(9, 12);
     const listMain = await catModel.catSingle();
-    console.log(listMain);
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
@@ -44,6 +43,14 @@ router.get('/:name/id=:id', async function(req, res) {
     const list = await newModel.NewsDetail(name, id);
     const addViews = list[0].views + 1;
     const news = list[0];
+    const listMain = await catModel.catSingle();
+    for (i = 0; i < listMain.length; i++) {
+        const catID = listMain[i].id;
+        const listParentID = await catModel.catParentID(catID);
+        console.log(listParentID);
+        listMain[i].parentCat = listParentID;
+        console.log(listMain);
+    }
     if (news.length != 0) {
         news.tag = await newModel.getTagByNewsId(news.id);
         news.tag.forEach((tag) => {
@@ -56,6 +63,7 @@ router.get('/:name/id=:id', async function(req, res) {
         await newModel.updateViews(entity);
         return res.render('home/news', {
             news: news,
+            listMain: listMain,
         });
     }
 });
@@ -65,9 +73,18 @@ router.get('/search', async function(req, res) {
     console.log(name);
     const searchList = await newModel.search(name);
     console.log(searchList);
+    const listMain = await catModel.catSingle();
+    for (i = 0; i < listMain.length; i++) {
+        const catID = listMain[i].id;
+        const listParentID = await catModel.catParentID(catID);
+        console.log(listParentID);
+        listMain[i].parentCat = listParentID;
+        console.log(listMain);
+    }
     res.render('home/search', {
         searchList: searchList,
         empty: searchList.length === 0,
+        listMain: listMain,
     });
 });
 
@@ -78,5 +95,25 @@ router.get('/download/:id', async function(req, res, next) {
     const fileName = result[0].filePdf;
     console.log(fileName);
     res.download(path, fileName);
+});
+
+router.get('/category/name=:name/id=:id', async function(req, res) {
+    const name = req.params.name;
+    const parentID = req.params.id;
+    const list = await newModel.catParentID(name, parentID);
+    const catNewList = await newModel.catNews(parentID);
+    const listMain = await catModel.catSingle();
+    for (i = 0; i < listMain.length; i++) {
+        const catID = listMain[i].id;
+        const listParentID = await catModel.catParentID(catID);
+        console.log(listParentID);
+        listMain[i].parentCat = listParentID;
+        console.log(listMain);
+    }
+    return res.render('home/tag', {
+        list: list,
+        catNewList: catNewList,
+        listMain: listMain,
+    });
 });
 module.exports = router;
