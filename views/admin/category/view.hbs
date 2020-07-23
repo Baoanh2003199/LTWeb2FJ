@@ -38,7 +38,11 @@
                     <tr>
 
                         <td>{{name}}</td>
-                        <td>{{parentID}}</td>
+                        <td> {{#if parentName }}
+                                    {{parentName}}
+                                {{else}}
+                                    không có
+                                {{/if}}</td>
                     </tr>
                     {{/each}}
                     {{/if}}

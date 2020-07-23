@@ -5,7 +5,9 @@ const TBL_NEWS = 'news';
 
 module.exports = {
     all: function() {
-        return db.load(`select id,name,description,catID,status from ${TBL_NEWS}`);
+        return db.load(`select n.id, n.name, n.description, n.catID, n.status, cat.name catName
+        from ${TBL_NEWS} n, category cat
+        where n.catID = cat.id`);
     },
     del: function(idNews) {
         const condition = {

@@ -25,12 +25,23 @@
                 </div>
                 <div class="form-group">
                     <label for="">Mục chính</label>
+                
                     <select class="form-control" name="parentID" id="parentID">
+                        <option value="0">Không có</option>
                         {{#each this.tag}}
-                        <option name="parentID" id="{{id}}" value="{{id}}">{{name}}</option>
+                            {{#ne id ../this.category.id}}
+                                <option name="parentID"
+                                    {{#eq id ../this.category.parentID}}
+                                        selected
+                                    {{/eq}}
+                                id="{{id}}" value="{{id}}">{{name}}</option>
+                            {{/ne}}
                         {{/each}}
+                        
+                       
                     </select>
                 </div>
+                <input type="hidden" name="id" value="{{category.id}}">
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-success py-3">Sửa</button>
                 </div>

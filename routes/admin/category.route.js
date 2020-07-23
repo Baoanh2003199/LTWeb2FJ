@@ -1,6 +1,7 @@
 const express = require('express');
 const catModel = require('../../models/category.model');
 const tagModel = require('../../models/tag.model');
+const { session } = require('passport');
 
 const route = express.Router();
 
@@ -28,10 +29,10 @@ route.post('/add', async function(req, res) {
 route.get('/edit/:id', async function(req, res) {
     const id = +req.params['id'] || -1;
     const rows = await catModel.view(id);
-    const tagRows = await tagModel.all();
+    const tag = await catModel.nameCategory();
     if (rows.length === 0) return res.send('Invalid parameter.');
     const category = rows[0];
-    res.render('admin/category/edit', { category, tag: tagRows });
+    res.render('admin/category/edit', { category, tag: tag });
 });
 
 route.post('/update', async function(req, res) {
@@ -50,5 +51,18 @@ route.get('/view/:id', async function(req, res) {
     const list = await catModel.view(id);
     res.render('admin/category/view', { cat: list, empty: list.length === 0 });
 });
+route.post('/edit/:id', async function(req, res){
+    console.log(req.body);
+    const id = req.body.id;
+    const result = await catModel.update(req.body);
 
+   
+    if(result.changedRows != 0){
+        res.locals.success = "Sửa chuyên mục thành công";
+    }else{
+        res.locals.errors = "vui lòng kiểm tra lại dữ liệu";
+    }
+    console.log(id);
+    return res.redirect(`/admin/category/edit/${id}`);
+});
 module.exports = route;

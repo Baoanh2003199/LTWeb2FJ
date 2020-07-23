@@ -32,10 +32,15 @@ module.exports = {
         const condition = {
             id: entity.id,
         };
+        delete entity.id;
         return db.update(TBL_CATEGORY, entity, condition);
     },
     view: function(id) {
-        return db.load(`select * from ${TBL_CATEGORY} where id=${id}`);
+        return db.load(`select cat1.*, cat2.name parentName
+        from ${TBL_CATEGORY} cat1 
+        left join category cat2
+        on cat1.parentID = cat2.id 
+        where cat1.id=${id}`);
     },
 
     getList: function() {
