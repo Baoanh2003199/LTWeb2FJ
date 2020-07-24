@@ -7,46 +7,46 @@
 
 {{!-- START MAIN --}}
 <div class="container pt-5 min-vh-100">
-  <div class="newsCategory float-left ml-4 mt-2">
-    <div><a href="/category/{{news.catID}}">{{news.catName}}</a></div>
-  </div>
-  <h2 class="newsTitle py-5">{{news.name}}</h2>
-  <div class="d-flex justify-content-center">
-    <img src="/public/uploads/{{news.thumbnail}}" alt="main image">
-  </div>
-
-  <div class="float-left ml-5">
-    <div> Ngày đăng: 12/02/2020</div>
-
-    <div>tag:
-      {{#each news.tag}}
-      <a href="/tag/{{id}}"><span class="badge badge-success">{{name}}</span></a>
-      {{/each}}
+    <div class="newsCategory float-left ml-4 mt-2">
+        <div><a href="/category/name={{news.name}}/id={{news.id}}">{{news.catName}}</a></div>
     </div>
-  </div>
-  <div class="clearFloat"></div>
-  <div class="newsContent p-2 pt-3">
-    {{{news.content}}}
-  </div>
-  <div>
-    <a href="/download/{{news.id}}" download="{{news.filePdf}}">Download</a>
-  </div>
+    <h2 class="newsTitle py-5">{{news.name}}</h2>
+    <div class="d-flex justify-content-center">
+        <img src="/public/uploads/{{news.thumbnail}}" alt="main image">
+    </div>
+
+    <div class="float-left ml-5">
+        <div> Ngày đăng: 12/02/2020</div>
+
+        <div>tag:
+            {{#each news.tag}}
+            <a href="/tag/{{id}}"><span class="badge badge-success">{{name}}</span></a>
+            {{/each}}
+        </div>
+    </div>
+    <div class="clearFloat"></div>
+    <div class="newsContent p-2 pt-3">
+        {{{news.content}}}
+    </div>
+    <div>
+        <a href="/download/{{news.id}}" download="{{news.filePdf}}">Download</a>
+    </div>
 </div>
 
 <div class="container py-4">
-  <h4 class="headerBar">Nội dung bình luận </h4>
-  <div>
-    <label>Name:</label>
-    <p>Noi dung</p>
-  </div>
-  <div>bình luận</div>
-  <div class="form-group">
-    <label for="comment">Comment:</label>
-    <form action="/{{name}}/{{id}}" method="POST">
-      <textarea class="form-control" rows="2" id="comment" name="content"></textarea>
-      <input type="submit" value="chia sẻ">
-    </form>
-  </div>
+    <h4 class="headerBar">Nội dung bình luận </h4>
+    <div>
+        <label>Name:</label>
+        <p>Noi dung</p>
+    </div>
+    <div>bình luận</div>
+    <div class="form-group">
+        <label for="comment">Comment:</label>
+        <form action="/{{name}}/{{id}}" method="POST">
+            <textarea class="form-control" rows="2" id="comment" name="content"></textarea>
+            <input type="submit" value="chia sẻ">
+        </form>
+    </div>
 </div>
 
 {{!-- END MAIN --}}

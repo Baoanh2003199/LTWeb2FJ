@@ -45,7 +45,9 @@
 </div>
 <div class="container py-4">
     {{#each list}}
-    <div class="headerBar">{{name}}</div>
+    <div class="headerBar">
+        <a href="/category/name={{name}}/id={{id}}">{{name}}</a>
+    </div>
     <div class="row d-flex justify-content-left">
         <div class="col-sm-12 py-2">
             <div class="card text-left">
