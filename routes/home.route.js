@@ -130,7 +130,15 @@ router.get('/tag/:id', async function(req, res) {
         console.log(result);
         tagName[i].tag = result;
     }
+    const listMain = await catModel.catSingle();
+    for (i = 0; i < listMain.length; i++) {
+        const catID = listMain[i].id;
+        const listParentID = await catModel.catParentID(catID);
+        console.log(listParentID);
+        listMain[i].parentCat = listParentID;
+        console.log(listMain);
+    }
 
-    res.render('home/tagNew', { tagName: tagName });
+    res.render('home/tagNew', { tagName: tagName, listMain: listMain });
 });
 module.exports = router;
