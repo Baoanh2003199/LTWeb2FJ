@@ -34,7 +34,19 @@
 </div>
 
 <div class="container py-4">
-  <div class="headerBar">bình luận</div>
+  <h4 class="headerBar">Nội dung bình luận </h4>
+  <div>
+    <label>Name:</label>
+    <p>Noi dung</p>
+  </div>
+  <div>bình luận</div>
+  <div class="form-group">
+    <label for="comment">Comment:</label>
+    <form action="/{{name}}/{{id}}" method="POST">
+      <textarea class="form-control" rows="2" id="comment" name="content"></textarea>
+      <input type="submit" value="chia sẻ">
+    </form>
+  </div>
 </div>
 
 {{!-- END MAIN --}}
