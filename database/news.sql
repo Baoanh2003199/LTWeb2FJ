@@ -20,6 +20,7 @@ CREATE TABLE `comment` (
   `content` varchar(255) DEFAULT NULL,
   `parentID` int(11) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
+	`newsID` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
