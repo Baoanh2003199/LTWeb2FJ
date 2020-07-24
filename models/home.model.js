@@ -9,10 +9,10 @@ module.exports = {
         return db.load(`select count(id) as CountNews from ${TBL_NEWS}`);
     },
     CountUsers: function() {
-        return db.load(`select count(id) as CountUser from ${TBL_USER}`);
+        return db.load(`select sum(id) as CountUser from ${TBL_USER}`);
     },
     CountViews: function() {
-        return db.load(`select views from ${TBL_NEWS}`);
+        return db.load(`select sum(views) as views from ${TBL_NEWS}`);
     },
 
     NewNews: function() {

@@ -5,11 +5,15 @@ const routes = express.Router();
 
 routes.get('/', async function(req, res) {
     const ListUser = await homeModel.CountUsers();
-    //const ListView = await homeModel.CountViews();
-    const ListNews = await homeModel.CountNews;
+    const ListView = await homeModel.CountViews();
+    const ListNews = await homeModel.CountNews();
+    console.log(ListNews);
+    console.log(ListUser);
+    console.log(ListView);
     res.render('admin/home/home', {
-        user: ListUser,
-        new: ListNews,
+        ListUser: ListUser,
+        ListNews: ListNews,
+        ListView: ListView,
     });
 });
 

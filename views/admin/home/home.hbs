@@ -17,7 +17,7 @@
                 src="/public/admin/img/group.svg" alt="">
             <div class="card-body">
                 <h5 class="card-title">Lượt đăng ký</h5>
-                {{#each user}}
+                {{#each ListUser}}
                 <p class="card-text">{{CountUser}}</p>
                 {{/each}}
             </div>
@@ -28,7 +28,9 @@
                 alt="">
             <div class="card-body">
                 <h5 class="card-title">Lượt xem</h5>
-                <p class="card-text"></p>
+                {{#each ListView}}
+                <p class="card-text" {{views}}></p>
+                {{/each}}
             </div>
         </div>
         <div class="card col-md-3 mx-4 my-2">
@@ -37,7 +39,7 @@
                 alt="">
             <div class="card-body">
                 <h5 class="card-title">Bài báo</h5>
-                {{#each new}}
+                {{#each ListNews}}
                 <p class="card-text">{{CountNews}}</p>
                 {{/each}}
             </div>
