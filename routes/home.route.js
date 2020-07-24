@@ -117,4 +117,20 @@ router.get('/category/name=:name/id=:id', async function(req, res) {
         list: list,
     });
 });
+
+router.get('/tag/:id', async function(req, res) {
+    const tagId = req.params.id;
+
+    const tagName = await newModel.tagName(tagId);
+
+    console.log(tagName);
+    for (i = 0; i < tagName.length; i++) {
+        const ID = tagName[i].id;
+        const result = await newModel.tagNew(ID);
+        console.log(result);
+        tagName[i].tag = result;
+    }
+
+    res.render('home/tagNew', { tagName: tagName });
+});
 module.exports = router;

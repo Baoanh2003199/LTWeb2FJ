@@ -2,7 +2,8 @@ const db = require('../utils/db');
 const TBL_NEWS = 'news';
 const TBL_USER = 'user';
 const TBL_CATEGORY = 'category';
-
+const TBL_NEW_TAG = 'news_tag';
+const TBL_TAG = 'tag';
 module.exports = {
     CountNews: function() {
         return db.load(`select count(id) as CountNews from ${TBL_NEWS}`);
@@ -74,5 +75,15 @@ module.exports = {
 
     catNews: function(catID) {
         return db.load(`select * from ${TBL_NEWS} where catID=${catID}`);
+    },
+
+    tagNew: function(idTag) {
+        return db.load(
+            `select n.id,n.name,n.thumbnail,n.description from ${TBL_NEW_TAG} t join ${TBL_NEWS} n where t.tagID = ${idTag} and t.newID=n.id`
+        );
+    },
+
+    tagName: function(tagId) {
+        return db.load(`select * from ${TBL_TAG} where id=${tagId}`);
     },
 };
