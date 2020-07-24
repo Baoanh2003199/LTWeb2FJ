@@ -141,4 +141,8 @@ router.get('/tag/:id', async function(req, res) {
 
     res.render('home/tagNew', { tagName: tagName, listMain: listMain });
 });
+
+router.post('/comment', async function(req, res) {
+    const userID = res.locals.userId;
+});
 module.exports = router;

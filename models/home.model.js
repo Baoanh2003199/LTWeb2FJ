@@ -4,6 +4,8 @@ const TBL_USER = 'user';
 const TBL_CATEGORY = 'category';
 const TBL_NEW_TAG = 'news_tag';
 const TBL_TAG = 'tag';
+const TBL_COMMENT = 'comment';
+
 module.exports = {
     CountNews: function() {
         return db.load(`select count(id) as CountNews from ${TBL_NEWS}`);
@@ -85,5 +87,12 @@ module.exports = {
 
     tagName: function(tagId) {
         return db.load(`select * from ${TBL_TAG} where id=${tagId}`);
+    },
+
+    insertComment: function(entity) {
+        const condition = {
+            id: entity.id,
+        };
+        return db.update(TBL_COMMENT, entity, condition);
     },
 };
