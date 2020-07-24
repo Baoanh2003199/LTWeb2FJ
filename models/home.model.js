@@ -5,7 +5,6 @@ const TBL_CATEGORY = 'category';
 const TBL_NEW_TAG = 'news_tag';
 const TBL_TAG = 'tag';
 const TBL_COMMENT = 'comment';
-const TBL_USER = 'user';
 
 module.exports = {
     CountNews: function() {
