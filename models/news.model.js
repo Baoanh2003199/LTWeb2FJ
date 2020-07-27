@@ -17,7 +17,9 @@ module.exports = {
     },
     view: function(id) {
         return db.load(
-            `select name,description,content,catID,isPremium,openTime,note,createdBy from ${TBL_NEWS} where id=${id}`
+            `select name,description,content,catID,isPremium,openTime,note,createdBy 
+            from ${TBL_NEWS}
+             where id=${id}`
         );
     },
     check: function() {
@@ -41,4 +43,7 @@ module.exports = {
     singleName: function(name) {
         return db.load(`select id from ${TBL_NEWS} where name=${name}`);
     },
+    findByCreatedBy: function(createdBy){
+        return db.load(`select id from ${TBL_NEWS} where createdBy=${createdBy}`);
+    }
 };
