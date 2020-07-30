@@ -1,13 +1,15 @@
 const mysql = require('mysql');
 const config = require('../config/default.json');
 
-const pool = mysql.createPool(config.mysql);
+const pool = mysql.createPool(config.mysql_local);
 
 module.exports = {
   load: function (sql) {
     return new Promise(function (fn_done, fn_fail) {
       pool.query(sql, function (error, results, fields) {
+        console.log(this.sql);
         if (error) {
+          
           return fn_fail(error);
         }
         fn_done(results);
@@ -18,7 +20,9 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       const sql = `insert into ${table} set ?`;
       pool.query(sql, entity, function (error, results) {
+        console.log(this.sql);
         if (error) {
+          
           return reject(error);
         }
 
@@ -31,7 +35,9 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       const sql = `update ${table} set ? where ?`;
       pool.query(sql, [entity, condition], function (error, results) {
+        console.log(this.sql);
         if (error) {
+         
           return reject(error);
         }
 
@@ -43,8 +49,10 @@ module.exports = {
   delete: function (table, condition) {
     return new Promise(function (resolve, reject) {
       const sql = `delete from ${table} where ?`;
-      pool.query(sql, condition, function (error, results) {
+      pool.query(sql, condition, function (error, results, fields) {
+        console.log(this.sql);
         if (error) {
+          
           return reject(error);
         }
 

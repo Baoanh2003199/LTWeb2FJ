@@ -45,4 +45,11 @@ module.exports = {
     byNickname: function(nickname) {
         return db.load(`select * from ${TBL_SUBSCRIBER} where nickname='${nickname}'`);
     },
+    findAllEditor: function(){
+        return db.load(`select s.*, r.name as role
+        from ${TBL_SUBSCRIBER} s, user u, role r
+        where s.userID = u.id
+        and u.roleId = '11'
+        and r.id = u.roleId`);
+    }
 };

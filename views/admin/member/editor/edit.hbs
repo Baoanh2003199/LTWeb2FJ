@@ -1,0 +1,66 @@
+{{#section 'title'}}Phân chuyên mục{{/section}}
+<nav class="breadcrumb">
+  {{!-- <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+  <a class="breadcrumb-item" href="/admin/tag">Tag</a>
+  <a class="breadcrumb-item active" href="#">Sửa</a> --}}
+</nav>
+<div class="contentHeader">
+  <div class="card text-dark bg-light">
+    <div class="card-body text-center">
+      <h4 class="card-title">Phân chuyên mục</h4>
+    </div>
+  </div>
+</div>
+
+<div class="contentHeader my-4">
+  <div class="card text-dark bg-light">
+    <div class="card-body">
+      <form action="" method="POST">
+        <div class="form-group">
+          {{!-- Kiểm tra trùng tên --}}
+          <label for="">Tên tài khoản</label>
+          <input type="hidden" name="id" value="{{editor.id}}" >
+          <input type="text"
+            class="form-control form-control-sm" name="name" value="{{editor.username}}">
+        </div>
+         <div class="qtagselect from-group">
+             <label for="">Tag</label><br>
+                    <select class="qtagselect__select from-control w-100"
+                        multiple name="catId[]">
+                    {{#each categories}}
+                          <option value="{{id}}" 
+                          {{#each ../existsCate}}
+                             {{#eq category ../id}}
+                              selected
+                            {{/eq}}
+                          {{/each}}
+                           
+                          >{{name}}</option>
+                    {{/each}}
+                      
+                </select>
+        </div>
+        <div class="d-flex justify-content-center mt-5  from-group">
+          <button type="submit" class="btn btn-success px-3">Sửa</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{{#section 'css'}}
+<link rel="stylesheet" href="/public/tagSelector/jquery.tagselect.css" type="text/css">
+{{/section}}
+{{#section 'js'}}
+<script src="/public/tagSelector/jquery.tagselect.js"></script>
+<script src="/public/admin/myJs.js"></script>
+<script>
+    $(function(){
+        $('.qtagselect__select').tagselect({
+            'maxTag':10
+        });
+    });
+</script>
+
+
+{{/section}}
