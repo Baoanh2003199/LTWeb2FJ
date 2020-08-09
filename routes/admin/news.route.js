@@ -10,6 +10,7 @@ const path = require('path');
 const fs = require('fs');
 var encoding = require('encoding');
 const PDFDocument = require('pdfkit');
+const newsModel = require('../../models/news.model');
 const doc = new PDFDocument();
 
 // Danh sách bài viết
@@ -57,7 +58,6 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
             isPremium: req.body.isPremium,
             thumbnail: req.file.filename,
             content: req.body.content,
-            openTime: req.body.openTime,
             description: req.body.description,
         };
         console.log(entity);
@@ -137,17 +137,32 @@ route.get('/check', async function(req, res) {
     const list = await newModel.check();
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
+route.get('/check/:id', async function(req, res){
+    const id = req.params.id || -1;
+
+    const resultNews = await newModel.view(id);
+
+
+    return res.render('admin/news/admin-check',{
+        news: resultNews[0],
+        empty: resultNews.length === 0
+    });
+});
 route.post('/check/:id', async function(req, res) {
-    const num = req.params.num;
     entity = {
         id: req.params.id,
-        status: req.query.status,
+        status: 1,
+        openTime: req.body.openTime
     };
-    if (num == '1') {
-        await newModel.update(entity);
-    } else {
-        await newModel.update(entity);
-    }
+    await newsModel.update(entity);
+    res.redirect('/admin/news/check');
+});
+route.post('/reject/:id', async function(req, res) {
+    entity = {
+        id: req.params.id,
+        note: req.body.note
+    };
+    await newsModel.update(entity);
     res.redirect('/admin/news/check');
 });
 // Xem chi tiết

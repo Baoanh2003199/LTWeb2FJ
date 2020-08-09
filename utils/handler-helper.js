@@ -22,4 +22,5 @@ module.exports = {
        const mMoMent = moment(date);
        return mMoMent.format(format);
     },
+   
 };

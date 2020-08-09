@@ -1,6 +1,7 @@
 const db = require('../utils/db');
 const upload = require('../utils/uploadFile');
 
+
 const TBL_NEWS = 'news';
 
 module.exports = {
@@ -17,9 +18,12 @@ module.exports = {
     },
     view: function(id) {
         return db.load(
-            `select name,description,content,catID,isPremium,openTime,note,createdBy 
-            from ${TBL_NEWS}
-             where id=${id}`
+            `select n.id, n.name, n.description, n.content, n.catID, n.isPremium,
+             n.openTime, n.note, n.createdBy, n.thumbnail,
+             cat.name catName
+            from ${TBL_NEWS} n , category cat
+             where n.id=${id}
+             and n.catID = cat.ID`
         );
     },
     check: function() {
@@ -34,6 +38,7 @@ module.exports = {
         const condition = {
             id: entity.id,
         };
+        delete entity.id;
         return db.update(TBL_NEWS, entity, condition);
     },
     single: function() {

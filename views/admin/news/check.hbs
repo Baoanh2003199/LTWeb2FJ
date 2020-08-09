@@ -35,28 +35,26 @@
                             <td>{{name}}</td>
                             <td>{{description}}</td>
                             <td>{{catID}}</td>
-                            <td>{{isPremium}}</td>
-                            <td class="d-flex justify-content-center">
-                                <a class="btn btn-primary float-left mx-3"
-                                    href="/admin/news/view/{{id}}"><i class="fa
-                                        fa-eye"
-                                        aria-hidden="true" title="Xem"></i> </a>
-                                {{!-- Thầy bảo phải dung method post nên phải
-                                dùng form method post để gửi request --}}
-                                <form class="float-left"
-                                    action="/admin/news/check/{{id}}?num=1&status=1"
-                                    method="POST">
-                                    <button type="submit" class="btn btn-success
-                                        mx-3"><i class="fa fa-check"
-                                            aria-hidden="true" title="Duyệt"></i></button>
-                                </form>
-                                <form class="float-left"
-                                    action="/admin/news/check/{{id}}?num=0&status=0"
-                                    method="POST">
-                                    <button type="submit" class="btn btn-danger
-                                        mx-3"><i class="fa fa-times"
-                                            aria-hidden="true" title="Từ chối"></i></button>
-                                </form>
+                            <td> 
+                                {{#eq isPremium 0}}
+                                    Thường
+                                {{/eq}}
+                                {{#eq isPremium 1}}
+                                    Đặc biệt
+                                {{/eq}}
+                                </td>
+                            <td >
+                                <div class="d-flex justify-content-center" >
+                                    <a class="btn btn-primary float-left mx-3"
+                                        href="/admin/news/view/{{id}}"><i class="fa
+                                            fa-eye"
+                                            aria-hidden="true" title="Xem"></i> </a>
+                                     <a class="btn btn-success float-left mx-3"
+                                        href="/admin/news/check/{{id}}"> <i class="fa fa-search" aria-hidden="true" title="Duyệt bài"></i>
+                                            </a>
+                                   
+                                </div>
+                                
                             </td>
                         </tr>
                         {{/each}}

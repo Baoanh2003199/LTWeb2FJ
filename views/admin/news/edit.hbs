@@ -48,11 +48,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="">Mo ta</label>
+                    <label for="">Mô tả</label>
                     <input type="text"
                         class="form-control form-control-sm" name="description"
                         required
-                        placeholder="mo ta bai viet">
+                        placeholder="Mô tả bài viết">
                 </div>
                 <br>
                 <div class="form-group">
@@ -73,7 +73,7 @@
                     <label for="">Nội dung</label>
                     <textarea name="" value="{{this.news.content}}" id="content"
                         cols="30"
-                        rows="10"></textarea>
+                        rows="10">{{this.news.content}}</textarea>
                 </div>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-success px-5">Sửa</button>

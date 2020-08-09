@@ -1,0 +1,105 @@
+{{#section 'title'}}Phân loại{{/section}}
+<nav class="breadcrumb">
+    <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+    <a class="breadcrumb-item" href="/admin/news">Bài viết</a>
+    <a class="breadcrumb-item active" href="#">Chi tiết</a>
+</nav>
+<div class="contentHeader">
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <h4 class="card-title">Chi tiết bài viết</h4>
+        </div>
+    </div>
+</div>
+
+<div class="contentHeader my-4">
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            {{!-- Thầy bảo phải dung method post nên phải dùng form method post
+            để gửi request --}}
+            <form action="/admin/news/delete/{{id}}" class="float-right pt-3"
+                method="POST">
+                <button type="submit" class="btn btn-danger mx-3"><i class="fa
+                        fa-trash" aria-hidden="true" title="Xóa"></i> Xóa</button>
+            </form>
+            <a class="btn btn-primary m-3 float-right" href="/admin/news/add"
+                role="button"> <i class="fa fa-plus" aria-hidden="true"></i>
+                Thêm bài viết</a>
+            <div class="table-responsive">
+                <table class="table">
+                    {{#if this.empty}}
+                    {{else}}
+                    <tr>
+                        <th width="15%">Tên</th>
+                        <td>{{news.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mô tả</th>
+                        <td>{{news.description}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nội dung</th>
+                        <td>{{{news.content}}}</td>
+                    </tr>
+                    <tr>
+                        <th>Thể loại</th>
+                        <td>{{news.catName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Loại</th>
+                        <td>
+                            {{#eq news.isPremium 0}}
+                                Thường
+                            {{/eq}}
+                            {{#eq news.isPremium 1}}
+                                Đặc biệt
+                            {{/eq}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Người viết</th>
+                        <td>{{news.createdBy}}</td>
+                    </tr>
+                    <form action="" method="post">
+                        <tr>
+                            <th>Ghi chú</th>
+                            <td><textarea name="note" id=""  rows="10" class="float-left w-100">{{news.note}}</textarea></td>
+                        </tr>
+                         <tr>
+                            <th> </th>
+                            <td>
+                                <input type="hidden" name="id" value="{{news.id}}">
+                                 <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mx-3">Duyệt </button>
+                                 <button type="submit" class="btn btn-danger mx-3" formaction="/admin/news/reject/{{news.id}}">Từ chối </button>
+                            </td>
+                        </tr>
+                    </form>
+                    {{/if}}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hẹn giờ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="post">
+      <div class="modal-body">
+        
+            <input type="datetime-local" class="w-100" required name="openTime" >
+        
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" >Xác nhận</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
