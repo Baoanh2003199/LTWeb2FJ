@@ -27,45 +27,77 @@
                 Thêm bài viết</a>
             <div class="table-responsive">
                 <table class="table">
-                    {{#if this.empty}}
-                    {{else}}
-                    {{#each this.news}}
                     <tr>
                         <th width="15%">Tên</th>
-                        <td>{{name}}</td>
+                        <td>{{news.name}}</td>
                     </tr>
                     <tr>
                         <th>Mô tả</th>
-                        <td>{{description}}</td>
+                        <td>{{news.description}}</td>
                     </tr>
                     <tr>
                         <th>Nội dung</th>
-                        <td>{{{content}}}</td>
+                        <td>{{{news.content}}}</td>
                     </tr>
                     <tr>
                         <th>Thể loại</th>
-                        <td>{{isPremium}}</td>
+                        <td>{{news.isPremium}}</td>
                     </tr>
                     <tr>
                         <th>Loại</th>
-                        <td>{{catID}}</td>
-                    </tr>
-                    <tr>
-                        <th>Thời gian xuất bản</th>
-                        <td>{{openTime}}</td>
+                        <td>{{news.catID}}</td>
                     </tr>
                     <tr>
                         <th>Ghi chú</th>
-                        <td>{{note}}</td>
+                        <td>{{news.note}}</td>
                     </tr>
                     <tr>
                         <th>Người viết</th>
-                        <td>{{createdBy}}</td>
+                        <td>{{news.createdBy}}</td>
                     </tr>
-                    {{/each}}
+                    {{#if isEditor}}
+                     <form action="" method="post">
+                        <tr>
+                            <th>Ghi chú</th>
+                            <td><textarea name="note" id=""  rows="10" class="float-left w-100">{{news.note}}</textarea></td>
+                        </tr>
+                         <tr>
+                            <th> </th>
+                            <td>
+                                <input type="hidden" name="id" value="{{news.id}}">
+                                 <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mx-3">Duyệt </button>
+                                 <button type="submit" class="btn btn-danger mx-3" formaction="/profile/postmanagement/reject/{{news.id}}">Từ chối </button>
+                            </td>
+                        </tr>
+                    </form>
                     {{/if}}
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+{{#if isEditor}}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hẹn giờ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/profile/postmanagement/check/{{news.id}}" method="post">
+      <div class="modal-body">
+        
+            <input type="datetime-local" class="w-100" required name="openTime" >
+        
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" >Xác nhận</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{{/if}}

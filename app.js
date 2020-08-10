@@ -92,15 +92,14 @@ app.use(async function(req, res, next) {
 });
 
 const adminOnly = (req, res, next)=>{
-    // if(!res.locals.isLoggedIn && !res.locals.isAdmin)
-    // {
-    //     req.app.locals.layout = 'main';
-    //     res.redirect('/login');
-    // }
-    // else
-    // {
-    //     next();
-    // }
+    if(!res.locals.isLoggedIn )
+    {
+        req.app.locals.layout = 'main';
+        return res.redirect('/login');
+    }
+    if(!res.locals.isAdmin){
+        return res.redirect('/');
+    }
     next();
 }
 

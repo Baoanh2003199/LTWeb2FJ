@@ -43,7 +43,13 @@
                     <select class="qtagselect__select from-control w-100"
                         multiple name="tagID">
                         {{#each this.tag}}
-                        <option name="tagID" value="{{id}}" class="isblue">{{name}}</option>
+                        <option name="tagID" value="{{id}}" 
+                            {{#each ../listTag}}
+                                {{#eq id ../id }}
+                                    selected
+                                {{/eq}}
+                            {{/each}}
+                         class="isblue">{{name}}</option>
                         {{/each}}
                     </select>
                 </div>

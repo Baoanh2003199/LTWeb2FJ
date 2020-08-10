@@ -15,8 +15,10 @@
     <div class="card-body">
     <div class="container">
         <div class="table-responsive">
+            {{#if isWriter}}
             <form method="POST"></form>
              <div class="form-group">
+                 
                  <a href="/profile/postmanagement/add" class="btn btn-outline-success"><i class="fa fa-pencil" aria-hidden="true"></i> Đăng bài</a>
                     <button type="button" class="btn btn-info float-right"><i class="fa fa-filter" aria-hidden="true"></i> Lọc danh sách</button>
                     <select class="form-control float-right" id="postFilter" style="max-width:30%; margin-right:2%">
@@ -28,13 +30,14 @@
                     </select>
                     </div>
                  </form>
+                 {{/if}}
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col" >Tiêu đề</th>
-                            <th scope="col" >Thể loại</th>
                             <th scope="col" >Trạng thái</th>
+                            <th>Thể loại</th>
                             <th scope="col" >Thao tác</th>
                         </tr>
                     </thead>
@@ -45,28 +48,31 @@
                         <tr>
                             <th scope="row">{{id}}</th>
                             <td>{{name}}</td>
-                            <td>{{description}}</td>
-                            <td>{{catName}}</td>
                             <td>{{status}}</td>
+                            <td>{{catName}}</td>
                             <td >
+                                 {{#if ../isWriter}}
                                 <div class="d-flex justify-content-center">
                                     <a class="btn btn-success float-left mx-3"
-                                    href="/admin/news/edit/{{id}}"><i class="fa
+                                    href="/profile/postmanagement/edit/{{id}}"><i class="fa
                                         fa-pencil"
                                         aria-hidden="true" title="Sửa"></i></a>
+                                {{/if}}
                                 <a class="btn btn-primary float-left mx-3"
-                                    href="/admin/news/view/{{id}}"><i class="fa
+                                    href="/profile/postmanagement/view/{{id}}"><i class="fa
                                         fa-eye"
                                         aria-hidden="true" title="Xem"></i> </a>
                                 {{!-- Thầy bảo phải dung method post nên phải
                                 dùng form method post để gửi request --}}
+                                 {{#if ../isWriter}}
                                 <form class="float-left"
-                                    action="/admin/news/delete/{{id}}"
+                                    action="/profile/postmanagement/delete/{{id}}"
                                     method="POST">
                                     <button type="submit" class="btn btn-danger
                                         mx-3"><i class="fa fa-trash"
                                             aria-hidden="true" title="Xóa"></i></button>
                                 </form>
+                                {{/if}}
                                 </div>
                             </td>
                         </tr>

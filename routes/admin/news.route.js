@@ -100,9 +100,16 @@ route.get('/edit/:id', async function(req, res) {
     const tagRow = await tagModel.all();
     const catRow = await catModel.all();
     const news = rows[0];
+    const listTag = await news_tag.loadIDNews(news.id);
+    console.log(listTag);
     console.log(news);
     if (rows.length === 0) return res.send('Invalid parameter.');
-    res.render('admin/news/edit', { news, tag: tagRow, cat: catRow });
+    res.render('admin/news/edit', { 
+        news, 
+        tag: tagRow, 
+        cat: catRow,
+        listTag: listTag
+     });
 });
 
 route.post('/edit', upload.single('thumbnail'), async function(req, res) {
@@ -134,6 +141,7 @@ route.post('/edit', upload.single('thumbnail'), async function(req, res) {
 });
 // Duyệt bài
 route.get('/check', async function(req, res) {
+    
     const list = await newModel.check();
     res.render('admin/news/check', { news: list, empty: list.length === 0 });
 });
@@ -152,7 +160,8 @@ route.post('/check/:id', async function(req, res) {
     entity = {
         id: req.params.id,
         status: 1,
-        openTime: req.body.openTime
+        openTime: req.body.openTime,
+        note: ''
     };
     await newsModel.update(entity);
     res.redirect('/admin/news/check');

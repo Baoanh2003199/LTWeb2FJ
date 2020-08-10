@@ -2,12 +2,12 @@
 <nav class="breadcrumb">
     <a class="breadcrumb-item" href="/admin">Trang chủ</a>
     <a class="breadcrumb-item" href="/admin/news">Bài viết</a>
-    <a class="breadcrumb-item active" href="#">Thêm</a>
+    <a class="breadcrumb-item active" href="#">Sửa</a>
 </nav>
 <div class="contentHeader">
     <div class="card text-dark bg-light">
         <div class="card-body text-center">
-            <h4 class="card-title">Thêm Bài viết</h4>
+            <h4 class="card-title">Sửa bài viết</h4>
         </div>
     </div>
 </div>
@@ -21,13 +21,17 @@
                     <input type="text"
                         class="form-control form-control-sm d-block w-100" name="name"
                         required
-                        placeholder="Tên bài viết">
+                        placeholder="Tên bài viết" value="{{news.name}}" >
                 </div>
                 <div class="form-group">
                     <label for="">Thể loại</label>
                     <select class="form-control" name="catID" id="catID">
                         {{#each this.cat}}
-                        <option value="{{id}}">{{name}}</option>
+                        <option value="{{id}}" 
+                        {{#eq id ../news.catID}}
+                            selected
+                        {{/eq}}
+                         >{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -35,8 +39,16 @@
                     <label for="">Loại</label>
                     <select class="form-control" name="isPremium"
                         id="isPremium">
-                        <option name="isPremium" value="0" id="0">Thường</option>
-                        <option name="isPremium" value="1" id="1">Cao cấp</option>
+                        <option name="isPremium" value="0" 
+                         {{#eq news.isPremium '0'}}
+                                selected
+                        {{/eq}}
+                        id="0">Thường</option>
+                        <option name="isPremium" value="1" 
+                         {{#eq news.isPremium '1'}}
+                                selected
+                        {{/eq}}
+                        id="1">Cao cấp</option>
                     </select>
                 </div>
                 <div class="qtagselect from-group">
@@ -44,7 +56,13 @@
                     <select class="qtagselect__select from-control w-100"
                         multiple name="tagID">
                         {{#each this.tag}}
-                        <option name="tagID" value="{{id}}" class="isblue">{{name}}</option>
+                        <option name="tagID" value="{{id}}"
+                             {{#each ../listTag}}
+                                {{#eq tagID ../id }}
+                                    selected
+                                {{/eq}}
+                            {{/each}}
+                         class="isblue">{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -53,7 +71,7 @@
                     <input type="text"
                         class="form-control form-control-sm d-block w-100" name="description"
                         required
-                        placeholder="Mô tả bài viết">
+                        placeholder="Mô tả bài viết" value="{{news.description}}" >
                 </div>
                 <br>
                 <div class="form-group">
@@ -64,15 +82,15 @@
                         placeholder="" aria-describedby="fileHelpId" multiple>
                 </div>
                 <div class="form-group">
-                    <img src="/public/admin/img/click.svg" class="select_img w-25 h-25"
+                    <img src="/public/uploads/{{this.news.thumbnail}}" class="select_img w-25 h-25"
                         id="thumbnail" alt="ảnh đại diện" id="thumbnail">
                 </div>
                 <div class="form-group">
                     <label for="">Nội dung</label>
-                    <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                    <textarea name="content" id="content" cols="30" rows="10">{{news.content}}</textarea>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success px-5">Thêm</button>
+                    <button type="submit" class="btn btn-success px-5">Sửa</button>
                 </div>
 
             </form>

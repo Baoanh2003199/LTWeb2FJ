@@ -10,15 +10,30 @@ const path = require('path');
 var encoding = require('encoding');
 const PDFDocument = require('pdfkit');
 const newsModel = require('../../models/news.model');
+const { session } = require('passport');
 const doc = new PDFDocument();
 
 route.get('/', async function(req, res){
     if(res.locals.isWriter){
         const listNews = await newsModel.findByCreatedBy(req.session.userId);
         console.log(listNews);
+
+        return res.render('profile/post_management',{
+            news: listNews,
+            empty: listNews.length === 0,
+        });
+    }
+    else{
+        const listNews = await newsModel.findNewsByEditor(req.session.userId);
+        console.log(listNews);
+
+        return res.render('profile/post_management',{
+            news: listNews,
+            empty: listNews.length === 0,
+        });
     }
    
-    res.render('profile/post_management')
+  
 });
 
 route.get('/add', async function(req, res){
@@ -59,7 +74,6 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
             isPremium: req.body.isPremium,
             thumbnail: req.file.filename,
             content: req.body.content,
-            openTime: req.body.openTime,
             description: req.body.description,
             createdBy: req.session.userId
         };
@@ -95,13 +109,73 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
     }
     return res.send('error');
 });
-route.get('/views/:id', async function(req, res){
+route.get('/view/:id', async function(req, res){
+    const id = req.params.id || -1;
+    console.log(req.session.userId);
+    news = await newModel.view(id)
+    if(res.locals.isWriter ){
+        if(req.session.userId != news[0].createdBy){
+            return res.redirect('/profile');
+        }
+    }else{
+        const checkIsPermission = await newModel.checkNewsOfEditor(req.session.userId, news[0].id);
+        console.log(checkIsPermission);
+        if(checkIsPermission.length === 0){
+            return res.redirect('/profile'); 
+        }
+    }
+    res.render('profile/news/views',{
+        news: news[0]
+    })
+});
+route.get('/edit/:id', async function(req, res){
+   
     const id = req.params.id || -1;
     console.log(id);
     news = await newModel.view(id)
-    
-    res.render('profile/news/views',{
-        news: news
+    console.log(res.locals);
+    if(res.locals.isWriter ){
+        if(req.session.userId != news[0].createdBy){
+            return res.redirect('/profile');
+        }
+    }else{
+        const checkIsPermission = await newModel.checkNewsOfEditor(req.session.userId, news[0].id);
+        console.log(checkIsPermission);
+        if(checkIsPermission.length === 0){
+            return res.redirect('/profile'); 
+        }
+    }
+   
+    const tagRow = await tagModel.all();
+    const catRow = await catModel.all();
+    const listTag = await news_tagModel.loadIDNews(news[0].id);
+    console.log(listTag);
+    if(news.length == 0){
+        return res.redirect('/profile/postmanagement');
+    }
+    return res.render('profile/news/edit',{
+        news: news[0],
+        tag: tagRow,
+        cat: catRow,
+        listTag: listTag
     })
+});
+route.post('/check/:id', async function(req, res){
+    entity = {
+        id: req.params.id,
+        status: 1,
+        openTime: req.body.openTime,
+        note: ''
+    };
+    await newsModel.update(entity);
+    return res.redirect('/profile/postmanagement');
+});
+route.post('/reject/:id', async function(req, res){
+    entity = {
+        id: req.params.id,
+        note: req.body.note
+    };
+    await newsModel.update(entity);
+    return res.redirect('/profile/postmanagement');
 });
 module.exports = route;

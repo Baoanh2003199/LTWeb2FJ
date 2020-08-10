@@ -1,0 +1,71 @@
+{{#section 'title'}}Phân loại{{/section}}
+<nav class="breadcrumb">
+    <a class="breadcrumb-item" href="/admin">Trang chủ</a>
+    <a class="breadcrumb-item" href="/admin/news">Bài viết</a>
+    <a class="breadcrumb-item active" href="#">Chi tiết</a>
+</nav>
+<div class="contentHeader">
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            <h4 class="card-title">Chi tiết bài viết</h4>
+        </div>
+    </div>
+</div>
+
+<div class="contentHeader my-4">
+    <div class="card text-dark bg-light">
+        <div class="card-body text-center">
+            {{!-- Thầy bảo phải dung method post nên phải dùng form method post
+            để gửi request --}}
+            <form action="/admin/news/delete/{{id}}" class="float-right pt-3"
+                method="POST">
+                <button type="submit" class="btn btn-danger mx-3"><i class="fa
+                        fa-trash" aria-hidden="true" title="Xóa"></i> Xóa</button>
+            </form>
+            <a class="btn btn-primary m-3 float-right" href="/admin/news/add"
+                role="button"> <i class="fa fa-plus" aria-hidden="true"></i>
+                Thêm bài viết</a>
+            <div class="table-responsive">
+                <table class="table">
+                    {{#if this.empty}}
+                    {{else}}
+                    {{#each this.news}}
+                    <tr>
+                        <th width="15%">Tên</th>
+                        <td>{{name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mô tả</th>
+                        <td>{{description}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nội dung</th>
+                        <td>{{{content}}}</td>
+                    </tr>
+                    <tr>
+                        <th>Thể loại</th>
+                        <td>{{isPremium}}</td>
+                    </tr>
+                    <tr>
+                        <th>Loại</th>
+                        <td>{{catID}}</td>
+                    </tr>
+                    <tr>
+                        <th>Thời gian xuất bản</th>
+                        <td>{{openTime}}</td>
+                    </tr>
+                    <tr>
+                        <th>Ghi chú</th>
+                        <td>{{note}}</td>
+                    </tr>
+                    <tr>
+                        <th>Người viết</th>
+                        <td>{{createdBy}}</td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
