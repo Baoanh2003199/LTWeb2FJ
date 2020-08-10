@@ -3,6 +3,7 @@ const route = express.Router();
 const bcrypt = require('bcrypt');
 const loginModel = require('../models/user.model');
 const roleModel = require('../models/role.model');
+const subModel = require('../models/subscriber.model');
 
 
 const redirectLogin = (req, res, next)=>{
@@ -59,15 +60,36 @@ route.post('/', redirectHome, async function(req, res) {
         if(result[0])
         {
             var hashed = result[0].password
-            const roleObj = await roleModel.single(result[0].roleId);
+
             var validUser = bcrypt.compareSync(password, hashed)
             if(validUser)
             {
                 var {userId, name} = req.session;
+                
                 req.session.userId = result[0].id;
-                req.session.role = roleObj[0].code;
                 req.session.name = result[0].username;
-                res.redirect('/');
+                const sub = await subModel.byUserId(result[0].id);
+                const roleObj = await roleModel.single(result[0].roleId);
+                if(sub[0].expired < new Date(Date.now()) && roleObj[0].code == 'SUBSCRIBER')
+                {
+                    const roleOnChange = await roleModel.byCode('CASUAL');
+                    const updatedUser={
+                        id: result[0].id,
+                        username: result[0].username, 
+                        password: result[0].password,
+                        roleId: roleOnChange[0].id,
+                        status: 0 
+                    }
+                    loginModel.update(updatedUser);
+                    req.session.role = 'CASUAL';
+                    res.redirect('/');
+                }
+                else
+                {
+                    req.session.role = roleObj[0].code;
+                    res.redirect('/');
+                }
+            
             }
             else
             {

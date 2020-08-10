@@ -44,6 +44,7 @@ app.use(async function(req, res, next) {
     req.session.userId === undefined ?(res.locals.isLoggedIn = false):(res.locals.isLoggedIn = true);
     switch (req.session.role) {
         case "ADMINSTRATOR":
+            res.locals.isCasual = false;
             res.locals.isAdmin = true;
             res.locals.isSubscriber = false;
             res.locals.isGuest = false;
@@ -51,6 +52,7 @@ app.use(async function(req, res, next) {
             res.locals.isWriter = false;
             break;
         case "EDITOR":
+            res.locals.isCasual = false;
             res.locals.isEditor = true;
             res.locals.isSubscriber = false;
             res.locals.isGuest = false;
@@ -58,6 +60,7 @@ app.use(async function(req, res, next) {
             res.locals.isWriter = false;
             break;
         case "WRITER":
+            res.locals.isCasual = false;
             res.locals.isWriter = true;
             res.locals.isSubscriber = false;
             res.locals.isGuest = false;
@@ -65,13 +68,22 @@ app.use(async function(req, res, next) {
             res.locals.isEditor = false;
             break;
         case "SUBSCRIBER":
+            res.locals.isCasual = false;
             res.locals.isSubscriber = true;
             res.locals.isWriter = false;
             res.locals.isGuest = false;
             res.locals.isAdmin = false;
             res.locals.isEditor = false;
             break;
+        case "CASUAL":
+            res.locals.isCasual = true;
+            res.locals.isSubscriber = false;
+            res.locals.isWriter = false;
+            res.locals.isGuest = false;
+            res.locals.isAdmin = false;
+            res.locals.isEditor = false;
         default:
+            res.locals.isCasual = false;
             res.locals.isGuest = true;
             res.locals.isEditor = false;
             res.locals.isSubscriber = false;
