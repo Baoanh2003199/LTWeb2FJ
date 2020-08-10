@@ -41,9 +41,7 @@ app.all('/', function(req, res, next) {
 });
 
 app.use(async function(req, res, next) {
-    req.session.userId === undefined ?
-        (res.locals.isLoggedIn = false) :
-        (res.locals.isLoggedIn = true);
+    req.session.userId === undefined ?(res.locals.isLoggedIn = false):(res.locals.isLoggedIn = true);
     switch (req.session.role) {
         case "ADMINSTRATOR":
             res.locals.isAdmin = true;
@@ -82,7 +80,10 @@ app.use(async function(req, res, next) {
     }
     res.locals.userId = req.session.userId;
     res.locals.username = req.session.name;
-    res.locals.cat = await catModel.all();
+    (async () => {
+        res.locals.cat = await catModel.all()
+      })()
+    //res.locals.cat = await catModel.all();
     if(res.locals.isLoggedIn)
     {
         const sub = await subModel.view(res.locals.userId);
