@@ -19,6 +19,10 @@ module.exports = {
         return db.load(`select * from ${TBL_SUBSCRIBER} where id=${id}`);
     },
 
+    byUserId: function(id) {
+        return db.load(`select * from ${TBL_SUBSCRIBER} where userID=${id}`);
+    },
+
     del: function(idSub) {
         const condition = {
             id: idSub,

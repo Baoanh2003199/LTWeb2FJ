@@ -9,4 +9,8 @@ module.exports = {
     single: function(id) {
         return db.load(`select * from ${TBL_ROLE} where id = ${id}`);
     },
+    byCode: function(code)
+    {
+        return db.load(`select * from ${TBL_ROLE} where code = '${code}'`);
+    }
 };
