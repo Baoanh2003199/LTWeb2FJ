@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const config = require('../config/default.json');
 
-const pool = mysql.createPool(config.mysql);
+const pool = mysql.createPool(config.mysql_local);
 
 module.exports = {
   load: function (sql) {

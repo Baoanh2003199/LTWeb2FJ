@@ -100,7 +100,7 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
             filePdf: path,
         };
         await newModel.update(entityss);
-        return res.redirect(`/profile/postmanagement/views/${result.insertId}`);
+        return res.redirect(`/profile/postmanagement/view/${result.insertId}`);
     }
     return res.send('error');
 });

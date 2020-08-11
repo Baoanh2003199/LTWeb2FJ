@@ -137,6 +137,7 @@ app.use('/register',require('./routes/register.route'));
 app.use('/confirmation',require('./routes/confirmation.route'));
 app.use('/retrieve',require('./routes/reset_password.route'));
 app.use('/profile',redirectLogin, require('./routes/profile/profile.route'));
+app.use('/comment', require('./routes/comment.route'));
 
 app.get('/logout', function(req, res) {
     if (req.session) {

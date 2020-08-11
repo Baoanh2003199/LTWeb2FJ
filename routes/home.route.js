@@ -1,6 +1,7 @@
 const express = require('express');
 const newModel = require('../models/home.model');
 const catModel = require('../models/category.model');
+const commentModel = require('../models/comment.model');
 const range = require('../utils/range');
 
 const router = express.Router();
@@ -42,6 +43,7 @@ router.get('/:name/id=:id', async function(req, res) {
     const addViews = list[0].views + 1;
     const news = list[0];
     const listMain = await catModel.catSingle();
+    const listComment = await commentModel.findByNewId(news.id);
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
@@ -60,6 +62,7 @@ router.get('/:name/id=:id', async function(req, res) {
         return res.render('home/news', {
             news: news,
             listMain: listMain,
+            listComment: listComment,
         });
     }
 });
@@ -91,6 +94,7 @@ router.get('/download/:id', async function(req, res, next) {
 router.get('/category/name=:name/id=:id', async function(req, res) {
     const name = req.params.name;
     const parentID = req.params.id;
+    const page = req.query.page|| 1;
     const list = await newModel.catParentID(name, parentID);
     for (i = 0; i < list.length; i++) {
         const catID = list[i].id;
@@ -103,9 +107,10 @@ router.get('/category/name=:name/id=:id', async function(req, res) {
         const listParentID = await catModel.catParentID(catID);
         listMain[i].parentCat = listParentID;
     }
-    return res.render('home/tag', {
+    return res.render('home/category', {
         listMain: listMain,
         list: list,
+        page: page
     });
 });
 
