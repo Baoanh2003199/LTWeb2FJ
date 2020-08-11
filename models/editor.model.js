@@ -35,7 +35,6 @@ module.exports = {
     delete: async function(catId, userId){
     
         const editor_category = await this.view(catId, userId);
-        console.log(editor_category);
         const condition = {
             id: editor_category[0].id,
         };

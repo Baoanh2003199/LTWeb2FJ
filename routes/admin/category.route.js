@@ -52,7 +52,6 @@ route.get('/view/:id', async function(req, res) {
     res.render('admin/category/view', { cat: list, empty: list.length === 0 });
 });
 route.post('/edit/:id', async function(req, res){
-    console.log(req.body);
     const id = req.body.id;
     const result = await catModel.update(req.body);
 
@@ -62,7 +61,6 @@ route.post('/edit/:id', async function(req, res){
     }else{
         res.locals.errors = "vui lòng kiểm tra lại dữ liệu";
     }
-    console.log(id);
     return res.redirect(`/admin/category/edit/${id}`);
 });
 module.exports = route;

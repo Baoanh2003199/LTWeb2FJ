@@ -57,8 +57,16 @@ box-shadow: 11px 13px 39px -20px rgba(0,0,0,0.6);">
                                 Thông tin cá nhân
                             </a>
                         </li>
+                        {{#if isCasual}}
+                          <li class="nav-item">
+                            <a class="nav-link" href="/profile/premiumrequest" id="premiumrequest" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                                Nâng cấp Premium
+                            </a>
+                        </li>
+                        {{/if}}
                         {{#if isWriter}}
-          <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="/profile/postmanagement" id="postmanagement" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                                 Quản lý bài viết

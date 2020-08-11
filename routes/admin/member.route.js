@@ -38,7 +38,6 @@ route.get('/add', async function(req, res) {
 });
 
 route.post('/add', async function(req, res) {
-    console.log(req.body);
     await memberModel.add(req.body);
     res.redirect('/admin/member');
 });
@@ -76,7 +75,6 @@ route.get('/editor/:id', async function(req, res){
     if(editor){
         const listCate = await catModel.allSubCategory();
         const listCategoryByEditor = await editorModel.findCatByEditor(editor.id);
-        console.log(listCategoryByEditor);
         return res.render('admin/member/editor/edit',{
             editor: editor,
             categories: listCate,
@@ -108,19 +106,15 @@ route.post('/editor/:id', async function(req, res){
             listCategory.forEach(category => {
                 existArr.push(category.category.toString());
             });
-            console.log(catArr);
-            console.log(existArr);
             // Add to database
             const addCategory = catArr.filter( x => existArr.indexOf(x) == -1);
-            console.log(addCategory);
             if(addCategory.length != 0){
                 for(const catId of addCategory){
                     await editorModel.add(catId, editor.id);
                 }
             }
             // remove from database
-            const removeCategory = existArr.filter( x => catArr.indexOf(x) == -1);
-            console.log(removeCategory);           
+            const removeCategory = existArr.filter( x => catArr.indexOf(x) == -1);          
             if(removeCategory.length != 0){
                 for(const catId of removeCategory){
                     await editorModel.delete(catId, editor.id);

@@ -7,7 +7,6 @@ module.exports = {
   load: function (sql) {
     return new Promise(function (fn_done, fn_fail) {
       pool.query(sql, function (error, results, fields) {
-        console.log(this.sql);
         if (error) {
           
           return fn_fail(error);
@@ -20,7 +19,6 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       const sql = `insert into ${table} set ?`;
       pool.query(sql, entity, function (error, results) {
-        console.log(this.sql);
         if (error) {
           
           return reject(error);
@@ -35,7 +33,6 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       const sql = `update ${table} set ? where ?`;
       pool.query(sql, [entity, condition], function (error, results) {
-        console.log(this.sql);
         if (error) {
          
           return reject(error);
@@ -50,7 +47,6 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       const sql = `delete from ${table} where ?`;
       pool.query(sql, condition, function (error, results, fields) {
-        console.log(this.sql);
         if (error) {
           
           return reject(error);

@@ -89,7 +89,6 @@ route.post('/newpassword',[
             status: queryEntity[0].status
         }
         const result = await userModel.hashUpdate(entity);
-        console.log("result of update: "+ result);
         if(result)
         {
             res.redirect('/login');

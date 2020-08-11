@@ -178,7 +178,6 @@ routes.get('/edit/:id', async function(req, res) {
     const tagRow = await tagModel.all();
     const catRow = await catModel.all();
     const news = rows[0];
-    console.log(news);
     if (rows.length === 0) return res.send('Invalid parameter.');
     res.render('admin/news/edit', { news, tag: tagRow, cat: catRow });
 });
@@ -203,7 +202,6 @@ routes.post('/edit', upload.single('thumbnail'), async function(req, res) {
                 newID: result.insertId,
                 tagID: nuevo[i],
             };
-            console.log(entitys);
             await news_tagModel.insert(entitys);
         }
     }
@@ -213,5 +211,6 @@ routes.post('/edit', upload.single('thumbnail'), async function(req, res) {
 
 routes.use('/changepassword', require('./change_password.route'));
 routes.use('/postmanagement', require('./post_management.route'));
+routes.use('/premiumrequest', require('./premium_request.route'));
 
 module.exports = routes;

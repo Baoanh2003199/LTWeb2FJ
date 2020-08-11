@@ -82,6 +82,7 @@ app.use(async function(req, res, next) {
             res.locals.isGuest = false;
             res.locals.isAdmin = false;
             res.locals.isEditor = false;
+            break;
         default:
             res.locals.isCasual = false;
             res.locals.isGuest = true;

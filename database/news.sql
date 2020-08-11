@@ -125,6 +125,14 @@ CREATE TABLE `registerToken` (
   PRIMARY KEY (`id`)
 );
 
+DROP TABLE IF EXISTS `premium_request`
+CREATE TABLE `premium_request` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `requestDate` timestamp
+  PRIMARY KEY (`id`)
+);
+
 
 
 --DROP TABLE IF EXISTS `user_role`;

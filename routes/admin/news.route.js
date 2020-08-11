@@ -60,9 +60,7 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
             content: req.body.content,
             description: req.body.description,
         };
-        console.log(entity);
         const result = await newModel.add(entity);
-        console.log(result);
         const tags = req.body.tagID;
         const nuevo = tags.map((i) => Number(i, 10));
 
@@ -71,7 +69,6 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
                 newID: result.insertId,
                 tagID: nuevo[i],
             };
-            console.log(entitys);
             await news_tagModel.insert(entitys);
         }
         var path = './public/pdf/' + entity.name + '.pdf';
@@ -81,7 +78,6 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
         doc.text(resultBuffer, 20, 20);
         doc.fontSize(15);
         doc.pipe(fs.createWriteStream(path, 'utf8')).on('finish', function() {
-            console.log('PDF closed');
         });
         doc.end();
         const entityss = {
@@ -101,8 +97,6 @@ route.get('/edit/:id', async function(req, res) {
     const catRow = await catModel.all();
     const news = rows[0];
     const listTag = await news_tag.loadIDNews(news.id);
-    console.log(listTag);
-    console.log(news);
     if (rows.length === 0) return res.send('Invalid parameter.');
     res.render('admin/news/edit', { 
         news, 
@@ -132,7 +126,6 @@ route.post('/edit', upload.single('thumbnail'), async function(req, res) {
                 newID: result.insertId,
                 tagID: nuevo[i],
             };
-            console.log(entitys);
             await news_tagModel.insert(entitys);
         }
     }

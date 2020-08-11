@@ -23,9 +23,7 @@ router.get('/', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        console.log(listParentID);
         listMain[i].parentCat = listParentID;
-        console.log(listMain);
     }
     return res.render('home/home', {
         resultCat: resultCat,
@@ -47,14 +45,12 @@ router.get('/:name/id=:id', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        console.log(listParentID);
         listMain[i].parentCat = listParentID;
-        console.log(listMain);
+
     }
     if (news.length != 0) {
         news.tag = await newModel.getTagByNewsId(news.id);
         news.tag.forEach((tag) => {
-            console.log(tag);
         });
         const entity = {
             id: id,
@@ -70,16 +66,12 @@ router.get('/:name/id=:id', async function(req, res) {
 
 router.get('/search', async function(req, res) {
     const name = req.query.name;
-    console.log(name);
     const searchList = await newModel.search(name);
-    console.log(searchList);
     const listMain = await catModel.catSingle();
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        console.log(listParentID);
         listMain[i].parentCat = listParentID;
-        console.log(listMain);
     }
     res.render('home/search', {
         searchList: searchList,
@@ -93,7 +85,6 @@ router.get('/download/:id', async function(req, res, next) {
     const result = await newModel.downloads(id);
     const path = './public/pdf/';
     const fileName = result[0].filePdf;
-    console.log(fileName);
     res.download(path, fileName);
 });
 
@@ -123,20 +114,17 @@ router.get('/tag/:id', async function(req, res) {
 
     const tagName = await newModel.tagName(tagId);
 
-    console.log(tagName);
+
     for (i = 0; i < tagName.length; i++) {
         const ID = tagName[i].id;
         const result = await newModel.tagNew(ID);
-        console.log(result);
         tagName[i].tag = result;
     }
     const listMain = await catModel.catSingle();
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        console.log(listParentID);
         listMain[i].parentCat = listParentID;
-        console.log(listMain);
     }
 
     res.render('home/tagNew', { tagName: tagName, listMain: listMain });
