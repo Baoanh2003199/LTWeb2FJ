@@ -65,7 +65,6 @@ route.post('/', redirectHome, async function(req, res) {
             if(validUser)
             {
                 var {userId, name} = req.session;
-                
                 req.session.userId = result[0].id;
                 req.session.name = result[0].username;
                 const sub = await subModel.byUserId(result[0].id);
@@ -82,7 +81,7 @@ route.post('/', redirectHome, async function(req, res) {
                     }
                     loginModel.update(updatedUser);
                     req.session.role = 'CASUAL';
-                    res.redirect('/');
+                    res.render('notification');
                 }
                 else
                 {

@@ -44,7 +44,7 @@ CREATE TABLE `news` (
    `thumbnail` nvarchar(255) default null,
 	 FULLTEXT (name,description)
   PRIMARY KEY (`id`)
-);
+)ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
