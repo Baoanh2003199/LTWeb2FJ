@@ -17,6 +17,13 @@ module.exports = {
         return db.delete(TBL_request, condition);
     },
 
+    delByUserId: function(id){
+        const condition = {
+            userId: id,
+        };
+        return db.delete(TBL_request, condition);
+    },
+
     update: function(entity) {
         const condition = {
             id: entity.id,

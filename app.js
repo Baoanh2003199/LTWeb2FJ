@@ -11,6 +11,8 @@ app.use(
 
 const catModel = require('./models/category.model');
 const subModel = require('./models/subscriber.model');
+const roleModel = require('./models/role.model');
+const userModel = require('./models/user.model');
 // Include MiddleWare
 // - View: Config for view handlebars
 require('./middlewares/views.mdw')(app);
@@ -101,6 +103,26 @@ app.use(async function(req, res, next) {
     {
         const sub = await subModel.view(res.locals.userId);
         res.locals.avatar = sub[0].avatar;
+        if(sub[0].expired < new Date(Date.now()) && res.locals.isSubscriber)
+        {
+            const roleOnChange = await roleModel.byCode('CASUAL');
+            const updatedUser={
+                id: result[0].id,
+                username: result[0].username, 
+                password: result[0].password,
+                roleId: roleOnChange[0].id,
+                status: 0 
+            }
+            userModel.update(updatedUser);
+            req.session.role = 'CASUAL';
+            res.locals.isCasual = true;
+            res.locals.isSubscriber = false;
+            res.locals.isWriter = false;
+            res.locals.isGuest = false;
+            res.locals.isAdmin = false;
+            res.locals.isEditor = false; 
+            res.render('notification');
+        }
     }
     next();
 });

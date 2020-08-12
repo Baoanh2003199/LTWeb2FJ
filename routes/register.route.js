@@ -49,6 +49,7 @@ route.post('/', [
             return val;
         }
     }),
+    check('dob', 'Ngày sinh không được rỗng').not().isEmpty(),
     check('dob', 'Ngày sinh không hợp lệ').isISO8601('dd-mm-yyyy'),
     check('phone', 'Số điện thoại không hợp lệ').isNumeric(),
     check('terms', 'Bạn chưa đồng ý với điều khoản').not().isEmpty()

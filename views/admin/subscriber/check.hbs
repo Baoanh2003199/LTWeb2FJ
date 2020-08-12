@@ -6,7 +6,7 @@
 <div class="contentHeader">
     <div class="card text-dark bg-light">
         <div class="card-body text-center">
-            <h4 class="card-title">Danh sách đọc giả</h4>
+            <h4 class="card-title">Danh sách yêu cầu gia hạn</h4>
         </div>
     </div>
 </div>
@@ -19,33 +19,32 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col" width="20%">Tên</th>
-                            <th scope="col" width="17%">Email</th>
-                            <th scope="col" width="17%">Số điện thoại</th>
-                            <th scope="col" width="15%">Ngày sinh</th>
-                            <th scope="col" width="10%">Thời hạn</th>
-                            <th scope="col"></th>
+                            <th scope="col" width="15%">ID người dùng</th>
+                            <th scope="col" width="30%">Tên người dùng</th>
+                            <th scope="col" width="30%">Thời gian gửi yêu cầu</th>
+                            <th scope="col">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
+                             {{#if this.empty}}
+                            {{else}}
+                            {{#each this.req}}
+                            <th scope="row">{{id}}</th>
+                            <td>{{userId}}</td>
+                            <td>{{username}}</td>
+                            <td>{{requestDate}}</td>
                             <td class="d-flex justify-content-center">
-                                {{!-- Thầy bảo phải dung method post nên phải
-                                dùng form method post để gửi request --}}
                                 <form class="float-left"
-                                    action="/admin/subscriber/check/{{id}}"
+                                    action="/admin/subscriber/check/{{userId}}"
                                     method="POST">
                                     <button type="submit" class="btn btn-success
                                         mx-1"><i class="fa fa-check"
                                             aria-hidden="true"></i></button>
                                 </form>
                             </td>
+                            {{/each}}
+                            {{/if}}
                         </tr>
                     </tbody>
                 </table>
