@@ -69,19 +69,29 @@ module.exports = {
         return db.load(`select filePdf from ${TBL_NEWS} where id=${id}`);
     },
 
-    catParentID: function(name, parentID) {
+    catParentID: function(parentID) {
         return db.load(
-            `select * from ${TBL_CATEGORY} where name='${name}' and id=${parentID}`
+            `select * from ${TBL_CATEGORY} where id=${parentID}`
         );
     },
 
-    catNews: function(catID) {
-        return db.load(`select * from ${TBL_NEWS} where catID=${catID}`);
+    catNews: function(catID, offset, limit) {
+        return db.load(`select *
+         from ${TBL_NEWS} 
+         where catID=${catID}
+         limit ${limit}
+         offset ${offset}`);
     },
 
-    tagNew: function(idTag) {
+    tagNew: function(idTag, offset, limit) {
         return db.load(
-            `select n.id,n.name,n.thumbnail,n.description from ${TBL_NEW_TAG} t join ${TBL_NEWS} n where t.tagID = ${idTag} and t.newID=n.id`
+            `select n.id,n.name,n.thumbnail,n.description
+             from ${TBL_NEW_TAG} t 
+             join ${TBL_NEWS} n 
+             where t.tagID = ${idTag}
+              and t.newID=n.id
+            limit ${limit}
+            offset ${offset}`
         );
     },
 
@@ -105,4 +115,37 @@ module.exports = {
             `select * from ${TBL_COMMENT} where userID=${userID} and newsID=${newsID}`
         );
     },
+    newsByCatId: function(catId){
+        return db.load(
+            `select * 
+            from news 
+            where catID=${catId}`
+        );
+    },
+    catById: function(catId){
+        return db.load(
+            `select * 
+            from category
+            where id=${catId}`
+        );
+    },
+    totalNewsByCatId: async  function(catId){
+
+        const resultTotalPage = await db.load(
+            `select count(*) as total
+            from news 
+            where catID=${catId}`
+        );
+        return parseInt(resultTotalPage[0].total);
+    },
+    totalNewsByTagId: async function(tagId){
+        const result = await  db.load(
+            `select count(*) as total
+             from ${TBL_NEW_TAG} t 
+             join ${TBL_NEWS} n 
+             where t.tagID = ${tagId} 
+             and t.newID=n.id`
+        );
+        return result[0].total;
+    }
 };

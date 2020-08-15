@@ -44,7 +44,9 @@
     </div>
 </div>
 <div class="container py-4">
+        <input type="hidden" id="page" value={{page}} />
     {{#each tagName}}
+    <input type="hidden" id="id" value={{id}} />
     <div class="headerBar">{{name}}</div>
     <div class="row d-flex justify-content-left">
         <div class="col-sm-12 py-2">
@@ -72,7 +74,27 @@
                 </div>
             </div>
         </div>
+               <ul id="pagination-demo" class="pagination-lg mt-2 ml-5"></ul>
     </div>
     {{/each}}
 </div>
 {{!-- END MAIN --}}
+{{#section 'js'}}
+  <script src="/public/jquery.twbsPagination.min.js" > </script>
+  <script>
+    $('#pagination-demo').twbsPagination({
+      totalPages: {{totalPage}},
+      visiblePages: 5,
+      startPage: {{page}},
+      onPageClick: function(event, page){
+        const current_page = $('#page').val();
+        const id = $('#id').val();
+          if( page != current_page){
+            console.log(page);
+            location.href =  `/tag/?id=${id}&page=${page}`;
+          }
+         
+      }
+      });
+   </script>
+{{/section}}

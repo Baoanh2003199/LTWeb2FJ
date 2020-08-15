@@ -3,6 +3,7 @@ const newModel = require('../models/home.model');
 const catModel = require('../models/category.model');
 const commentModel = require('../models/comment.model');
 const range = require('../utils/range');
+const slug = require('slug');
 
 const router = express.Router();
 
@@ -24,6 +25,9 @@ router.get('/', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
+        for(j = 0; j < listParentID.length; j++){
+            listParentID[j].slug = slug(listParentID[j].name);
+        }
         listMain[i].parentCat = listParentID;
     }
     return res.render('home/home', {
@@ -47,6 +51,9 @@ router.get('/:name/id=:id', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
+        for(j = 0; j < listParentID.length; j++){
+            listParentID[j].slug = slug(listParentID[j].name);
+        }
         listMain[i].parentCat = listParentID;
 
     }
@@ -74,6 +81,9 @@ router.get('/search', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
+        for(j = 0; j < listParentID.length; j++){
+            listParentID[j].slug = slug(listParentID[j].name);
+        }
         listMain[i].parentCat = listParentID;
     }
     res.render('home/search', {
@@ -91,48 +101,76 @@ router.get('/download/:id', async function(req, res, next) {
     res.download(path, fileName);
 });
 
-router.get('/category/name=:name/id=:id', async function(req, res) {
-    const name = req.params.name;
-    const parentID = req.params.id;
-    const page = req.query.page|| 1;
-    const list = await newModel.catParentID(name, parentID);
+router.get('/category', async function(req, res) {
+    const name = req.query.name ||'none';
+    const parentID = req.query.id || -1;
+    const page = req.query.page || 1;
+    const list = await newModel.catParentID(parentID);
+    const total = await newModel.totalNewsByCatId(parentID);
+    
+    const limit = 2;
+    const totalPage = Math.ceil((Number(total/limit)));
+    const offset = limit * (page - 1);
+
+
+
     for (i = 0; i < list.length; i++) {
         const catID = list[i].id;
-        const catNew = await newModel.catNews(catID);
+        const catNew = await newModel.catNews(catID, offset, limit);
         list[i].new = catNew;
+        list[i].slug = slug(list[i].name);
     }
     const listMain = await catModel.catSingle();
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
+        for(j = 0; j < listParentID.length; j++){
+            listParentID[j].slug = slug(listParentID[j].name);
+        }
         listMain[i].parentCat = listParentID;
+        listMain[i].slug = slug(listMain[i].name);
     }
     return res.render('home/category', {
         listMain: listMain,
         list: list,
-        page: page
+        page: page,
+        totalPage: totalPage,
     });
 });
 
-router.get('/tag/:id', async function(req, res) {
-    const tagId = req.params.id;
+router.get('/tag/', async function(req, res) {
+    const tagId = req.query.id;
+    const page = req.query.page || 1;
+    const limit = 1;
 
     const tagName = await newModel.tagName(tagId);
-
+    const total = await newModel.totalNewsByTagId(tagId);
+    const offset = limit * ( page - 1);
+    const totalPage = Math.ceil(total/limit);
 
     for (i = 0; i < tagName.length; i++) {
         const ID = tagName[i].id;
-        const result = await newModel.tagNew(ID);
+        const result = await newModel.tagNew(ID, offset, limit);
+        console.log(result);
         tagName[i].tag = result;
     }
     const listMain = await catModel.catSingle();
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
+        for(j = 0; j < listParentID.length; j++){
+            listParentID[j].slug = slug(listParentID[j].name);
+        }
         listMain[i].parentCat = listParentID;
+        listMain[i].slug = slug(listMain[i].name);
     }
 
-    res.render('home/tagNew', { tagName: tagName, listMain: listMain });
+    res.render('home/tagNew', {
+         tagName: tagName,
+          listMain: listMain,
+          page: page,
+          totalPage, totalPage
+        });
 });
 
 router.post('/comment', async function(req, res) {

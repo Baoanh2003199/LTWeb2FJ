@@ -26,7 +26,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           {{#each parentCat}}
-          <a class="dropdown-item" href="/category/name={{name}}/id={{id}}">{{name}}</a>
+          <a class="dropdown-item" href="/category/?name={{slug}}&id={{id}}">{{name}}</a>
           {{/each}}
         </li>
       {{/each}}

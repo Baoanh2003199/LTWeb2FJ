@@ -78,3 +78,23 @@
     {{/each}}
 </div>
 {{!-- END MAIN --}}
+{{#section 'js'}}
+  <script src="/public/jquery.twbsPagination.min.js" > </script>
+  <script>
+    $('#pagination-demo').twbsPagination({
+      totalPages: {{totalPage}},
+      visiblePages: 5,
+      startPage: {{page}},
+      onPageClick: function(event, page){
+        const current_page = $('#page').val();
+        const name = $('#name').val();
+        const id = $('#id').val();
+          if( page != current_page){
+            console.log(page);
+            location.href =  `/tag/{{}}/`;
+          }
+         
+      }
+      });
+   </script>
+{{/section}}

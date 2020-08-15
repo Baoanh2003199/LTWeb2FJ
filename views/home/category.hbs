@@ -46,7 +46,7 @@
 <div class="container py-4">
   {{#each list}}
   <div class="headerBar">
-    <a href="/category/name={{name}}/id={{id}}">{{name}}</a>
+    <a href="/category/?name={{name}}&id={{id}}">{{name}}</a>
     <input type="hidden" id="page" value={{../page}} />
     <input type="hidden" id="name" value={{ name }} />
     <input type="hidden" id="id" value={{id}} />
@@ -75,8 +75,9 @@
           </div>
           {{/each}}
         </div>
-        <ul id="pagination-demo" class="pagination-lg"></ul>
+       
       </div>
+       <ul id="pagination-demo" class="pagination-lg mt-2 ml-5"></ul>
     </div>
 
   </div>
@@ -87,15 +88,16 @@
   <script src="/public/jquery.twbsPagination.min.js" > </script>
   <script>
     $('#pagination-demo').twbsPagination({
-      totalPages: 50,
+      totalPages: {{totalPage}},
       visiblePages: 5,
+      startPage: {{page}},
       onPageClick: function(event, page){
         const current_page = $('#page').val();
         const name = $('#name').val();
         const id = $('#id').val();
           if( page != current_page){
-             console.log(page);
-            location.href =  `/category/name=${name}/id=${id}?page=${page}`;
+            console.log(page);
+            location.href =  `/category?name=${name}&id=${id}&page=${page}`;
           }
          
       }
