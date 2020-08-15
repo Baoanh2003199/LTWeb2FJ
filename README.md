@@ -117,7 +117,5 @@ Lưu ý: Bài viết hiển thị trên trang chủ gồm các thông tin
 - "npm install"
 - run localhost
   - "npm start" or "npx nodemon" ( Auto update sources when ctrl + s )
-  ## 8.Bug:
-  - [x] Tự động cập nhật expired của subscriber (đã fix)
-  - [x] Các thành phần UI trên navbar nằm không ngay hàng (đã fix)
+
   
