@@ -7,7 +7,7 @@ module.exports = {
   load: function (sql) {
     return new Promise(function (fn_done, fn_fail) {
       pool.query(sql, function (error, results, fields) {
-        console.log(this.sql);
+
         if (error) {
           
           return fn_fail(error);

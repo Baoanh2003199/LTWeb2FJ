@@ -76,8 +76,17 @@ module.exports = {
     },
 
     search: function(text) {
+        var search = '+'+text;
+        search = search.replace(' ', ' +');
+        console.log(search);
         return db.load(
-            `select id,name,description,thumbnail from ${TBL_NEWS} WHERE MATCH (name,description) AGAINST ('${text}' IN NATURAL LANGUAGE MODE)`
+            `select *
+             from ${TBL_NEWS}
+              WHERE MATCH (name,description, content)
+               AGAINST ('${search}' IN Boolean MODE)
+               and openTime < now()
+               and status = 1
+               order by isPremium desc`
         );
     },
     downloads: function(id) {

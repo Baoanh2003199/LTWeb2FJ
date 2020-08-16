@@ -20,7 +20,7 @@ CREATE TABLE `comment` (
   `content` varchar(255) DEFAULT NULL,
   `parentID` int(11) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
-	`newsID` int(11) DEFAULT NULL,
+	`newsId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -199,3 +199,5 @@ insert into role values(null, 'Quản trị','ADMINSTRATOR');
 insert into role values(null, 'Biên tập','EDITOR');
 insert into role values(null, 'Phóng viên','WRITER');
 insert into role values(null, 'Đọc giả','SUBSCRIBER');
+
+alter table news add FULLTEXT(name, description, content);
