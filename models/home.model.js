@@ -19,13 +19,21 @@ module.exports = {
 
     NewNews: function() {
         return db.load(
-            `select * from ${TBL_NEWS} where status=1 order by id desc limit 12`
+            `select * from ${TBL_NEWS} 
+            where status=1
+            and opentime < now()
+             order by id desc
+              limit 12`
         );
     },
 
     CatToNews: function(catID) {
         return db.load(
-            `select * from ${TBL_NEWS} where catID=${catID} and status=1 order by id desc limit 10`
+            `select * from ${TBL_NEWS} 
+            where catID=${catID} 
+            and opentime < now()
+            and status=1 order by id desc
+             limit 10`
         );
     },
 
@@ -34,6 +42,7 @@ module.exports = {
             `select n.*, c.name catName
             from ${TBL_NEWS} n, category c
             where n.id=${idNews}
+            and opentime < now()
             and n.name like '${nameNew}'
             and n.catId = c.id`
         );
@@ -41,7 +50,12 @@ module.exports = {
 
     ManyNews: function(catID) {
         return db.load(
-            `select * from ${TBL_NEWS} where catID=${catID} and status=1 order by views limit 10`
+            `select * 
+            from ${TBL_NEWS} 
+            where catID=${catID}
+            and opentime < now()
+             and status=1 order by views 
+             limit 10`
         );
     },
 
@@ -79,17 +93,19 @@ module.exports = {
         return db.load(`select *
          from ${TBL_NEWS} 
          where catID=${catID}
+         and opentime < now()
          limit ${limit}
          offset ${offset}`);
     },
 
     tagNew: function(idTag, offset, limit) {
         return db.load(
-            `select n.id,n.name,n.thumbnail,n.description
+            `select n.id,n.name,n.thumbnail,n.description, n.isPremium
              from ${TBL_NEW_TAG} t 
              join ${TBL_NEWS} n 
              where t.tagID = ${idTag}
               and t.newID=n.id
+              and opentime < now()
             limit ${limit}
             offset ${offset}`
         );
@@ -119,7 +135,8 @@ module.exports = {
         return db.load(
             `select * 
             from news 
-            where catID=${catId}`
+            where catID=${catId}
+            and opentime < now()`
         );
     },
     catById: function(catId){
@@ -134,7 +151,8 @@ module.exports = {
         const resultTotalPage = await db.load(
             `select count(*) as total
             from news 
-            where catID=${catId}`
+            where catID=${catId}
+            and opentime < now()`
         );
         return parseInt(resultTotalPage[0].total);
     },
@@ -144,7 +162,8 @@ module.exports = {
              from ${TBL_NEW_TAG} t 
              join ${TBL_NEWS} n 
              where t.tagID = ${tagId} 
-             and t.newID=n.id`
+             and t.newID=n.id
+             and opentime < now()`
         );
         return result[0].total;
     }
