@@ -22,5 +22,16 @@ module.exports = {
        const mMoMent = moment(date);
        return mMoMent.format(format);
     },
-   
+    checkOpenTime: function( a, options){
+        if( a < Date.now()){
+            return options.fn(this);
+        }
+        return options.inverse(this);
+    },
+    waitOpen: function( a, options){
+        if( a > Date.now()){
+            return options.fn(this);
+        }
+        return options.inverse(this);
+    },
 };

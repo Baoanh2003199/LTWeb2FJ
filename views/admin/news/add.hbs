@@ -43,7 +43,7 @@
                 <div class="qtagselect from-group">
                     <label for="">Tag</label><br>
                     <select class="qtagselect__select from-control w-100"
-                        multiple name="tagID">
+                        multiple name="tagID[]">
                         {{#each this.tag}}
                         <option name="tagID" value="{{id}}" class="isblue">{{name}}</option>
                         {{/each}}

@@ -6,7 +6,7 @@ const TBL_NEWS = 'news';
 
 module.exports = {
     all: function() {
-        return db.load(`select n.id, n.name, n.description, n.catID, n.status, cat.name catName
+        return db.load(`select n.id, n.name, n.description, n.catID, n.status, cat.name catName, n.note note, n.openTime openTime
         from ${TBL_NEWS} n, category cat
         where n.catID = cat.id`);
     },
@@ -74,5 +74,45 @@ module.exports = {
         and n.catID in ( select ed.category
                         from editor_category ed
                         where ed.userId = u.id);`)
-    }
+    },
+    findCheckedNewsOfWriter: function(createdBy){
+        return db.load(`select n.id, n.name, n.description, n.content, n.catID, n.isPremium,
+        n.openTime, n.note, n.createdBy, n.thumbnail, n.status,
+        cat.name catName 
+        from ${TBL_NEWS} n, category cat
+        where createdBy=${createdBy}
+        and n.catID = cat.ID
+        and n.status = 1
+        and openTime > now()`);
+    },
+    findReleaseNewsOfWriter: function(createdBy){
+        return db.load(`select n.id, n.name, n.description, n.content, n.catID, n.isPremium,
+        n.openTime, n.note, n.createdBy, n.thumbnail, n.status,
+        cat.name catName 
+        from ${TBL_NEWS} n, category cat
+        where createdBy=${createdBy}
+        and n.catID = cat.ID
+        and n.status = 1
+        and openTime < now()`);
+    },
+    findUncheckNewsOfWriter: function(createdBy){
+        return db.load(`select n.id, n.name, n.description, n.content, n.catID, n.isPremium,
+        n.openTime, n.note, n.createdBy, n.thumbnail, n.status,
+        cat.name catName 
+        from ${TBL_NEWS} n, category cat
+        where createdBy=${createdBy}
+        and n.catID = cat.ID
+        and n.status = 0
+        and n.note is not null`);
+    },
+    findRejectNewsOfWriter: function(createdBy){
+        return db.load(`select n.id, n.name, n.description, n.content, n.catID, n.isPremium,
+        n.openTime, n.note, n.createdBy, n.thumbnail, n.status,
+        cat.name catName 
+        from ${TBL_NEWS} n, category cat
+        where createdBy=${createdBy}
+        and n.catID = cat.ID
+        and n.status = 0
+        and n.note is null`);
+    },
 };

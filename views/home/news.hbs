@@ -7,10 +7,12 @@
 
 {{!-- START MAIN --}}
 <div class="container pt-5 min-vh-100">
+   
     <div class="newsCategory float-left ml-4 mt-2">
         <div><a href="/category/name={{news.name}}/id={{news.id}}">{{news.catName}}</a></div>
     </div>
     <h2 class="newsTitle py-5">{{news.name}}</h2>
+     {{#if isExpired}}
     <div class="d-flex justify-content-center">
         <img src="/public/uploads/{{news.thumbnail}}" alt="main image">
     </div>
@@ -28,9 +30,7 @@
     <div class="newsContent p-2 pt-3">
         {{{news.content}}}
     </div>
-    <div>
-        <a href="/download/{{news.id}}" download="{{news.filePdf}}">Download</a>
-    </div>
+   
 </div>
 
 <div class="container py-4">
@@ -82,5 +82,7 @@
         </div>
     </div>
 </div>
-
+ {{else}}
+    <div class="alert alert-danger ">Vui lòng đăng nhập và gia hạn tài khoản</div>
+    {{/if}}
 {{!-- END MAIN --}}

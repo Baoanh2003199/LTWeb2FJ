@@ -38,7 +38,23 @@
                             <td>{{name}}</td>
                             <td>{{description}}</td>
                             <td>{{catName}}</td>
-                            <td>{{status}}</td>
+                            <td>{{#eq status 1 }}
+                                    {{#checkOpenTime openTime}}
+                                        Xuất bản
+                                    {{/checkOpenTime}}
+                                    {{#waitOpen openTime}}
+                                        Duyệt và chờ xuất bản
+                                    {{/waitOpen}}
+                                {{/eq}}
+                                {{#eq status 0}}
+                                    {{#ne note '' }}
+                                        Từ chối
+                                     {{/ne}}   
+                                    {{#eq note '' }}
+                                        Chờ duyệt
+                                    {{/eq}}
+                                {{/eq}}
+                            </td>
                             <td >
                                 <div class="d-flex justify-content-center">
                                     <a class="btn btn-success float-left mx-3"

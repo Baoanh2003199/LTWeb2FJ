@@ -16,18 +16,20 @@
     <div class="container">
         <div class="table-responsive">
             {{#if isWriter}}
-            <form method="POST"></form>
+            <form method="get">
              <div class="form-group">
                  <a href="/profile/postmanagement/add" class="btn btn-outline-success"><i class="fa fa-pencil" aria-hidden="true"></i> Đăng bài</a>
-                    <button type="button" class="btn btn-info float-right"><i class="fa fa-filter" aria-hidden="true"></i> Lọc danh sách</button>
-                    <select class="form-control float-right" id="postFilter" style="max-width:30%; margin-right:2%">
-                    <option "4">Tất cả bài viết</option>
-                    <option value="1">Đã được duyệt</option>
-                    <option value="2">Đã xuất bản</option>
-                    <option value="0">Chưa được duyệt</option>
-                    <option value="3">Bị từ chối</option>
+                     <button type="submit" class="btn btn-info float-right"><i class="fa fa-filter" aria-hidden="true"></i> Lọc danh sách</button>
+                    <select class="form-control float-right" id="postFilter" name="type" style="max-width:30%; margin-right:2%">
+                    <option value="0"    >Tất cả bài viết</option>
+                    <option value="1" {{#eq type 1}} selected {{/eq}}>Đã được duyệt</option>
+                    <option value="2"{{#eq type 2}} selected {{/eq}}>Đã xuất bản</option>
+                    <option value="3" {{#eq type 3}} selected {{/eq}}>Chưa được duyệt</option>
+                    <option value="4"{{#eq type 4}} selected {{/eq}}>Bị từ chối</option>
                     </select>
                     </div>
+                   
+
                  </form>
                  {{/if}}
                 <table class="table table-bordered">
@@ -47,15 +49,33 @@
                         <tr>
                             <th scope="row">{{id}}</th>
                             <td>{{name}}</td>
-                            <td>{{status}}</td>
+                            <td>{{#eq status 1 }}
+                                    {{#checkOpenTime openTime}}
+                                        Xuất bản
+                                    {{/checkOpenTime}}
+                                    {{#waitOpen openTime}}
+                                        Duyệt và chờ xuất bản
+                                    {{/waitOpen}}
+                                {{/eq}}
+                                {{#eq status 0}}
+                                    {{#ne note underfined }}
+                                        Từ chối
+                                     {{/ne}}   
+                                    {{#eq note underfined }}
+                                        Chờ duyệt
+                                    {{/eq}}
+                                {{/eq}}
+                            </td>
                             <td>{{catName}}</td>
                             <td >
                                  {{#if ../isWriter}}
+                                 {{#eq status 0 }}
                                 <div class="d-flex justify-content-center">
                                     <a class="btn btn-success float-left mx-3"
                                     href="/profile/postmanagement/edit/{{id}}"><i class="fa
                                         fa-pencil"
                                         aria-hidden="true" title="Sửa"></i></a>
+                                  {{/eq}}      
                                 {{/if}}
                                 <a class="btn btn-primary float-left mx-3"
                                     href="/profile/postmanagement/view/{{id}}"><i class="fa
@@ -64,6 +84,7 @@
                                 {{!-- Thầy bảo phải dung method post nên phải
                                 dùng form method post để gửi request --}}
                                  {{#if ../isWriter}}
+                                 {{#eq status 0}}
                                 <form class="float-left"
                                     action="/profile/postmanagement/delete/{{id}}"
                                     method="POST">
@@ -71,6 +92,7 @@
                                         mx-3"><i class="fa fa-trash"
                                             aria-hidden="true" title="Xóa"></i></button>
                                 </form>
+                                {{/eq}}
                                 {{/if}}
                                 </div>
                             </td>

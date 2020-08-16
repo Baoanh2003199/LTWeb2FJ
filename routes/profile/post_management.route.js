@@ -14,13 +14,50 @@ const { session } = require('passport');
 const doc = new PDFDocument();
 
 route.get('/', async function(req, res){
-    if(res.locals.isWriter){
-        const listNews = await newsModel.findByCreatedBy(req.session.userId);
 
-        return res.render('profile/post_management',{
+    if(res.locals.isWriter){
+        const type = req.query.type || 0;
+
+        if( type == 0){
+           const listNews = await newsModel.findByCreatedBy(req.session.userId);
+           return res.render('profile/post_management',{
             news: listNews,
             empty: listNews.length === 0,
+            type
         });
+        }if(type == 1){
+             listNews = await newsModel.findCheckedNewsOfWriter(req.session.userId);
+             return res.render('profile/post_management',{
+                news: listNews,
+                empty: listNews.length === 0,
+                type
+            });
+        }if(type == 2){
+            listNews = await newsModel.findReleaseNewsOfWriter(req.session.userId);
+            return res.render('profile/post_management',{
+               news: listNews,
+               empty: listNews.length === 0,
+               type
+           });
+        }if(type == 3){
+            listNews = await newsModel.findRejectNewsOfWriter(req.session.userId);
+            return res.render('profile/post_management',{
+               news: listNews,
+               empty: listNews.length === 0,
+               type
+           });
+
+        }if(type == 4){
+            listNews = await newsModel.findUncheckNewsOfWriter(req.session.userId);
+            return res.render('profile/post_management',{
+               news: listNews,
+               empty: listNews.length === 0,
+               type
+           });
+        }
+       
+
+       
     }
     else{
         const listNews = await newsModel.findNewsByEditor(req.session.userId);
@@ -86,20 +123,20 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
             };
             await news_tagModel.insert(entitys);
         }
-        var path = './public/pdf/' + entity.name + '.pdf';
-        var contentHTML = entity.content;
-        var regexContent = contentHTML.replace(/<\/?[^>]+(>|$)/g, '');
-        var resultBuffer = encoding.convert(regexContent, 'ASCII', 'UTF-8');
-        doc.text(resultBuffer, 20, 20);
-        doc.fontSize(15);
-        doc.pipe(fs.createWriteStream(path, 'utf8')).on('finish', function() {
-        });
-        doc.end();
-        const entityss = {
-            id: result.insertId,
-            filePdf: path,
-        };
-        await newModel.update(entityss);
+        // var path = './public/pdf/' + entity.name + '.pdf';
+        // var contentHTML = entity.content;
+        // var regexContent = contentHTML.replace(/<\/?[^>]+(>|$)/g, '');
+        // var resultBuffer = encoding.convert(regexContent, 'ASCII', 'UTF-8');
+        // doc.text(resultBuffer, 20, 20);
+        // doc.fontSize(15);
+        // doc.pipe(fs.createWriteStream(path, 'utf8')).on('finish', function() {
+        // });
+        // doc.end();
+        // const entityss = {
+        //     id: result.insertId,
+        //     filePdf: path,
+        // };
+        // await newModel.update(entityss);
         return res.redirect(`/profile/postmanagement/view/${result.insertId}`);
     }
     return res.send('error');
@@ -149,6 +186,57 @@ route.get('/edit/:id', async function(req, res){
         listTag: listTag
     })
 });
+route.post('/edit/:id', upload.single('thumbnail'), async function(req, res) {
+    if (req.file) {
+        const entity = {
+            name: req.body.name,
+            catID: req.body.catID,
+            isPremium: req.body.isPremium,
+            thumbnail: req.file.filename,
+            content: req.body.content,
+            description: req.body.description,
+            createdBy: req.session.userId,
+            id: req.params.id,
+        };
+        const result = await newModel.update(entity);
+        await news_tagModel.del(result.insertId);
+        const tags = req.body.tagID;
+        const nuevo = tags.map((i) => Number(i, 10));
+        for (i = 0; i < nuevo.length; i++) {
+            const entitys = {
+                newID: result.insertId,
+                tagID: nuevo[i],
+            };
+            await news_tagModel.insert(entitys);
+        }
+        return res.redirect(`/profile/postmanagement/view/${req.params.id}`);
+    }else{
+        const entity = {
+            name: req.body.name,
+            catID: req.body.catID,
+            isPremium: req.body.isPremium,
+            content: req.body.content,
+            description: req.body.description,
+            createdBy: req.session.userId,
+            id: req.params.id,
+        };
+        const result = await newModel.update(entity);
+        console.log(result);
+        await news_tagModel.del(result.insertId);
+        const tags = req.body.tagID;
+        const nuevo = tags.map((i) => Number(i, 10));
+        for (i = 0; i < nuevo.length; i++) {
+            const entitys = {
+                newID: result.insertId,
+                tagID: nuevo[i],
+            };
+            await news_tagModel.insert(entitys);
+        }
+        return res.redirect(`/profile/postmanagement/view/${req.params.id}`);
+    }
+  
+});
+
 route.post('/check/:id', async function(req, res){
     entity = {
         id: req.params.id,

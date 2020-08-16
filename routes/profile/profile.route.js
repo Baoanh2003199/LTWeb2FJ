@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 routes.get('/', async function(req, res) {
-    const subRes = await subModel.view(res.locals.userId);
+    const subRes = await subModel.byUserId(res.locals.userId);
     const user = await userModel.view(res.locals.userId);
     const roleRes = await roleModel.single(user[0].roleId);
     const obj = {

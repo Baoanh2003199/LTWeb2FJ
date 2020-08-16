@@ -101,11 +101,12 @@ app.use(async function(req, res, next) {
     //res.locals.cat = await catModel.all();
     if(res.locals.isLoggedIn)
     {
-        const sub = await subModel.view(res.locals.userId);
+        const sub = await subModel.byUserId(res.locals.userId);
         res.locals.avatar = sub[0].avatar;
         if(sub[0].expired < new Date(Date.now()) && res.locals.isSubscriber)
         {
             const roleOnChange = await roleModel.byCode('CASUAL');
+            const result = await userModel.view(req.session.userId);
             const updatedUser={
                 id: result[0].id,
                 username: result[0].username, 

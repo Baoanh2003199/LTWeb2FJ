@@ -22,6 +22,7 @@ module.exports = {
             `select * from ${TBL_NEWS} 
             where status=1
             and opentime < now()
+            and status = 1
              order by id desc
               limit 12`
         );
@@ -94,6 +95,7 @@ module.exports = {
          from ${TBL_NEWS} 
          where catID=${catID}
          and opentime < now()
+         and status=1
          limit ${limit}
          offset ${offset}`);
     },
@@ -106,6 +108,7 @@ module.exports = {
              where t.tagID = ${idTag}
               and t.newID=n.id
               and opentime < now()
+              and status=1
             limit ${limit}
             offset ${offset}`
         );
@@ -152,7 +155,8 @@ module.exports = {
             `select count(*) as total
             from news 
             where catID=${catId}
-            and opentime < now()`
+            and opentime < now()
+            and status=1`
         );
         return parseInt(resultTotalPage[0].total);
     },
@@ -163,8 +167,18 @@ module.exports = {
              join ${TBL_NEWS} n 
              where t.tagID = ${tagId} 
              and t.newID=n.id
+             and status=1
              and opentime < now()`
         );
         return result[0].total;
+    },
+    hotNews: function(){
+
+        return db.load(
+            `select * from ${TBL_NEWS} 
+            where  opentime < now() - interval 1 week
+            and status= 1 order by views desc
+             limit 3`
+        );
     }
 };

@@ -62,7 +62,8 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
         };
         const result = await newModel.add(entity);
         const tags = req.body.tagID;
-        const nuevo = tags.map((i) => Number(i, 10));
+        console.log(tags);
+        const nuevo = tags.map((i) => Number(i, 100));
 
         for (i = 0; i < nuevo.length; i++) {
             const entitys = {
@@ -71,20 +72,20 @@ route.post('/add', upload.single('thumbnail'), async function(req, res) {
             };
             await news_tagModel.insert(entitys);
         }
-        var path = './public/pdf/' + entity.name + '.pdf';
-        var contentHTML = entity.content;
-        var regexContent = contentHTML.replace(/<\/?[^>]+(>|$)/g, '');
-        var resultBuffer = encoding.convert(regexContent, 'ASCII', 'UTF-8');
-        doc.text(resultBuffer, 20, 20);
-        doc.fontSize(15);
-        doc.pipe(fs.createWriteStream(path, 'utf8')).on('finish', function() {
-        });
-        doc.end();
-        const entityss = {
-            id: result.insertId,
-            filePdf: path,
-        };
-        await newModel.update(entityss);
+        // var path = './public/pdf/' + entity.name + '.pdf';
+        // var contentHTML = entity.content;
+        // var regexContent = contentHTML.replace(/<\/?[^>]+(>|$)/g, '');
+        // var resultBuffer = encoding.convert(regexContent, 'ASCII', 'UTF-8');
+        // doc.text(resultBuffer, 20, 20);
+        // doc.fontSize(15);
+        // doc.pipe(fs.createWriteStream(path, 'utf8')).on('finish', function() {
+        // });
+        // doc.end();
+        // const entityss = {
+        //     id: result.insertId,
+        //     filePdf: path,
+        // };
+        // await newModel.update(entityss);
     }
     res.redirect('/admin/news');
 });

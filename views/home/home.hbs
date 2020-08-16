@@ -9,46 +9,30 @@
 <div class="container justify-content-center pt-2">
     <div class="headerBar">Nổi bật</div> </br>
          <div class="row d-flex">
-             <div class="col-md-4 clearfix d-none d-md-block eachNews">
-                <div class="card mb-2">
-                    <a href="/{{name}}/id={{id}}">
-                        <img class="card-img-top w-100" src="https://via.placeholder.com/150" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="/{{name}}/id={{id}}">{{name}}</a></h5>
-                        <small>ngày đăng: {{openTime}}</small>
-                         <div class="card-text">{{description}}</div>
-                    </div>    
-                </div>
-            </div>
-              <div class="col-md-4 clearfix d-none d-md-block eachNews">
-                <div class="card mb-2">
-                    <a href="/{{name}}/id={{id}}">
-                        <img class="card-img-top w-100" src="https://via.placeholder.com/150" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                      
-                        <h5 class="card-title">
-                            <a href="/{{name}}/id={{id}}">{{name}}</a></h5>
-                        <small>ngày đăng: {{openTime}}</small>
-                         <div class="card-text">{{description}}</div>
-                    </div>    
-                </div>
-            </div>
-              <div class="col-md-4 clearfix d-none d-md-block eachNews">
-                <div class="card mb-2">
-                    <a href="/{{name}}/id={{id}}">
-                        <img class="card-img-top w-100" src="https://via.placeholder.com/150" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="/{{name}}/id={{id}}">{{name}}</a></h5>
-                        <small>ngày đăng: {{openTime}}</small>
-                         <div class="card-text">{{description}}</div>
-                    </div>    
-                </div>
-            </div>
+              {{#each hotNews}}
+                    <div class="col-md-4 clearfix d-none d-md-block eachNews">
+                        <div class="card mb-2">
+                            <a href="/{{name}}/id={{id}}">
+                                <img class="card-img-top"
+                                    src="/public/uploads/{{thumbnail}}"
+                                    alt="Card image cap">
+                            </a>
+                            <div class="card-body">
+                                      
+                                   {{#if isPremium}}
+                                    <i class="fa fa-tags text-danger"> Đặc biệt </i>
+                                       
+                                    {{/if}}
+                                
+                                <h5 class="card-title"> <a
+                                        href="/{{name}}/id={{id}}">{{name}}</a></h5>
+                                <small>ngày đăng: {{formatDate openTime 'DD/MM/yyyy'}}</small>
+                                <div class="card-text">{{description}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each }}
+         
         </div>       
     </div>
 </div>
@@ -89,7 +73,7 @@
                                 
                                 <h5 class="card-title"> <a
                                         href="/{{name}}/id={{id}}">{{name}}</a></h5>
-                                <small>ngày đăng: {{openTime}}</small>
+                                <small>ngày đăng:{{formatDate openTime 'DD/MM/yyyy'}}</small>
                                 <div class="card-text">{{description}}</div>
                             </div>
                         </div>
@@ -117,7 +101,7 @@
                                 {{/if}}
                                 <h5 class="card-title"> <a
                                         href="/{{name}}/id={{id}}">{{name}}</a></h5>
-                                <small>ngày đăng: {{openTime}}</small>
+                                <small>ngày đăng: {{formatDate openTime 'DD/MM/yyyy'}}</small>
                                 <div class="card-text">{{description}}</div>
                             </div>
                         </div>
@@ -167,7 +151,7 @@
                             {{/if}}
                                 <h5 class="card-title"> <a
                                         href="/{{name}}/id={{id}}">{{name}}</a></h5>
-                                <small>ngày đăng: {{openTime}}</small>
+                                <small>ngày đăng: {{formatDate openTime 'DD/MM/yyyy'}}</small>
                                 <div class="card-text">{{description}}</div>
                             </div>
                         </div>
@@ -213,7 +197,7 @@
                                          {{/if}}
                                         <h5 class="card-title"> <a
                                                 href="/{{name}}/id={{id}}">{{name}}</a></h5>
-                                        <small>ngày đăng: {{openTime}}</small>
+                                        <small>ngày đăng:{{formatDate openTime 'DD/MM/yyyy'}}</small>
                                         <div class="card-text">{{description}}</div>
                                     </div>
                                 </div>
@@ -251,7 +235,7 @@
                                          {{/if}}
                                             <h5 class="card-title"> <a
                                                     href="/{{name}}/id={{id}}">{{name}}</a></h5>
-                                            <small>ngày đăng: {{openTime}}</small>
+                                            <small>ngày đăng: {{formatDate openTime 'DD/MM/yyyy'}}</small>
                                             <div class="card-text">{{description}}</div>
                                         </div>
                                     </div>

@@ -4,6 +4,7 @@ const catModel = require('../models/category.model');
 const commentModel = require('../models/comment.model');
 const range = require('../utils/range');
 const slug = require('slug');
+const newsModel = require('../models/news.model');
 
 const router = express.Router();
 
@@ -30,6 +31,8 @@ router.get('/', async function(req, res) {
         }
         listMain[i].parentCat = listParentID;
     }
+
+    const hotNews = await newModel.hotNews();
     return res.render('home/home', {
         resultCat: resultCat,
         resultNew1: resultNew1,
@@ -37,6 +40,7 @@ router.get('/', async function(req, res) {
         resultNew3: resultNew3,
         resultNew4: resultNew4,
         listMain: listMain,
+        hotNews: hotNews,
     });
 });
 
@@ -58,6 +62,16 @@ router.get('/:name/id=:id', async function(req, res) {
 
     }
     if (news.length != 0) {
+        if(news.isPremium == 1 ){
+            if(!res.locals.isLoggedIn || req.session.role == 'CASUAL'){
+                return res.render('home/news', {
+                    news: news,
+                    listMain: listMain,
+                    isExpired: false
+    
+                });
+            }
+        }
         news.tag = await newModel.getTagByNewsId(news.id);
         news.tag.forEach((tag) => {
         });
@@ -70,6 +84,7 @@ router.get('/:name/id=:id', async function(req, res) {
             news: news,
             listMain: listMain,
             listComment: listComment,
+            isExpired: true
         });
     }
 });
@@ -151,7 +166,6 @@ router.get('/tag/', async function(req, res) {
     for (i = 0; i < tagName.length; i++) {
         const ID = tagName[i].id;
         const result = await newModel.tagNew(ID, offset, limit);
-        console.log(result);
         tagName[i].tag = result;
     }
     const listMain = await catModel.catSingle();

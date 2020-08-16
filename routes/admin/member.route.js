@@ -4,6 +4,7 @@ const roleModel = require('../../models/role.model');
 const userModel = require('../../models/user.model');
 const catModel = require('../../models/category.model');
 const editorModel = require('../../models/editor.model');
+const regModel = require('../../models/user.model');
 const DATE_FORMATER = require('dateformat');
 
 const route = express.Router();
@@ -38,7 +39,23 @@ route.get('/add', async function(req, res) {
 });
 
 route.post('/add', async function(req, res) {
-    await memberModel.add(req.body);
+    const userEnity = {
+        username: req.body.username,
+        password: req.body.password,
+        roleId: req.body.roleId,
+        status: 0
+    };
+    const registed = await regModel.regAdd(userEnity);
+    req.body.userId = registed.insertedId;
+    const info = {
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        dob: req.body.dob,
+        userId: registed.insertId,
+        avatar: "default.png"
+    };
+    await memberModel.add(info);
     res.redirect('/admin/member');
 });
 
