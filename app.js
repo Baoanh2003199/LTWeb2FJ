@@ -45,6 +45,7 @@ app.all('/', function(req, res, next) {
 app.use(async function(req, res, next) {
     req.session.userId === undefined ?(res.locals.isLoggedIn = false):(res.locals.isLoggedIn = true);
     switch (req.session.role) {
+        // kiểm tra role ở bất kì req
         case "ADMINSTRATOR":
             res.locals.isCasual = false;
             res.locals.isAdmin = true;
@@ -103,7 +104,7 @@ app.use(async function(req, res, next) {
     {
         const sub = await subModel.byUserId(res.locals.userId);
         res.locals.avatar = sub[0].avatar;
-        if(sub[0].expired < new Date(Date.now()) && res.locals.isSubscriber)
+        if(sub[0].expired < new Date(Date.now()) && res.locals.isSubscriber) // nếu user đang login và tới thời gian hết hạn premium thì cập nhật lại role
         {
             const roleOnChange = await roleModel.byCode('CASUAL');
             const result = await userModel.view(req.session.userId);

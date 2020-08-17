@@ -88,7 +88,7 @@ route.post('/newpassword',[
             roleId: queryEntity[0].roleId,
             status: queryEntity[0].status
         }
-        const result = await userModel.hashUpdate(entity);
+        const result = await userModel.hashUpdate(entity);// update lại password sử dụng bcrypt được gọi bên trong user model
         if(result)
         {
             res.redirect('/login');
@@ -115,15 +115,15 @@ async function handler(req, res, view)
         if(usrid) 
         {
             const subscriber = await subModel.view(usrid);
-            if(subscriber[0] != undefined)
+            if(subscriber[0] != undefined) 
             {
-                const name = subscriber[0].name;
-                const rsRecord = await rsModel.byEmail(subscriber[0].email);
-                if(rsRecord[0] != undefined)
+                const name = subscriber[0].name; // tên user
+                const rsRecord = await rsModel.byEmail(subscriber[0].email); //tìm record của user với email trong bảng reset_password
+                if(rsRecord[0] != undefined)// nếu đã có record thì đây không phải là lần đầu tiên gửi yêu cầu reset
                 {
-                    if(rsRecord[0].sent_time < 3 && rsRecord[0].available_time <= new Date(Date.now()))
+                    if(rsRecord[0].sent_time < 3 && rsRecord[0].available_time <= new Date(Date.now())) // nếu số lần gửi < 3 và thời gian cho phép gửi lại <= thời gian hiện tại thì cho phép gửi
                     {
-                        if(rsRecord[0].sent_time == 2)
+                        if(rsRecord[0].sent_time == 2) // nếu đã qua 2 lần gửi yêu cầu thì đây là lần gửi thứ 3
                         {
                             const record = {
                                 id: rsRecord[0].id,
@@ -131,7 +131,7 @@ async function handler(req, res, view)
                                 token_reset : randomString(),
                                 expired: new Date(Date.now() + 1 * 86400000),
                                 sent_time: rsRecord[0].sent_time + 1,
-                                available_time: new Date(Date.now() + 1 * 86400000)
+                                available_time: new Date(Date.now() + 1 * 86400000) // tăng lên 1 ngày
                             }; 
                             await rsModel.update(record);
                             mailer.send({
@@ -152,7 +152,7 @@ async function handler(req, res, view)
                             });
                             res.redirect('/retrieve/verify');
                         }
-                        else
+                        else // nhỏ hơn lần gửi thứ 3 thì cho phép gửi
                         {
                             const record = {
                                 id: rsRecord[0].id,
@@ -183,7 +183,7 @@ async function handler(req, res, view)
                         }
                         
                     }
-                    if(rsRecord[0].sent_time == 3)
+                    if(rsRecord[0].sent_time == 3) // nếu lần gửi bằng 3 thì không cho phép gửi tiếp, trừ trường hợp đã qua ngày mới
                     {
                         if(rsRecord[0].available_time < new Date(Date.now()))
                         {

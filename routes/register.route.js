@@ -73,7 +73,7 @@ route.post('/', [
             const registed = await regModel.regAdd(usr);
             if(registed.affectedRows == 1)
             {
-                let myDate = new Date(Date.now() + 7 * 86400000);
+                let myDate = new Date(Date.now() + 7 * 86400000);// thời hạn sử dụng premium của account là 7 ngày
                 const sub={
                     name: req.body.name,
                     email: req.body.email,
@@ -86,9 +86,9 @@ route.post('/', [
                 const subscriberAdded = await subModel.add(sub);
                 if(subscriberAdded.affectedRows == 1)
                 {
-                    const tokgen = new TokenGenerator(256, TokenGenerator.BASE62);
+                    const tokgen = new TokenGenerator(256, TokenGenerator.BASE62); // generate ra token kích hoạt
                     const token = tokgen.generate();
-                    let expiredHours = new Date(Date.now() + 1 * 86400000);
+                    let expiredHours = new Date(Date.now() + 1 * 86400000); //thời gian hết hạn của mã kích hoạt
                     const tokenObj = 
                     {
                         userId: registed.insertId,

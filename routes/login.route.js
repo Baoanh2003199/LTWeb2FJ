@@ -69,9 +69,9 @@ route.post('/', redirectHome, async function(req, res) {
                 req.session.name = result[0].username;
                 const sub = await subModel.byUserId(result[0].id);
                 const roleObj = await roleModel.single(result[0].roleId);
-                if(sub[0].expired < new Date(Date.now()) && roleObj[0].code == 'SUBSCRIBER')
+                if(sub[0].expired < new Date(Date.now()) && roleObj[0].code == 'SUBSCRIBER') // kiểm tra nếu user đang là subscriber và đã hết hạn premium thì đổi role
                 {
-                    const roleOnChange = await roleModel.byCode('CASUAL');
+                    const roleOnChange = await roleModel.byCode('CASUAL'); // truy vấn trong bảng role tìm role có code 'CASUAL'
                     const updatedUser={
                         id: result[0].id,
                         username: result[0].username, 

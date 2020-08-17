@@ -51,12 +51,12 @@ routes.get('/', async function(req, res) {
 routes.post('/', upload.single('avatar'), async function(req, res) {
     const sObj = await subModel.view(res.locals.userId);
     const nick = null;
-    if (!req.file) {
-        var path = './public/avatar/' + sObj[0].avatar;
-        var avatarname = 'default.png';
-        fs.access(path, fs.F_OK, (err) => {
+    if (!req.file) { // khi không chọn file để upload hay thay đổi avatar thì lấy avatar cũ
+        var path = './public/avatar/' + sObj[0].avatar;// tìm file trong folder avatar trên nơi lưu trữ ảnh
+        var avatarname = 'default.png'; // nếu không có ảnh thì ảnh mặc định sẽ là default.png
+        fs.access(path, fs.F_OK, (err) => { // kiểm tra avatar với tên được truy vấn từ subscriber có tồn tại trong chỗ lưu trữ hay k
             if (!err) {
-                avatarname = sObj[0].avatar;
+                avatarname = sObj[0].avatar; // nếu có file tồn tại với tên được truy vấn thì gán avatarname = tên file vừa dc truy vấn
             }
         });
         if (res.locals.isWriter) {
@@ -99,19 +99,19 @@ routes.post('/', upload.single('avatar'), async function(req, res) {
         }
     } else {
         sharp(req.file.path)
-            .resize(200, 240)
+            .resize(200, 240) // resize ảnh lại thành 200x240
             .toFile(
-                './public/avatar/' + '200x240-' + req.file.filename,
+                './public/avatar/' + '200x240-' + req.file.filename, //đổi tên file thành 200x240 + tên file
                 async function(err) {
                     if (err) {
                         console.error('sharp>>>', err);
                     }
-                    if (sObj[0].avatar != 'default.png') {
+                    if (sObj[0].avatar != 'default.png') { // nếu file avatar hiện tại k phải là default.png thì xóa ảnh cũ trong database khi thay đổi
                         fs.unlink('./public/avatar/' + sObj[0].avatar, function(err) {
                             if (err) throw err;
                         });
                     }
-                    fs.unlink('./public/avatar/' + req.file.filename, function(err) {
+                    fs.unlink('./public/avatar/' + req.file.filename, function(err) { // xóa ảnh vừa upload, chỉ lấy ảnh vừa được copy ra từ ảnh vừa upload với tên 200x240 + tên file
                         if (err) throw err;
                     });
                     if (res.locals.isWriter) {

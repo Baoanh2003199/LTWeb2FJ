@@ -3,7 +3,7 @@ const RequestModel = require('../../models/premium.model')
 const route = express.Router();
 route.get('/',async function(req, res)
 {
-    const queryObj = await RequestModel.byUserId(res.locals.userId);
+    const queryObj = await RequestModel.byUserId(res.locals.userId); // nếu đã có record trong table premium_request thì thông báo đang xử lí yêu cầu, k gửi lại
     if(queryObj[0])
     {
         var checkExists = true;

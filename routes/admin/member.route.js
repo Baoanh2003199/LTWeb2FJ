@@ -15,8 +15,8 @@ route.get('/', async function(req, res) {
     const listRole = await roleModel.all;
       for(var subscriber of list)
       {
-            subscriber.dob = DATE_FORMATER(subscriber.dob, 'dd/mm/yyyy')
-            subscriber.expired = DATE_FORMATER(subscriber.expired, 'HH:MM:ss - dd/mm/yyyy')
+            subscriber.dob = DATE_FORMATER(subscriber.dob, 'dd/mm/yyyy') // định dạng lại ngày
+            subscriber.expired = DATE_FORMATER(subscriber.expired, 'HH:MM:ss - dd/mm/yyyy') // định dạng lại ngày giờ
             var role = await roleModel.single(subscriber.roleId)
             subscriber.role = role[0].name
             if(subscriber.userID == res.locals.userId)

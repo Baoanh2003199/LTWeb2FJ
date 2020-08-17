@@ -5,7 +5,7 @@ const userModel = require('../models/user.model');
 const route = express.Router();
 
 
-route.get('/account/:id', async function(req, res) {
+route.get('/account/:id', async function(req, res) { // xác nhận email khi đăng ký
     const token = req.params.id;
     if(token == -1)
     {
