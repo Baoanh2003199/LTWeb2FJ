@@ -8,6 +8,7 @@ const newsModel = require('../models/news.model');
 
 const router = express.Router();
 
+//code lay bai viet cua trang main
 router.get('/', async function(req, res) {
     const resultCat = await catModel.allSubCategory();
     for (i = 0; i < resultCat.length; i++) {
@@ -26,7 +27,7 @@ router.get('/', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        for(j = 0; j < listParentID.length; j++){
+        for (j = 0; j < listParentID.length; j++) {
             listParentID[j].slug = slug(listParentID[j].name);
         }
         listMain[i].parentCat = listParentID;
@@ -44,6 +45,7 @@ router.get('/', async function(req, res) {
     });
 });
 
+//code lay bai viet chi tiet
 router.get('/:name/id=:id', async function(req, res) {
     const name = req.params.name;
     const id = req.params.id;
@@ -55,26 +57,23 @@ router.get('/:name/id=:id', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        for(j = 0; j < listParentID.length; j++){
+        for (j = 0; j < listParentID.length; j++) {
             listParentID[j].slug = slug(listParentID[j].name);
         }
         listMain[i].parentCat = listParentID;
-
     }
     if (news.length != 0) {
-        if(news.isPremium == 1 ){
-            if(!res.locals.isLoggedIn || req.session.role == 'CASUAL'){
+        if (news.isPremium == 1) {
+            if (!res.locals.isLoggedIn || req.session.role == 'CASUAL') {
                 return res.render('home/news', {
                     news: news,
                     listMain: listMain,
-                    isExpired: false
-    
+                    isExpired: false,
                 });
             }
         }
         news.tag = await newModel.getTagByNewsId(news.id);
-        news.tag.forEach((tag) => {
-        });
+        news.tag.forEach((tag) => {});
         const entity = {
             id: id,
             views: addViews,
@@ -84,11 +83,12 @@ router.get('/:name/id=:id', async function(req, res) {
             news: news,
             listMain: listMain,
             listComment: listComment,
-            isExpired: true
+            isExpired: true,
         });
     }
 });
 
+//phan code search fulltext
 router.get('/search', async function(req, res) {
     const name = req.query.name;
     const searchList = await newModel.search(name);
@@ -96,7 +96,7 @@ router.get('/search', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        for(j = 0; j < listParentID.length; j++){
+        for (j = 0; j < listParentID.length; j++) {
             listParentID[j].slug = slug(listParentID[j].name);
         }
         listMain[i].parentCat = listParentID;
@@ -108,6 +108,7 @@ router.get('/search', async function(req, res) {
     });
 });
 
+//phan code dowloads bai viet chi tiet
 router.get('/download/:id', async function(req, res, next) {
     const id = req.params.id;
     const result = await newModel.downloads(id);
@@ -116,18 +117,17 @@ router.get('/download/:id', async function(req, res, next) {
     res.download(path, fileName);
 });
 
+//phan code lay bai viet theo category
 router.get('/category', async function(req, res) {
-    const name = req.query.name ||'none';
+    const name = req.query.name || 'none';
     const parentID = req.query.id || -1;
     const page = req.query.page || 1;
     const list = await newModel.catParentID(parentID);
     const total = await newModel.totalNewsByCatId(parentID);
-    
+
     const limit = 2;
-    const totalPage = Math.ceil((Number(total/limit)));
+    const totalPage = Math.ceil(Number(total / limit));
     const offset = limit * (page - 1);
-
-
 
     for (i = 0; i < list.length; i++) {
         const catID = list[i].id;
@@ -139,7 +139,7 @@ router.get('/category', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        for(j = 0; j < listParentID.length; j++){
+        for (j = 0; j < listParentID.length; j++) {
             listParentID[j].slug = slug(listParentID[j].name);
         }
         listMain[i].parentCat = listParentID;
@@ -153,6 +153,7 @@ router.get('/category', async function(req, res) {
     });
 });
 
+//phan code lay bai viet theo tag
 router.get('/tag/', async function(req, res) {
     const tagId = req.query.id;
     const page = req.query.page || 1;
@@ -160,8 +161,8 @@ router.get('/tag/', async function(req, res) {
 
     const tagName = await newModel.tagName(tagId);
     const total = await newModel.totalNewsByTagId(tagId);
-    const offset = limit * ( page - 1);
-    const totalPage = Math.ceil(total/limit);
+    const offset = limit * (page - 1);
+    const totalPage = Math.ceil(total / limit);
 
     for (i = 0; i < tagName.length; i++) {
         const ID = tagName[i].id;
@@ -172,7 +173,7 @@ router.get('/tag/', async function(req, res) {
     for (i = 0; i < listMain.length; i++) {
         const catID = listMain[i].id;
         const listParentID = await catModel.catParentID(catID);
-        for(j = 0; j < listParentID.length; j++){
+        for (j = 0; j < listParentID.length; j++) {
             listParentID[j].slug = slug(listParentID[j].name);
         }
         listMain[i].parentCat = listParentID;
@@ -180,11 +181,12 @@ router.get('/tag/', async function(req, res) {
     }
 
     res.render('home/tagNew', {
-         tagName: tagName,
-          listMain: listMain,
-          page: page,
-          totalPage, totalPage
-        });
+        tagName: tagName,
+        listMain: listMain,
+        page: page,
+        totalPage,
+        totalPage,
+    });
 });
 
 router.post('/comment', async function(req, res) {
