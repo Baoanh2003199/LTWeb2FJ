@@ -63,7 +63,14 @@ route.post('/add', async function(req, res) {
 route.get('/view/:id', async function(req, res) {
     const id = req.params['id'];
     const list = await memberModel.view(id);
-    res.render('admin/member/view', { member: list });
+    var userObj = {
+        name: list[0].name,
+        phone: list[0].phone,
+        email: list[0].email,
+        avatar: list[0].avatar,
+        dob: DATE_FORMATER(list[0].dob, 'yyyy-mm-dd'),
+    }
+    res.render('admin/member/view', { user: userObj });
 });
 
 //delete

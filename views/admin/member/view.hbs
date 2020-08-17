@@ -14,44 +14,27 @@
 
 <div class="contentHeader my-4">
     <div class="card text-dark bg-light">
-        <div class="card-body text-center">
-            {{!-- Thầy bảo phải dung method post nên phải dùng form method post
-            để gửi request --}}
-            <form action="/admin/member/delete/{{id}}" class="float-right pt-3"
-                method="POST">
-                <button type="submit" class="btn btn-danger mx-3"><i class="fa
-                        fa-trash" aria-hidden="true" title="Xóa"></i> Xóa</button>
-            </form>
-            <a class="btn btn-primary m-3 float-right" href="/admin/member/add"
-                role="button"> <i class="fa fa-plus" aria-hidden="true"></i>
-                Thêm thành viên</a>
-            <div class="table-responsive">
-                <table class="table">
-                    {{#each this.member}}
-                    <tr>
-                        <th width="15%">Tên</th>
-                        <th>Email</th>
-                        <th>Số điện thoại</th>
-                        <th>Ngày sinh</th>
-                        <th>Vai trò</th>
-                    </tr>
-                    <tr>
-                        <td>{{name}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{email}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{phone}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dob}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{userID}}</td>
-                    </tr>
-                    {{/each}}
-                </table>
+        <div class="card-body">
+            <div class="container">
+             <div class="row">
+            <div class="col-sm-4">
+            <img src="/public/avatar/{{user.avatar}}" class="select_img border rouded img-thumbnail img-fluid" id="imgava" alt="ảnh đại diện" style="margin-top:3%; min-width: 90%; min-height:100%">
+            </div>
+            <div class="col-sm-8">
+                        <div class="form-group" style="margin: 10px;">
+                        <label for="name"><i class="fa fa-id-badge" aria-hidden="true"></i> Họ tên: {{user.name}}</label>
+                        </div>
+                         <div class="form-group" style="margin: 10px">
+                        <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i> Email: {{user.email}}</label>
+                        </div>
+                        <div class="form-group" style="margin: 10px;">
+                        <label for="dob"><i class="fa fa-calendar" aria-hidden="true"></i> Ngày sinh: {{user.dob}}</label>
+                        </div>
+                        <div class="form-group" style="margin: 10px">
+                        <label for="phone"><i class="fa fa-phone" aria-hidden="true"></i> Số điện thoại: {{user.phone}}</label>
+                        </div>
+            </div>
+            </div>
             </div>
         </div>
     </div>
